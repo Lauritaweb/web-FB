@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  color: black;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Nunito Sans", sans-serif;
+  color: black;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar .nav-item .nav-link {
+  font-size: 0.8em;
+  font-weight: 500;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s;
+}
+.navbar .nav-item .nav-link:hover {
+  background-size: 100% 2px;
+}
+
+.marquee {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+}
+.marquee i {
+  font-size: 1.4em;
+}
+.marquee p {
+  font-size: 0.9em;
+}
+
+.header {
+  padding-left: 0;
+  padding-right: 0;
+}
+.header img {
+  width: 100%;
+}
+
+.our-bikes .row {
+  justify-content: space-between;
+}
+.our-bikes article {
+  width: 32%;
+}
+@media (width <= 768px) {
+  .our-bikes article {
+    width: 95%;
+    margin: auto;
+  }
+}
+.our-bikes article a {
+  text-decoration: none;
+}
+.our-bikes article a img:hover {
+  border-left: solid black 3px;
+}
+.our-bikes article a h2 {
+  text-decoration: none;
+  color: black;
+  background-image: linear-gradient(black, black);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease-in-out;
+}
+.our-bikes article a h2:hover {
+  background-size: 100% 2px;
+}
+.our-bikes article ul {
+  padding-left: 0;
+}
+.our-bikes article ul li {
+  list-style: none;
+}
+.our-bikes article ul li a {
+  text-decoration: none;
+  color: black;
+  background-image: linear-gradient(black, black);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease-in-out;
+}
+.our-bikes article ul li a:hover {
+  background-size: 100% 2px;
+}
+
+.categories a {
+  text-decoration: none;
+  color: black;
+  background-image: linear-gradient(black, black);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease-in-out;
+}
+.categories a:hover {
+  background-size: 100% 2px;
+}
+.categories a img:hover {
+  transform: scale(1.01);
+}
+
+.services figcaption {
+  color: black;
+}
+.services figure img {
+  height: 100px;
+}
+
+@media (width <= 575px) {
+  .container,
+  .navbar .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

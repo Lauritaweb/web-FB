@@ -1,0 +1,20 @@
+.navbar{
+    .container{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .nav-item{
+        .nav-link{
+            font-size: .8em;
+            font-weight: 500;
+            background-image: linear-gradient(currentColor, currentColor);
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+            transition: background-size 0.3s;
+            &:hover{
+                background-size: 100% 2px;
+            }
+        }
+    }
+}

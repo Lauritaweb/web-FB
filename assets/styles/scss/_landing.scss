@@ -1,0 +1,104 @@
+// marquee
+.marquee{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    i{
+        font-size: 1.4em;
+    }
+    p{
+        font-size: .9em;
+    }
+}
+// header
+.header{
+    img{
+        width: 100%;
+    }
+    padding-left: 0;
+    padding-right: 0;
+}
+// our bikes
+.our-bikes{
+    .row{
+        justify-content: space-between;
+    }
+    article{
+        width: 32%;
+        @media (width<=768px){
+            width: 95%;
+            margin: auto;
+        }
+        a{
+            text-decoration: none;
+            img{
+                &:hover{
+                    border-left: solid black 3px;
+                    // transition: all ease 1s;
+                }
+            }
+            h2{
+                text-decoration: none;
+                color: black;
+                background-image: linear-gradient(black, black);  // Línea negra
+                background-position: 0% 100%;
+                background-repeat: no-repeat;
+                background-size: 0% 2px;
+                transition: background-size 0.3s ease-in-out;  
+                &:hover {
+                    background-size: 100% 2px;
+                }
+            }
+        }
+        ul {
+            padding-left: 0;
+            li {
+                list-style: none;
+                a {
+                    text-decoration: none;
+                    color: black;
+                    background-image: linear-gradient(black, black);  // Línea negra
+                    background-position: 0% 100%;
+                    background-repeat: no-repeat;
+                    background-size: 0% 2px;
+                    transition: background-size 0.3s ease-in-out;
+                    &:hover {
+                        background-size: 100% 2px;
+                    }
+                }
+            }
+        }        
+    }
+}
+
+// categorias
+.categories{
+    a{
+        text-decoration: none;
+        color: black;
+        background-image: linear-gradient(black, black);  // Línea negra
+        background-position: 0% 100%;
+        background-repeat: no-repeat;
+        background-size: 0% 2px;
+        transition: background-size 0.3s ease-in-out;                    
+        &:hover {
+            background-size: 100% 2px;
+        }
+        img{
+            &:hover{
+                transform: scale(1.01);
+            }
+        }
+    }
+}
+// services
+.services{
+    figcaption{
+        color: black;
+    }
+    figure{
+        img{
+            height: 100px;
+         }
+    }
+}

@@ -1,0 +1,20 @@
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+$mainFont:"Nunito Sans", sans-serif;
+$secondaryFont:"Roboto", sans-serif;
+// body
+body{
+    color: black;
+}
+// headings
+h1,
+h2,
+h3{
+    font-family: $mainFont;
+    color: black;
+}
+
+// text
+p{
+    font-family: $secondaryFont;
+}
