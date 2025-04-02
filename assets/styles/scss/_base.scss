@@ -13,8 +13,27 @@ h3{
     font-family: $mainFont;
     color: black;
 }
-
 // text
 p{
     font-family: $secondaryFont;
+}
+.text-dark{
+    color: black;
+}
+// header
+.header{
+    min-height: 400px;
+}
+// bgs
+.bg-one{
+    background: url(../../img/bg-madero.png) no-repeat top center;
+    background-size: cover;
+    background-position: center;
+}
+// btns
+.btn-dark{
+    background-color: black;
+}
+.btn-light{
+    background-color: white;
 }
