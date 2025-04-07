@@ -163,22 +163,26 @@
                     <div class="card-header bg-dark border-0">
                         <h4 class="font-weight-semi-bold m-0 text-white">Orden total</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body contenedor-productos">
                         <h5 class="font-weight-medium mb-3">Productos</h5>
-                        <div class="d-flex justify-content-between mb-3">
-                            <p>Storm</p>
-                            <p>$800.000</p>
-                            <button class="btn btn-sm btn-danger remove-item">
+                        <div class="item-producto d-flex justify-content-between mb-3 align-items-center">
+                            <p class="mb-0">Storm</p>
+                            <small class="text-muted mb-0">Cantidad: 1</small>
+                            <p class="mb-0 precio">$800.000</p>
+                            <button class="btn btn-sm btn-danger eliminar-producto">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <p>Casco Azul</p>
-                            <p>$80.000</p>
-                            <button class="btn btn-sm btn-danger remove-item">
+                        
+                        <div class="item-producto d-flex justify-content-between mb-3 align-items-center">
+                            <p class="mb-0">Casco Azul</p>
+                            <small class="text-muted mb-0">Cantidad: 1</small>
+                            <p class="mb-0 precio">$80.000</p>
+                            <button class="btn btn-sm btn-danger eliminar-producto">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </div>
+                        
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
@@ -373,36 +377,47 @@
 
     <!-- Javascript -->
     <script src="./assets/js/main.js"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const table = document.querySelector('table');
-
-            table.addEventListener('click', function (e) {
-            if (e.target.closest('.remove-item')) {
-                const row = e.target.closest('tr');
-                row.remove();
-                actualizarTotalOrden();
+        document.addEventListener("DOMContentLoaded", () => {
+          const contenedor = document.querySelector(".contenedor-productos");
+      
+          contenedor.addEventListener("click", function (e) {
+            const boton = e.target.closest(".eliminar-producto");
+            if (boton) {
+              const item = boton.closest(".item-producto");
+              if (item) {
+                item.remove();
+                actualizarTotal();
+              }
             }
-            });
-
-            function actualizarTotalOrden() {
-            let total = 0;
-            document.querySelectorAll('table tbody tr').forEach(row => {
-                const subtotalCell = row.querySelector('td:nth-child(4)');
-                if (subtotalCell) {
-                const subtotal = parseFloat(subtotalCell.textContent.replace('$', '')) || 0;
-                total += subtotal;
-                }
-            });
-
-            const totalCell = document.getElementById('totalOrden');
-            if (totalCell) {
-                totalCell.textContent = '$' + total.toFixed(2);
-            }
-            }
+          });
         });
-</script>
+      
+        function actualizarTotal() {
+          let total = 0;
+          document.querySelectorAll(".item-producto .precio").forEach(precioElem => {
+            const texto = precioElem.textContent.replace(/\$|\./g, "").replace(",", ".");
+            const valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total += valor;
+            }
+          });
+      
+          const envio = 15000; // valor fijo de envío
+          const totalFinal = total + envio;
+      
+          // Actualizamos el subtotal y total en el DOM
+          const subtotalElem = document.querySelector(".card-body .d-flex.justify-content-between.mb-3.pt-1 h6:last-child");
+          const totalElem = document.querySelector(".card-footer .d-flex.justify-content-between.mt-2 h5:last-child");
+      
+          if (subtotalElem) subtotalElem.textContent = `$${total.toLocaleString("es-AR")}`;
+          if (totalElem) totalElem.textContent = `$${totalFinal.toLocaleString("es-AR")}`;
+        }
+      </script>
+      
+      
+      
+      
 
 </body>
 
