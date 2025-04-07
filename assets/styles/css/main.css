@@ -22,10 +22,20 @@ p {
   min-height: 400px;
 }
 
-.bg-one {
+.bg-one, .bg-three, .bg-two {
   background: url(../../img/bg-madero.png) no-repeat top center;
   background-size: cover;
   background-position: center;
+}
+
+.bg-two {
+  background: url(../../img/bg-madero-2.png) no-repeat top center;
+  background-size: cover;
+}
+
+.bg-three {
+  background: url(../../img/bg-madero-3.png) no-repeat top center;
+  background-size: cover;
 }
 
 .btn-dark {
