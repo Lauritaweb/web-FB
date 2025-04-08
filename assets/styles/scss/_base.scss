@@ -31,13 +31,15 @@ p{
     background-position: center;
 }
 .bg-two{
-    @extend .bg-one;
     background: url(../../img/bg-madero-2.png) no-repeat top center;
     background-size: cover;
 }
 .bg-three{
-    @extend .bg-one;
     background: url(../../img/bg-madero-3.png) no-repeat top center;
+    background-size: cover;
+}
+.bg-four{
+    background: url(../../img/bg-urbana.png) no-repeat top center;
     background-size: cover;
 }
 // btns

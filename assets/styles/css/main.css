@@ -22,7 +22,7 @@ p {
   min-height: 400px;
 }
 
-.bg-one, .bg-three, .bg-two {
+.bg-one {
   background: url(../../img/bg-madero.png) no-repeat top center;
   background-size: cover;
   background-position: center;
@@ -35,6 +35,11 @@ p {
 
 .bg-three {
   background: url(../../img/bg-madero-3.png) no-repeat top center;
+  background-size: cover;
+}
+
+.bg-four {
+  background: url(../../img/bg-urbana.png) no-repeat top center;
   background-size: cover;
 }
 
