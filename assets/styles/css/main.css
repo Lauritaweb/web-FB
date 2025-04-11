@@ -18,6 +18,10 @@ p {
   color: black;
 }
 
+.text-key {
+  color: #f70180;
+}
+
 .header {
   min-height: 400px;
 }
