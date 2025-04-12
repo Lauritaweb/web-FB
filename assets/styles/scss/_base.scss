@@ -25,7 +25,7 @@ p{
 }
 // header
 .header{
-    height: 400px;
+    min-height: 400px;
 }
 // bgs
 .bg-one{
@@ -59,6 +59,46 @@ p{
 }
 .bg-eight{
     background: url(../../img/bg-primera-forever.png);
+    background-size: cover;
+}
+.bg-nine{
+    background: url(../../img/bg-accesorios.png);
+    background-size: cover;
+}
+.bg-ten{
+    background: url(../../img/bg-herramientas.png);
+    background-size: cover;
+}
+.bg-eleven{
+    background: url(../../img/bg-bolsos.png);
+    background-size: cover;
+}
+.bg-twelve{
+    background: url(../../img/bg-casco.png);
+    background-size: cover;
+}
+.bg-thirteen{
+    background: url(../../img/bg-ciclocomputador.png);
+    background-size: cover;
+}
+.bg-fourteen{
+    background: url(../../img/bg-infladores.png);
+    background-size: cover;
+}
+.bg-fifteen{
+    background: url(../../img/bg-lingas.png);
+    background-size: cover;
+}
+.bg-sixteen{
+    background: url(../../img/bg-luces.png);
+    background-size: cover;
+}
+.bg-seventeen{
+    background: url(../../img/bg-cintas.png);
+    background-size: cover;
+}
+.bg-eighteen{
+    background: url(../../img/bg-otros.png);
     background-size: cover;
 }
 // btns
