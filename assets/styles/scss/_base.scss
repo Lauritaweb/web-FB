@@ -25,7 +25,7 @@ p{
 }
 // header
 .header{
-    min-height: 400px;
+    height: 400px;
 }
 // bgs
 .bg-one{
@@ -51,6 +51,14 @@ p{
 }
 .bg-six{
     background: url(../../img/bg-todo-terreno.png);
+    background-size: cover;
+}
+.bg-seven{
+    background: url(../../img/bg-indumentaria.png);
+    background-size: cover;
+}
+.bg-eight{
+    background: url(../../img/bg-primera-forever.png);
     background-size: cover;
 }
 // btns
