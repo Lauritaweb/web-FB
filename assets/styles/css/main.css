@@ -47,6 +47,16 @@ p {
   background-size: cover;
 }
 
+.bg-five {
+  background: url(../../img/bg-ruta.png);
+  background-size: cover;
+}
+
+.bg-six {
+  background: url(../../img/bg-todo-terreno.png);
+  background-size: cover;
+}
+
 .btn-dark {
   background-color: black;
 }
