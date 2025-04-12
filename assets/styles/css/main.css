@@ -117,6 +117,41 @@ p {
   background-size: cover;
 }
 
+.bg-nineteen {
+  background: url(../../img/bg-componentes.png);
+  background-size: cover;
+}
+
+.bg-twenty {
+  background: url(../../img/bg-asientos.png);
+  background-size: cover;
+}
+
+.bg-twenty-one {
+  background: url(../../img/bg-cuadros.png);
+  background-size: cover;
+}
+
+.bg-twenty-two {
+  background: url(../../img/bg-frenos.png);
+  background-size: cover;
+}
+
+.bg-twenty-four {
+  background: url(../../img/bg-ruedas.png);
+  background-size: cover;
+}
+
+.bg-twenty-five {
+  background: url(../../img/bg-stems.png);
+  background-size: cover;
+}
+
+.bg-twenty-six {
+  background: url(../../img/bg-transmicion.png);
+  background-size: cover;
+}
+
 .btn-dark {
   background-color: black;
 }
