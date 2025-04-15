@@ -5,8 +5,8 @@ require '../../vendor/autoload.php';
 use App\Models\Bike;
 
 $bikeModel = new Bike();
-$list = $bikeModel->getProductsByCategory(1);
-$idSubCategory=1;
+// $list = $bikeModel->getProductsByCategory(1);
+$idSubCategory=2;
 //var_dump($list);
 ?>
 <!DOCTYPE html>
@@ -227,7 +227,7 @@ $idSubCategory=1;
                             
                         </div>
                     </div>
-                    <div id="product-list">
+                    <div id="product-list" class="row">
 
                     </div>                    
                     
