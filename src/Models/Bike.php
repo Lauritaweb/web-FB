@@ -69,8 +69,63 @@ class Bike
          return $users;
      }
 
+     public function getFilteredProducts($idCategory = null, $sizes = [], $colors = []) {
+        $where = [];
+        $params = [];
+    
+        $sql = "SELECT 
+                    p.id, 
+                    p.name, 
+                    p.price, 
+                    p.saleprice, 
+                    (SELECT url FROM product_pictures WHERE product_id = p.id LIMIT 1) as image
+                FROM products p
+                JOIN product_variants pv ON p.id = pv.product_id
+                LEFT JOIN subcategories sc ON sc.id = p.id_subcategory
+                LEFT JOIN (
+                    SELECT product_id, MIN(id) AS min_id
+                    FROM product_pictures
+                    GROUP BY product_id
+                ) pp_min ON pp_min.product_id = p.id
 
-
+                ";
+    
+        if (!empty($colors)) {
+            $inColors = implode(',', array_map('intval', $colors));
+            $where[] = "pv.id_color IN ($inColors)";
+        }
+    
+        if (!empty($sizes)) {
+            $inSizes = implode(',', array_map('intval', $sizes));
+            $where[] = "pv.id_size IN ($inSizes)";
+        }
+       
+        if (!empty($idCategory)) {
+            $where[] = "p.id_subcategory = ?";
+            $params[] = $idCategory;
+        }
+    
+        if (!empty($where)) {
+            $sql .= " WHERE " . implode(' AND ', $where);
+        }
+    
+        // Evitar duplicados por múltiples variantes
+        $sql .= " GROUP BY p.id";
+       
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->get_result();
+    
+        $elements = [];
+         while ($row = $result->fetch_assoc()) {
+             $elements[] = $row;
+         }
+ 
+         $stmt->close();
+ 
+         return $elements;
+    }
+    
 
 
            
