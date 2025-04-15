@@ -17,4 +17,45 @@
             }
         }
     }
+    
 }
+
+// mega menu
+.dropdown-menu{
+    .container{
+        ul.list-unstyled{
+            li{
+                --bs-dropdown-item-padding-x: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .dropdown:hover .dropdown-menu {
+      display: block !important;
+    }
+  
+    .dropdown-menu {
+      display: none;
+      margin-top: 0;
+      border: none;
+      background-color: white;
+      width: 100vw;
+      left: 0;
+      right: 0;
+    }
+  
+    .dropdown:hover > .dropdown-menu {
+      display: block !important;
+    }
+  
+    .dropdown-menu:hover {
+      display: block !important;
+    }
+  
+    .dropdown-toggle::after {
+      display: none;
+    }
+  }
+  

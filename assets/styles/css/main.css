@@ -152,6 +152,16 @@ p {
   background-size: cover;
 }
 
+.bg-twenty-seven {
+  background: url(../../img/bg-services.png);
+  background-size: cover;
+}
+
+.bg-twenty-eight {
+  background: url(../../img/bg-cursos.png);
+  background-size: cover;
+}
+
 .btn-dark {
   background-color: black;
 }
@@ -177,6 +187,33 @@ p {
   background-size: 100% 2px;
 }
 
+.dropdown-menu .container ul.list-unstyled li {
+  --bs-dropdown-item-padding-x: 0;
+}
+
+@media (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    display: block !important;
+  }
+  .dropdown-menu {
+    display: none;
+    margin-top: 0;
+    border: none;
+    background-color: white;
+    width: 100vw;
+    left: 0;
+    right: 0;
+  }
+  .dropdown:hover > .dropdown-menu {
+    display: block !important;
+  }
+  .dropdown-menu:hover {
+    display: block !important;
+  }
+  .dropdown-toggle::after {
+    display: none;
+  }
+}
 footer ul {
   padding-left: 0.5em;
 }
@@ -461,6 +498,7 @@ footer .payments img {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0 !important;
+    height: 260px;
   }
   .collage {
     padding-top: 0 !important;
