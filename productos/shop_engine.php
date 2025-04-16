@@ -1,8 +1,8 @@
 <?php 
 require '../../vendor/autoload.php';
 
-use App\Models\Bike;
-$bikeModel = new Bike();
+use App\Models\Product;
+$bikeModel = new Product();
 
 ?>
 

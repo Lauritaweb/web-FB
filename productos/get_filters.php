@@ -2,9 +2,9 @@
 session_start();
 require '../vendor/autoload.php';
 
-use App\Models\Bike;
+use App\Models\Product;
 
-$bikeModel = new Bike();
+$bikeModel = new Product();
 $colorResult = $bikeModel->getAllColors();
 $sizeResult  = $bikeModel->getAllSizes();
 
