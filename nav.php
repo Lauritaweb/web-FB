@@ -1,3 +1,7 @@
+<?php
+$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
+// $url_base = 'https://www.foreverbikes.com.ar';
+?>
 <div class="marquee bg-black text-white text-center">
         <p>
             <i class="bi bi-bicycle"></i>
@@ -33,57 +37,57 @@
                       <div class="col-md-2">
                         <h6 class="fw-bold">Bicis</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="./productos/bicis/bicis-urbanas.html">Urbanas</a></li>
-                          <li><a class="dropdown-item" href="./productos/bicis/bicis-ruta.html">Ruta</a></li>
-                          <li><a class="dropdown-item" href="./productos/bicis/bicis-todo-terreno.html">Todo terreno</a></li>
-                          <li><a class="dropdown-item" href="./productos/bicis/mi-primera-forever.html">Mi primera Forever</a></li>
-                          <li><a class="dropdown-item text-key" href="./productos/bicis/index.html">Ver todas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/bicis-urbanas.php">Urbanas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/bicis-ruta.php">Ruta</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/bicis-todo-terreno.php">Todo terreno</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/mi-primera-forever.php">Mi primera Forever</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/bicis/index.php">Ver todas</a></li>
                         </ul>
                       </div>
                       <div class="col-md-2">
                         <h6 class="fw-bold">Componentes</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="./productos/componentes/asientos.html">Asientos</a></li>
-                          <li><a class="dropdown-item" href="./productos/componentes/frenos.html">Frenos</a></li>
-                          <li><a class="dropdown-item" href="./productos/componentes/cuadros.html">Cuadros</a></li>
-                          <li><a class="dropdown-item" href="./productos/componentes/stems.html">Stems</a></li>
-                          <li><a class="dropdown-item" href="./productos/componentes/manubrios.html">Manubrios</a></li>
-                          <li><a class="dropdown-item" href="./productos/componentes/ruedas-componentes.html">Ruedas y componentes</a></li>
-                          <li><a class="dropdown-item" href="./productos/componentes/transmicion.html">Trasmición</a></li>
-                          <li><a class="dropdown-item text-key" href="./productos/componentes/index.html">Ver todos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos.php">Asientos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/frenos.php">Frenos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/manubrios.php">Manubrios</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas y componentes</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/transmicion.php">Trasmición</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos</a></li>
                         </ul>
                       </div>
                       <div class="col-md-2">
                         <h6 class="fw-bold">Accesorios</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="./productos/accesorios/cascos.html">Cascos</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/bolsos.html">Bolsos</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/luces.html">Luces</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/ciclocomputadores.html">Ciclocomputadores</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/herramientas.html">Herramientas</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/infladores.html">Infladores</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/lingas.html">Lingas</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/punos-cintas.html">Puños / Cintas</a></li>
-                          <li><a class="dropdown-item" href="./productos/accesorios/otros.html">Otros</a></li>
-                          <li><a class="dropdown-item text-key" href="./productos/accesorios/index.html">Ver todos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/cascos.php">Cascos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/ciclocomputadores.php">Ciclocomputadores</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/herramientas.php">Herramientas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/infladores.php">Infladores</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/punos-cintas.php">Puños / Cintas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
                         </ul>
                       </div>
                       <div class="col-md-2">
                         <h6 class="fw-bold">Indumentaria</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="./productos/indumentaria/index.html">Ver todos</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/indumentaria/index.php">Ver todos</a></li>
                         </ul>
                       </div>
                       <div class="col-md-2">
                         <h6 class="fw-bold">Servicios</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="./productos/cursos/index.html">Ver todos</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/cursos/index.php">Ver todos</a></li>
                         </ul>
                       </div>
                       <div class="col-md-2">
                         <h6 class="fw-bold">Cursos</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="./productos/cursos/index.html">Ver todos</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/cursos/index.html">Ver todos</a></li>
                         </ul>
                       </div>
                     </div>
