@@ -1,12 +1,12 @@
 <?php
-$idSubCategory=1;
+$idSubCategory=2;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bicicletas Ruta | Forever Bike - Movete veloz</title>
+    <title>Bicicletas Urbanas | Forever Bike - Movete con estilo y libertad</title>
     <meta name="description" content="Descubrí las bicicletas de ruta de Forever Bikes. Ligeras, veloces y listas para entrenar o recorrer la ciudad. Rendimiento, diseño y agilidad sobre dos ruedas.">
     <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
@@ -28,30 +28,30 @@ $idSubCategory=1;
     
 
     <!-- Page Header Start -->
-    <header class="container-fluid header bg-five mb-5 mt-5"></header>
+    <header class="container-fluid header bg-four mb-5 mt-5"></header>
     <!-- Page Header End -->
-    <section class="container py-5">
+    <section class="container">
         <div class="text-center mb-5">
-          <h2 class="fw-bold">Ruta</h2>
-          <p class="fs-3 mt-1">Liviandad y velocidad para volar sobre el asfalto</p>
-          <p class="fs-6">Las Forever Bikes Ruta están pensadas para quienes quieren más: más kilómetros, más velocidad, más libertad. Diseñadas para rendir al máximo sobre pavimento, son ideales tanto para entrenar como para moverte ágilmente por la ciudad. 
-        Con un diseño liviano y componentes de alto rendimiento, cada pedaleada es un impulso hacia tu mejor versión.</p>
+          <h2 class="fw-bold fs-2">Urbanas</h2>
+          <p class="fs-3 mt-1">Diseñadas para la ciudad, listas para cualquier desafío</p>
+          <p class="fs-6 mt-1">Las Forever Bikes Urbanas combinan simplicidad y fuerza. Pensadas para moverse con estilo por entornos exigentes, ofrecen bajo mantenimiento y gran resistencia.<br>
+          Con cada pedalada, convertí las calles en una aventura. Descubrí la agilidad, comodidad y confianza que necesitás para moverte libre por la ciudad.</p>
         </div>
         <div class="row text-center">
-          <div class="col-md-4 mb-4">
-            <i class="bi bi-feather display-4 text-key"></i>
-            <h3 class="mt-3 fw-semibold">Liviandad</h3>
-            <p class="fs-6">Subir escaleras, cargarla en el subte o guardarla en casa ya no es un problema. Su peso ultraliviano te acompaña donde vayas.</p>
+          <div class="col-md-4 mb-4 border-end">
+            <i class="bi bi-shield-check display-4 text-key"></i>
+            <h3 class="mt-3 fw-semibold">Resistencia</h3>
+            <p class="fs-6">Preparadas para los caminos más duros, estas bicis cuentan con un cuadro sólido y componentes duraderos. </p>
           </div>
-          <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4 border-end">
             <i class="bi bi-lightning-charge-fill display-4 text-key"></i>
-            <h3 class="mt-3 fw-semibold">Velocidad</h3>
-            <p class="fs-6">Nacidas para ir rápido. Ideales para rodadas largas, entrenamientos o moverte con fluidez en el día a día urbano.</p>
+            <h3 class="mt-3 fw-semibold">Agilidad</h3>
+            <p class="fs-6">Ligeras y maniobrables, sin resignar firmeza. Ideales para zigzaguear entre autos y moverte con libertad.</p>
           </div>
           <div class="col-md-4 mb-4">
-            <i class="bi bi-record-circle display-4 text-key"></i>
-            <h3 class="mt-3 fw-semibold">Cubiertas finas</h3>
-            <p class="fs-6">Cubiertas de alta presión que reducen el roce con el suelo. Te brindan un andar veloz, ágil y preciso, incluso en trayectos exigentes.</p>
+            <i class="bi bi-speedometer2 display-4 text-key"></i>
+            <h3 class="mt-3 fw-semibold">Cubiertas versátiles</h3>
+            <p class="fs-6">Neumáticos levemente más anchos que brindan tracción y seguridad, sin perder velocidad. Comodidad y control en cada superficie.</p>
           </div>
         </div>
       </section>

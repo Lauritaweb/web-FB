@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever Bikes | Viví la pasión por el ciclismo</title>
+    <meta name="description" content="Descubrí Forever Bikes, la comunidad de ciclistas que vive la pasión por las dos ruedas. Encontrá bicicletas, accesorios y service con beneficios exclusivos.">
+    <link rel="shortcut icon" href="./assets/img/profile-img.jpg" type="image/x-icon">
+    <!-- css Bs -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- css main -->
+    <link rel="stylesheet" href="./assets/styles/css/main.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="./assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-white">
+    <div class="marquee bg-black text-white text-center">
+        <p>
+            <i class="bi bi-bicycle"></i>
+            de ciclistas para ciclistas...
+        </p>
+    </div>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg position-relative mt-5">
+        <div class="container">
+            
+            <a class="navbar-brand position-absolute start-50 translate-middle-x " href="./index.html">
+                <img src="./assets/img/logo-forever-bikes.svg" alt="Forever Bikes" >
+            </a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link ps-0" href="#our-bikes">NUESTRAS BICIS </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">SOMOS FOREVER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">COMUNIDAD FOREVER</a>
+                    </li>
+                </ul>
+    
+                <div class="d-flex gap-3">
+                    <a href="#" class="nav-link border-end px-3">
+                        <i class="bi bi-cart"></i>
+                    </a>
+                    <a href="https://www.instagram.com/foreverbikesargentina" target="_blank" class="nav-link">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@foreverbikesargentina9001" target="_blank" class="nav-link">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@foreverbikesargentina" target="_blank" class="nav-link">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+                </div>
+    
+            </div>
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- Page Header Start -->
+    <header class="container-fluid header bg-three mb-5 mt-5">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            
+        </div>
+    </header>
+    <!-- Page Header End -->
+
+
+    <!-- Shop Detail Start -->
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 pb-5">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner border">
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" src="./assets/img/product-1.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="./assets/img/product-2.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="./assets/img/product-3.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="./assets/img/product-4.jpg" alt="Image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#product-carousel" data-bs-slide="prev">
+                        <i class="bi bi-arrow-left-circle-fill text-white" style="font-size: 50px!important;"></i>
+                    </a>
+                    <a class="carousel-control-next fs-6" href="#product-carousel" data-bs-slide="next">
+                        <i class="bi bi-arrow-right-circle-fill text-white fs-6" style="font-size: 50px!important;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 pb-5">
+                <h3 class="font-weight-semi-bold">Storm</h3>
+                
+                <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
+                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
+                <div class="d-flex mb-3">
+                    <p class="text-dark font-weight-medium mb-0 me-3">Sizes:</p>
+                    <form class="d-flex">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="size-1" name="size">
+                            <label class="custom-control-label" for="size-1">XS</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="size-2" name="size">
+                            <label class="custom-control-label" for="size-2">S</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="size-3" name="size">
+                            <label class="custom-control-label" for="size-3">M</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="size-4" name="size">
+                            <label class="custom-control-label" for="size-4">L</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="size-5" name="size">
+                            <label class="custom-control-label" for="size-5">XL</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex mb-4">
+                    <p class="text-dark font-weight-medium mb-0 me-3">Colores:</p>
+                    <form class="d-flex">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-1" name="color">
+                            <label class="custom-control-label" for="color-1">Black</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="color-2" name="color">
+                            <label class="custom-control-label" for="color-2">White</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="color-3" name="color">
+                            <label class="custom-control-label" for="color-3">Red</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="color-4" name="color">
+                            <label class="custom-control-label" for="color-4">Blue</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline ms-3">
+                            <input type="radio" class="custom-control-input" id="color-5" name="color">
+                            <label class="custom-control-label" for="color-5">Green</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex align-items-center mb-4 pt-2">
+                    <div class="input-group quantity me-3" style="width: 130px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-dark btn-minus" >
+                            <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control bg-secondary text-center mx-1" value="1">
+                        <div class="input-group-btn">
+                            <button class="btn btn-dark btn-plus">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-dark px-3"><i class="fa fa-shopping-cart me-1"></i> Agregar al carrito</button>
+                </div>
+                <div class="d-flex pt-2">
+                    <p class="text-dark font-weight-medium mb-0 mr-2">Comparti:</p>
+                    <div class="d-inline-flex">
+                        <a class="text-dark px-2" href="">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <a class="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Descripción</a>
+                    <a class="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-2">Información</a>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <h4 class="mb-3">Storm</h4>
+                        <p>Cuadro de aluminio hidroformado con horquilla de carbono. Bicolor en negro mate y rosa metalizado. Rodado 28.</p>
+                    
+                    </div>
+                    <div class="tab-pane fade" id="tab-pane-2">
+                        <h4 class="mb-3">Información adicional</h4>
+                        <p>
+                            La Lite Aluminio te ofrecen un andar ultraliviano ya que cuentan con cuadro de aluminio y horquilla de carbono.
+                        </p>
+                        <p>
+                            El diseño de esta bici favorece la aerodinámica para alcanzar una mejor velocidad final. Todos sus rodamientos son Shimano y cuenta con postura regulable. Esta bici está preparada para recorrer largas distancias y acompañarte en tus entrenamientos. Si buscas liviandad, velocidad y una postura aerodinámica, esta bici es para vos.
+                        </p>
+                        <ul class="list-group list-group-flush">
+                            
+                        </ul>
+                            </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item px-0">
+                                        Cuadro de aluminio hidroformado con horquilla de carbono.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Bicolor en negro mate y rosa metalizado.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Rodado 28.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Manubrio de ruta.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Manijas integradas ergopower Shimano Claris ST-A070.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Frenos a herradura Shimano Claris BR-R2000.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Transmisión de 14 velocidades Shimano Claris.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Plato Palanca Shimano Claris FC-R2000, 34 y 50 dientes.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Piñones traseros: 14-16-18-20-22-24-28. Ruedas Shimano WH-RS300.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Cubiertas Mitas Arrow 700x28 - Kevlar.
+                                    </li>
+                                    <li class="list-group-item px-0">
+                                        Grip Velo.
+                                    </li>
+                                  </ul> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Detail End -->
+
+
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Quizás te puede interesar estos productos</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="./assets/img/product-1.jpg" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">Storm</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6> $755.000</h6> 
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>View Detail</a>
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-dark me-1"></i>Add To Cart</a>
+                        </div>
+                    </div>
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="./assets/img/product-2.jpg" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">Storm</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6> $755.000</h6> 
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>View Detail</a>
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-dark me-1"></i>Add To Cart</a>
+                        </div>
+                    </div>
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="./assets/img/product-3.jpg" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">Storm</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6> $755.000</h6> 
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>View Detail</a>
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-dark me-1"></i>Add To Cart</a>
+                        </div>
+                    </div>
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="./assets/img/product-4.jpg" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">Storm</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6> $755.000</h6> 
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>View Detail</a>
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-dark me-1"></i>Add To Cart</a>
+                        </div>
+                    </div>
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="./assets/img/product-5.jpg" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">Storm</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6> $755.000</h6> 
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>View Detail</a>
+                            <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-dark me-1"></i>Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+    <footer class="py-5 border-bottom container border-top mt-5">
+        <div class="row row-cols-1 row-cols-md-4 pb-5">
+            <article>
+                <h3 class="fs-4 fw-bold">
+                    TIENDA
+                </h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Bicicletas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Componentes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Accesorios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Indumentaria
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Taller
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Cursos
+                        </a>
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="fs-4 fw-bold">
+                    INFORMACIÓN
+                </h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Nuestras bicis
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Quiénes somos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Familia Forever
+                        </a>
+                    </li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="fs-4 fw-bold">
+                    LEGALES
+                </h3>
+                <ul>
+                    <li>
+                        <a href="#">
+                            Política de privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Política de cookies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Términos y condiciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Preguntas frecuentes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Arrepentimiento
+                        </a>
+                    </li>
+                </ul>
+            </article>
+            <article class="payments">
+                <h3 class="fs-4 fw-bold">
+                    MEDIOS DE PAGO
+                </h3>
+                <p class="fs-small fw-regular">
+                    Tarjetas de Débito
+                </p>
+                <img src="./assets/img/tarjetas-de-debito.png" alt="">
+                <p class="fs-small fw-regular">
+                    Tarjetas de Crédito
+                </p>
+                <img src="./assets/img/tarjetas-de-credito.png" alt="">
+                <p class="fs-small fw-regular">
+                    Puntos de Pago
+                </p>
+                <img src="./assets/img/puntos-de-pago.png" alt="">
+            </article>             
+        </div>
+        <div class="py-5 border-top">
+            <img src="./assets/img/logo-forever-bikes.svg" alt="" class="d-block mx-auto">
+            <p class="lh-sm fs-6 text-center">
+                @foreverbikesargentina <br>
+                Castillo 1332 - Villa Crespo- CABA <br>
+                © 2025 Forever Bikes. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- js bs -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/vendor/easing/easing.min.js"></script>
+    <script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript 
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>File -->
+
+    <!-- Javascript -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

@@ -101,9 +101,16 @@ class Bike
         }
        
         if (!empty($idCategory)) {
-            $where[] = "p.id_subcategory = ?";
-            $params[] = $idCategory;
+            if (is_array($idCategory)) {
+                $placeholders = implode(',', array_fill(0, count($idCategory), '?'));
+                $where[] = "p.id_subcategory IN ($placeholders)";
+                $params = array_merge($params, $idCategory);
+            } else {
+                $where[] = "p.id_subcategory = ?";
+                $params[] = $idCategory;
+            }
         }
+        
     
         if (!empty($where)) {
             $sql .= " WHERE " . implode(' AND ', $where);

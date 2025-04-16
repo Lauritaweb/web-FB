@@ -15,7 +15,7 @@
       
           <!-- Logo Centrado Absoluto -->
           <a class="navbar-brand position-absolute top-50 start-50 translate-middle" href="./index.html">
-            <img src="./assets/img/logo-forever-bikes.svg" alt="Forever Bikes" >
+            <img src="../../assets/img/logo-forever-bikes.svg" alt="Forever Bikes" >
           </a>
       
           <!-- Menú principal -->
