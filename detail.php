@@ -2,6 +2,7 @@
 require 'vendor/autoload.php';
 
 use App\Models\Product;
+use App\Utils\Utils;
 
 $productModel = new Product();
 $productId = isset($_GET['id']) ? ($_GET['id']) : 0;
@@ -12,7 +13,8 @@ if (!$product) {
     exit;
 }
 
-var_dump($product);
+// var_dump($product);
+extract($product['product']);
 ?>
 
 <!DOCTYPE html>
@@ -125,10 +127,10 @@ var_dump($product);
             
 
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">Storm</h3>
+                <h3 class="font-weight-semi-bold"><?= $name ?></h3>
                 
-                <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
+                <h3 class="font-weight-semi-bold mb-4">$<?= Utils::mostrarTarifaSinCentavos($price) ?></h3>
+                <p class="mb-4"><?= $shortdetails ?></p>
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 me-3">Sizes:</p>
                     <form class="d-flex">
@@ -189,9 +191,8 @@ var_dump($product);
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Storm</h4>
-                        <p>Cuadro de aluminio hidroformado con horquilla de carbono. Bicolor en negro mate y rosa metalizado. Rodado 28.</p>
-                    
+                        <h4 class="mb-3"><?= $name ?></h4>
+                        <p><?= $description ?></p>                    
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Información adicional</h4>

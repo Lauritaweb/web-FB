@@ -138,7 +138,7 @@ class Product
     // 1. Obtener el producto
     $query = "SELECT * FROM $this->table WHERE id = ?";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("i", $idProduct);
+    $stmt->bind_param("s", $idProduct);
     $stmt->execute();
     $result = $stmt->get_result();
     $product = $result->fetch_assoc();
@@ -146,9 +146,17 @@ class Product
     if (!$product) return null;
 
     // 2. Obtener variantes del producto
-    $query = "SELECT * FROM product_variants WHERE product_id = ?";
+    $query = "SELECT
+	product_variants.*, 
+	sh_bike_sizes.description as size,
+	sh_bike_colors.description as color
+FROM
+	product_variants 
+LEFT JOIN sh_bike_sizes on product_variants.id_size = sh_bike_sizes.id
+LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
+ WHERE product_id = ? ";
     $stmt = $this->db->prepare($query);
-    $stmt->bind_param("i", $idProduct);
+    $stmt->bind_param("s", $idProduct);
     $stmt->execute();
     $variantsResult = $stmt->get_result();
 
@@ -174,13 +182,13 @@ class Product
 
     while ($variant = $variantsResult->fetch_assoc()) {
         // Sumar tamaños únicos
-        if (!in_array($variant['id_size'], $sizes)) {
-            $sizes[] = $variant['id_size'];
+        if (!in_array($variant['size'], $sizes)) {
+            $sizes[] = $variant['size'];
         }
 
         // Sumar colores únicos
-        if (!in_array($variant['id_color'], $colors)) {
-            $colors[] = $variant['id_color'];
+        if (!in_array($variant['color'], $colors)) {
+            $colors[] = $variant['color'];
         }        
     }
 
