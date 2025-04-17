@@ -40,8 +40,12 @@ class Utils
             
         return $newFileName;
     }   
-
-
+  
+    public static function mostrarTarifaSinCentavos($tarifa) {
+        return number_format(floor($tarifa), 0, '', '.');
+    }
+    
+    
 
     public static function sanitizeInput($input)
     {

@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 use App\Config\Database;
-class Bike
+class Product
 {
     /**************************************************************************************************************
      * 
@@ -10,7 +10,7 @@ class Bike
      ************************************************************************************************************ */
 
     private $db;
-    private $table = 'clientes';
+    private $table = 'products';
     protected $fields = [ 
         'apellido', 'nombre', 'celular', 'email', 'provincia', 'localidad', 
         'direccion', 'cp', 'fecha_nacimiento', 'genero', 'tipo_documento', 'edad'
@@ -69,7 +69,7 @@ class Bike
          return $users;
      }
 
-     public function getFilteredProducts($idCategory = null, $sizes = [], $colors = []) {
+    public function getFilteredProducts($idCategory = null, $sizes = [], $colors = []) {
         $where = [];
         $params = [];
     
@@ -132,9 +132,79 @@ class Bike
  
          return $elements;
     }
+
+    public function getProductWithVariants($idProduct)
+{
+    // 1. Obtener el producto
+    $query = "SELECT * FROM $this->table WHERE id = ?";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("s", $idProduct);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $product = $result->fetch_assoc();
+
+    if (!$product) return null;
+
+    // 2. Obtener variantes del producto
+    $query = "SELECT
+	product_variants.*, 
+	sh_bike_sizes.description as size,
+	sh_bike_colors.description as color
+FROM
+	product_variants 
+LEFT JOIN sh_bike_sizes on product_variants.id_size = sh_bike_sizes.id
+LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
+ WHERE product_id = ? ";
+    $stmt = $this->db->prepare($query);
+    $stmt->bind_param("s", $idProduct);
+    $stmt->execute();
+    $variantsResult = $stmt->get_result();
+
+    $sizes = [];
+    $colors = [];
+    $images = [];
+  //  echo $idProduct;die;
+
+    // 3. Obtener imágenes 
+    $queryImg = "SELECT * FROM product_pictures WHERE product_id = ?";
+    $stmtImg = $this->db->prepare($queryImg);
+    $stmtImg->bind_param("s", $idProduct);       
+    $stmtImg->execute();
+    $imgResult = $stmtImg->get_result();
     
 
+    while ($img = $imgResult->fetch_assoc()) {       
+        if (!in_array($img['url'], $images)) {
+            $images[] = $img['url'];
+        }        
+    }
+   
 
+    while ($variant = $variantsResult->fetch_assoc()) {
+        // Sumar tamaños únicos
+        if (!in_array($variant['size'], $sizes)) {
+            $sizes[] = $variant['size'];
+        }
+
+        // Sumar colores únicos
+        if (!in_array($variant['color'], $colors)) {
+            $colors[] = $variant['color'];
+        }        
+    }
+
+    return [
+        'product' => $product,
+        'sizes' => $sizes,
+        'colors' => $colors,
+        'images' => $images
+    ];
+}
+
+        
+
+    
+
+// NO VAN MAS
            
         // READ: Obtener un registro por ID
         public function get($id) {

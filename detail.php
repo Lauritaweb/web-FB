@@ -1,3 +1,22 @@
+<?php
+require 'vendor/autoload.php';
+
+use App\Models\Product;
+use App\Utils\Utils;
+
+$productModel = new Product();
+$productId = isset($_GET['id']) ? ($_GET['id']) : 0;
+$product = $productModel->getProductWithVariants($productId);
+
+if (!$product) {
+    echo "Producto no encontrado.";
+    exit;
+}
+
+// var_dump($product);
+extract($product['product']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,20 +105,13 @@
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 pb-5">
-                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner border">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="./assets/img/product-1.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="./assets/img/product-2.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="./assets/img/product-3.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="./assets/img/product-4.jpg" alt="Image">
-                        </div>
+                        <?php foreach ($product['images'] as $i => $imgUrl): ?>
+                            <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+                                <img class="w-100 h-100" src="assets/media/image/<?= htmlspecialchars($imgUrl) ?>" alt="Producto">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-bs-slide="prev">
                         <i class="bi bi-arrow-left-circle-fill text-white" style="font-size: 50px!important;"></i>
@@ -107,62 +119,39 @@
                     <a class="carousel-control-next fs-6" href="#product-carousel" data-bs-slide="next">
                         <i class="bi bi-arrow-right-circle-fill text-white fs-6" style="font-size: 50px!important;"></i>
                     </a>
+                    <!-- controles -->
                 </div>
             </div>
 
+
+            
+
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">Storm</h3>
+                <h3 class="font-weight-semi-bold"><?= $name ?></h3>
                 
-                <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
+                <h3 class="font-weight-semi-bold mb-4">$<?= Utils::mostrarTarifaSinCentavos($price) ?></h3>
+                <p class="mb-4"><?= $shortdetails ?></p>
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 me-3">Sizes:</p>
                     <form class="d-flex">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-1" name="size">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                        </div>
+                    <?php foreach ($product['sizes'] as $i => $size): ?>
                         <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="size-2" name="size">
-                            <label class="custom-control-label" for="size-2">S</label>
+                            <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size">
+                            <label class="custom-control-label" for="size-<?= $i ?>"><?= ($size) ?></label>
                         </div>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="size-3" name="size">
-                            <label class="custom-control-label" for="size-3">M</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="size-4" name="size">
-                            <label class="custom-control-label" for="size-4">L</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="size-5" name="size">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                        </div>
+                    <?php endforeach; ?>
+
                     </form>
                 </div>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 me-3">Colores:</p>
                     <form class="d-flex">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="color-1" name="color">
-                            <label class="custom-control-label" for="color-1">Black</label>
-                        </div>
+                    <?php foreach ($product['colors'] as $i => $color): ?>
                         <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="color-2" name="color">
-                            <label class="custom-control-label" for="color-2">White</label>
+                            <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color">
+                            <label class="custom-control-label" for="color-<?= $i ?>"><?= ($color) ?></label>
                         </div>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="color-3" name="color">
-                            <label class="custom-control-label" for="color-3">Red</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="color-4" name="color">
-                            <label class="custom-control-label" for="color-4">Blue</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="color-5" name="color">
-                            <label class="custom-control-label" for="color-5">Green</label>
-                        </div>
+                    <?php endforeach; ?>
                     </form>
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -202,9 +191,8 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Storm</h4>
-                        <p>Cuadro de aluminio hidroformado con horquilla de carbono. Bicolor en negro mate y rosa metalizado. Rodado 28.</p>
-                    
+                        <h4 class="mb-3"><?= $name ?></h4>
+                        <p><?= $description ?></p>                    
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Información adicional</h4>
@@ -227,33 +215,7 @@
                                     <li class="list-group-item px-0">
                                         Bicolor en negro mate y rosa metalizado.
                                     </li>
-                                    <li class="list-group-item px-0">
-                                        Rodado 28.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Manubrio de ruta.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Manijas integradas ergopower Shimano Claris ST-A070.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Frenos a herradura Shimano Claris BR-R2000.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Transmisión de 14 velocidades Shimano Claris.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Plato Palanca Shimano Claris FC-R2000, 34 y 50 dientes.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Piñones traseros: 14-16-18-20-22-24-28. Ruedas Shimano WH-RS300.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Cubiertas Mitas Arrow 700x28 - Kevlar.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Grip Velo.
-                                    </li>
+                                    
                                   </ul> 
                             </div>
                         </div>
