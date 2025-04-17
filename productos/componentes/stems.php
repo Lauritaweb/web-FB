@@ -7,7 +7,7 @@ $idSubCategory=26;
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stems para Bicicletas | Ajustá tu postura con Forever Bikes</title>
-    <meta name="description" content="Descubrí las bicicletas de ruta de Forever Bikes. Ligeras, veloces y listas para entrenar o recorrer la ciudad. Rendimiento, diseño y agilidad sobre dos ruedas.">
+    <meta name="description" content="Encontrá el stem ideal para tu bici y mejorá tu postura al pedalear. En Forever Bikes tenemos opciones livianas, resistentes y listas para acompañarte en cada ruta o aventura urbana.">
     <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">

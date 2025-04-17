@@ -1,8 +1,8 @@
 <?php
-$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
-// $url_base = 'https://www.foreverbikes.com.ar';
+//$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
+ $url_base = 'https://www.foreverbikes.com.ar';
 ?>
-<div class="marquee bg-black text-white text-center">
+<div class="marquee bg-black text-white text-center mb-2">
         <p>
             <i class="bi bi-bicycle"></i>
             de ciclistas para ciclistas...
@@ -18,8 +18,8 @@ $url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
           </button>
       
           <!-- Logo Centrado Absoluto -->
-          <a class="navbar-brand position-absolute top-50 start-50 translate-middle" href="./index.html">
-            <img src="../../assets/img/logo-forever-bikes.svg" alt="Forever Bikes" >
+          <a class="navbar-brand position-absolute top-50 start-50 translate-middle" href="https://foreverbikes.com.ar/">
+            <img src="https://foreverbikes.com.ar/assets/img/logo-forever-bikes.svg" alt="Forever Bikes" >
           </a>
       
           <!-- Menú principal -->
@@ -78,18 +78,18 @@ $url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
                           <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/indumentaria/index.php">Ver todos</a></li>
                         </ul>
                       </div>
-                      <div class="col-md-2">
+                      <!-- <div class="col-md-2">
                         <h6 class="fw-bold">Servicios</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/cursos/index.php">Ver todos</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/services/index.php">Ver todos</a></li>
                         </ul>
-                      </div>
+                      </div> 
                       <div class="col-md-2">
                         <h6 class="fw-bold">Cursos</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/cursos/index.html">Ver todos</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/cursos/index.php">Ver todos</a></li>
                         </ul>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div>
@@ -102,18 +102,20 @@ $url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
-                            <h6 class="fw-bold">Cursos</h6>
                             <ul class="list-unstyled">
-                                <li><a class="dropdown-item text-key" href="./productos/cursos/index.html">Ver todos</a></li>
+                                <li><a class="dropdown-item" href="<?= $url_base ?>/services.php#postventa">Post venta</a></li>
+                                <li><a class="dropdown-item" href="<?= $url_base ?>/services.php#service">Service mecánico</a></li>
+                                <li><a class="dropdown-item" href="<?= $url_base ?>/services.php#restyling">Restyling</a></li>
+                                <li><a class="dropdown-item" href="<?= $url_base ?>/services.php#cursos">Cursos</a></li>
                             </ul>
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#our-bikes">NUESTRAS BICIS</a></li>
-              <li class="nav-item"><a class="nav-link" href="./about-foreverbikes.html">SOMOS FOREVER</a></li>
-              <li class="nav-item"><a class="nav-link" href="#forever-comunity">COMUNIDAD</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/index.php#our-bikes">NUESTRAS BICIS</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/about-foreverbikes.php">SOMOS FOREVER</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/index.php#forever-comunity">COMUNIDAD</a></li>
             </ul>
       
             <!-- Iconos a la derecha -->

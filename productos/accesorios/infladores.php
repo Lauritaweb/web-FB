@@ -7,7 +7,7 @@ $idSubCategory=33;
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infladores para bici | Forever Bikes</title>
-    <meta name="description" content="Descubrí las bicicletas de ruta de Forever Bikes. Ligeras, veloces y listas para entrenar o recorrer la ciudad. Rendimiento, diseño y agilidad sobre dos ruedas.">
+    <meta name="description" content="No te pinches en el camino. Descubrí infladores portátiles y de pie ideales para llevar siempre con vos. Confiables, livianos y pensados para ciclistas como vos.">
     <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">

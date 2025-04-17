@@ -1,5 +1,4 @@
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
 
 
     <!-- JavaScript Libraries -->
