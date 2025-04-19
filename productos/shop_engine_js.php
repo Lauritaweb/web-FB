@@ -17,8 +17,7 @@
         
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script>
-    $(document).ready(function () {
-        console.log("llamando");
+    $(document).ready(function () {       
         $.getJSON('../get_filters.php', function (data) {
             renderFilters(data.colors, '#color-filters', 'color');
             renderFilters(data.sizes, '#size-filters', 'size');

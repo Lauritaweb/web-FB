@@ -412,6 +412,44 @@ extract($product['product']);
 
     <!-- Javascript -->
     <script src="./assets/js/main.js"></script>
+    <script>
+document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
+    const productId = '<?= $productId ?>';
+    const name = <?= json_encode($name) ?>;
+    const price = <?= $price ?>;
+    const image = <?= json_encode($product['images'][0] ?? '') ?>;
+
+    const quantity = parseInt(document.querySelector('.form-control').value);
+    const size = document.querySelector('input[name="size"]:checked')?.nextElementSibling.textContent.trim();
+    const color = document.querySelector('input[name="color"]:checked')?.nextElementSibling.textContent.trim();
+
+    if (!size || !color) {
+        alert("Seleccioná tamaño y color");
+        return;
+    }
+
+    fetch('add_to_cart.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+            product_id: productId,
+            name,
+            price,
+            quantity,
+            size,
+            color,
+            image
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert("Producto agregado al carrito");
+        }
+    });
+});
+</script>
+
 </body>
 
 </html>
