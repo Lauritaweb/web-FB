@@ -152,6 +152,11 @@ p {
   background-size: cover;
 }
 
+.bg-twenty-seven {
+  background: url(../../img/bg-gracias.png);
+  background-size: cover;
+}
+
 .btn-dark {
   background-color: black;
 }
@@ -290,6 +295,10 @@ footer .payments img {
 }
 .services .row figure img {
   height: 100px;
+}
+.services .row figure a {
+  text-decoration: none;
+  color: black;
 }
 
 /********** Custom CSS ************/

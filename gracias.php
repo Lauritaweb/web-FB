@@ -15,8 +15,8 @@ unset($_SESSION['cart']); // Vaciar el carrito
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forever Bikes | Viví la pasión por el ciclismo</title>
-    <meta name="description" content="Descubrí Forever Bikes, la comunidad de ciclistas que vive la pasión por las dos ruedas. Encontrá bicicletas, accesorios y service con beneficios exclusivos.">
+    <title>Gracias por tu compra | Forever Bikes</title>
+    <meta name="description" content="¡Tu próxima aventura ya está en marcha! Gracias por elegir Forever Bikes. Muy pronto tu pedido estará listo para salir a rodar con vos.">
     <link rel="shortcut icon" href="./assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -39,22 +39,24 @@ unset($_SESSION['cart']); // Vaciar el carrito
    
 
     <!-- Page Header Start -->
-    <header class="container-fluid header bg-two mb-5 mt-5">
+    <header class="container-fluid header bg-twenty-seven mb-5 mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center"></div>
     </header>
     <!-- Page Header End -->
 
 
-    <div class="d-inline-flex container-fluid px-xl-5">
-        <p class="m-0"><a href="./index.html" class="fw-bold text-dark">Home</a></p>
-        <p class="m-0 px-2">-</p>
-        <p class="m-0">Checkout</p>
-    </div>
 
     <!-- Checkout Start -->
-    <div class="container-fluid pt-5">
-        <p> Gracias por tu compra!</p>       
-    </div>
+    
+    <section class="container text-center py-5">
+        <h1 class="fs-1 fw-bold text-uppercase">¡Gracias por tu compra!</h1>
+        <p class="fs-5 mt-4">Tu Forever ya está preparando sus ruedas para encontrarse con vos. <br>
+            Te vamos a estar enviando un correo con los detalles del pedido y cualquier novedad.</p>
+        <p class="fs-5">Recordá que sos parte de la #FamiliaForever, y eso significa pedalear con beneficios, comunidad y estilo.</p>
+        <a href="./index.php" class="btn btn-dark mt-4 px-5 py-3 text-uppercase fw-semibold">Volver al inicio</a>
+    </section>
+     
+
     <!-- Checkout End -->
 
     <?php include('../../footer.html'); ?>
