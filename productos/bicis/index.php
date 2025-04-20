@@ -1,3 +1,6 @@
+<?php
+$idSubCategory=[1,2,3,4];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
