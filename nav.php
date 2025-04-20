@@ -96,7 +96,7 @@
               </li>
               <li class="nav-item dropdown position-static">
                 <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
-                    SERVICES
+                    SERVICIOS
                     </a>
                 <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
                   <div class="container">
