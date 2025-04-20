@@ -47,31 +47,7 @@ $bikeModel = new Product();
                 <!-- Color Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label ms-2" for="price-all">Todos los colores</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-1">
-                            <label class="custom-control-label ms-2" for="color-1">Negro</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-2">
-                            <label class="custom-control-label ms-2" for="color-2">Blanco</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-3">
-                            <label class="custom-control-label ms-2" for="color-3">Rojo</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input" id="color-4">
-                            <label class="custom-control-label ms-2" for="color-4">Azul</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start">
-                            <input type="checkbox" class="custom-control-input" id="color-5">
-                            <label class="custom-control-label ms-2" for="color-5">Verde</label>
-                        </div>
+                    <form id="color-filters">
                     </form>
                 </div>
                 <!-- Color End -->
