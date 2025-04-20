@@ -1,4 +1,10 @@
 <?php
+require 'vendor/autoload.php';
+
+use App\Models\Cart;
+$cartModel = new Cart();
+
+
 session_start();
 header('Content-Type: application/json');
 
@@ -29,8 +35,10 @@ $cliente = [
     'localidad' => $_POST['localidad'],
 ];
 
+$_SESSION['cliente'] = $cliente; // Me guardo el cliente en sesion para mandar el whatsapp
+
 $carrito = $_SESSION['cart'];
-$envio = 15000;
+$envio = 0;
 $subtotal = 0;
 
 foreach ($carrito as $item) {
@@ -49,6 +57,9 @@ $orden = [
     'fecha' => date('Y-m-d H:i:s')
 ];
 
+$cartModel->savePurchase($cliente,$orden);
+
+
 // Si todo salió bien:
-unset($_SESSION['carrito']); // Vaciar el carrito
+// unset($_SESSION['carrito']); // Vaciar el carrito
 echo json_encode(['success' => true, 'orden' => $orden]);

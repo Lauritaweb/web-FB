@@ -2,7 +2,7 @@
 session_start();
 
 $carrito = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-var_dump($carrito);
+//var_dump($carrito);
 
 $subtotal = 0;
 $envio = 0;
@@ -31,56 +31,9 @@ $envio = 0;
 </head>
 
 <body class="bg-white">
-    <div class="marquee bg-black text-white text-center">
-        <p>
-            <i class="bi bi-bicycle"></i>
-            de ciclistas para ciclistas...
-        </p>
-    </div>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg position-relative mt-5">
-        <div class="container">
-            
-            <a class="navbar-brand position-absolute start-50 translate-middle-x " href="./index.html">
-                <img src="./assets/img/logo-forever-bikes.svg" alt="Forever Bikes" >
-            </a>
+    <?php include('nav.php'); ?>
     
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link ps-0" href="#our-bikes">NUESTRAS BICIS </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SOMOS FOREVER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">COMUNIDAD FOREVER</a>
-                    </li>
-                </ul>
-    
-                <div class="d-flex gap-3">
-                    <a href="#" class="nav-link border-end px-3">
-                        <i class="bi bi-cart"></i>
-                    </a>
-                    <a href="https://www.instagram.com/foreverbikesargentina" target="_blank" class="nav-link">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@foreverbikesargentina9001" target="_blank" class="nav-link">
-                        <i class="bi bi-youtube"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@foreverbikesargentina" target="_blank" class="nav-link">
-                        <i class="bi bi-tiktok"></i>
-                    </a>
-                </div>
-    
-            </div>
-        </div>
-    </nav>
-    <!-- end navbar -->
+   
 
     <!-- Page Header Start -->
     <header class="container-fluid header bg-two mb-5 mt-5">
@@ -398,39 +351,40 @@ $envio = 0;
       
       <script>
        $('#checkout-form').on('submit', function(e) {
-    e.preventDefault(); // evita el submit tradicional
+            e.preventDefault(); // evita el submit tradicional
 
-    const formData = $(this).serializeArray();
-    const datos = {};
-    formData.forEach(field => {
-        datos[field.name] = field.value;
-    });
+            const formData = $(this).serializeArray();
+            const datos = {};
+            formData.forEach(field => {
+                datos[field.name] = field.value;
+            });
 
-    console.log("Enviando datos:", datos);
+            console.log("Enviando datos:", datos);
 
-    $.ajax({
-        url: 'process_checkout.php',
-        type: 'POST',
-        data: datos,
-        dataType: 'json',
-        success: function(respuesta) {
-            if (respuesta.success) {
-                alert("¡Compra realizada con éxito!");
-              //  window.location.href = "gracias.php";
-            } else {
-                alert("Error: " + respuesta.message);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("Error en el AJAX:", error);
-            alert("Ocurrió un error al procesar la compra.");
-        }
-    });
-});
+            $.ajax({
+                url: 'process_checkout.php',
+                type: 'POST',
+                data: datos,
+                dataType: 'json',
+                success: function(respuesta) {
+                    if (respuesta.success) {
+                        alert("¡Compra realizada con éxito!");
+                        window.location.href = "gracias.php";
+                    } else {
+                        alert("Error: " + respuesta.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error en el AJAX:", error);
+                    alert("Ocurrió un error al procesar la compra.");
+                }
+            });
+        });
 
     
         $('.btn-dark').on('click', function() {
             $('#checkout-form').submit(); // dispara el submit cuando se hace clic en "Confirmar compra"
+            
         });
     </script>
     
