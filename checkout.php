@@ -43,7 +43,7 @@ $envio = 0;
 
 
     <div class="d-inline-flex container-fluid px-xl-5">
-        <p class="m-0"><a href="./index.html" class="fw-bold text-dark">Home</a></p>
+        <p class="m-0"><a href="./index.pho" class="fw-bold text-dark">Home</a></p>
         <p class="m-0 px-2">-</p>
         <p class="m-0">Checkout</p>
     </div>
