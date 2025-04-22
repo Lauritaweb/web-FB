@@ -1,6 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 
+use App\Utils\Utils;
+
 use App\Models\Cart;
 $cartModel = new Cart();
 
@@ -62,4 +64,5 @@ $cartModel->savePurchase($cliente,$orden);
 
 // Si todo salió bien:
 // unset($_SESSION['carrito']); // Vaciar el carrito
+Utils::mailSenderPurchase($cliente,$carrito);
 echo json_encode(['success' => true, 'orden' => $orden]);

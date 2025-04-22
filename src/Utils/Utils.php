@@ -12,6 +12,11 @@ class Utils
 {
 
 
+    public static function mailSenderPurchase($cliente, $cart){
+        include('templateMailPurchase.php');
+        Utils::mandarMail($email, "Bienvenido a Lexor Abogados", $html, $name);
+    }
+
     function manageFileUpload(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) { // Verificar si el archivo fue subido sin errores
             $uploadDir = __DIR__ . '/files/'; 
