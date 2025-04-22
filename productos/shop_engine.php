@@ -10,10 +10,10 @@ $bikeModel = new Product();
     <div class="container-fluid pt-0 pt-md-5">
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
-            <div class="col-lg-2 col-md-12 d-none d-md-block">
+            <div class="col-lg-2 col-md-12 d-none">
 
                 <!-- Price Start -->
-            <div class="border-bottom mb-4 pb-4">
+            <!-- <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Filtrar por precios</h5>
                 <form class="filter-form" data-filter="price">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
@@ -41,22 +41,22 @@ $bikeModel = new Product();
                         <label class="custom-control-label ms-2" for="price-5">$400 - $500</label>
                     </div>
                 </form>
-            </div>
+            </div> -->
             <!-- Price End -->
                 
                 <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
+                <!-- <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
                     <form id="color-filters">
                     </form>
-                </div>
+                </div> -->
                 <!-- Color End -->
 
                 <!-- Size Start -->
-                <div class="mb-5">
+                <!-- <div class="mb-5">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por tamaño</h5>
                     <form id="size-filters"></form>
-                </div>
+                </div> -->
                 <!-- Size End -->
 
 
@@ -65,14 +65,14 @@ $bikeModel = new Product();
 
 
             <!-- Shop Product Start -->
-            <main class="col-lg-10 col-md-12">
+            <main class="col-md-12">
                 <div class="row">
-                    <div class="d-inline-flex">
+                    <!-- <div class="d-inline-flex">
                         <p class="m-0 me-1 "><a href="../../index.php" class="text-key ">Home</a></p>
                         <p class="m-0 me-1 "><a href="./index.php" class="text-key fw-bold ms-2">Nuestras bicis</a></p>
                         <p class="m-0"> > Bicis de ruta</p>
-                    </div>
-                    <div class="col-12 pb-1 mt-3">
+                    </div> -->
+                    <!-- <div class="col-12 pb-1 mt-3">
                         <div class="d-block d-md-flex align-items-center justify-content-between mb-4">
                             <form action="">
                                 <div class="input-group">
@@ -95,7 +95,7 @@ $bikeModel = new Product();
                             </div>
                             
                         </div>
-                    </div>
+                    </div> -->
                     <div id="product-list" class="row">
 
                     </div>                    

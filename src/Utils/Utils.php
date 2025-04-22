@@ -2,8 +2,8 @@
 
 namespace App\Utils;
 
-define('MAIL_ADDRESS_CONTACT', 'no-reply@lexorabogados.com.ar'); 
-define('MAIL_NAME_CONTACT', 'Lexor Abogados');
+define('MAIL_ADDRESS_CONTACT', 'info@foreverbikes.com.ar'); 
+define('MAIL_NAME_CONTACT', 'Forever Bikes');
 define('MAILJET_API_KEY', 'c90ee4c8e3dd0f14a4e6338a970fa1db:8c8d0fac35d91213d2201d32daaa40f3');
 
 define('JWT_IO_KEY', 'y8QJpX9hlykbSRJi00ttHeEfsXbMD9nWM6xXpRsi');
@@ -14,7 +14,12 @@ class Utils
 
     public static function mailSenderPurchase($cliente, $cart){
         include('templateMailPurchase.php');
-        Utils::mandarMail($email, "Bienvenido a Lexor Abogados", $html, $name);
+        Utils::mandarMail("foreverbikesarg@gmail.com", "Compra desde el Sitio Web", $htmlEmail, "Forever Bikes");
+    }
+
+    public static function mailSenderPurchaseLau($cliente, $cart){
+        include('templateMailPurchase.php');
+        Utils::mandarMail("laheavy@gmail.com", "Compra desde el Sitio Web", $htmlEmail, "Forever Bikes");
     }
 
     function manageFileUpload(){

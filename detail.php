@@ -180,7 +180,7 @@ extract($product['product']);
 
 
     <!-- Products Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5 d-none">
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2">Quizás te puede interesar estos productos</span></h2>
         </div>

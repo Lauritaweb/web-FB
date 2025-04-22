@@ -28,6 +28,9 @@ $envio = 0;
     <!-- Libraries Stylesheet -->
     <link href="./assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 
 <body class="bg-white">
@@ -59,12 +62,12 @@ $envio = 0;
                             <div class="col-md-6 form-group">
                                 <span class="text-danger">*</span>
                                 <label>Nombre</label>
-                                <input class="form-control" type="text" name="nombre" placeholder="Laura" required>
+                                <input class="form-control" type="text" name="nombre" placeholder="Nombre" required>
                             </div>
                             <div class="col-md-6 form-group">
                                 <span class="text-danger">*</span>
                                 <label>Apellido</label>
-                                <input class="form-control" type="text" name="apellido" placeholder="Avalle" required>
+                                <input class="form-control" type="text" name="apellido" placeholder="Apellido" required>
                             </div>
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
@@ -84,7 +87,7 @@ $envio = 0;
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
                                 <label>Provincia</label>
-                                <input type="text"  placeholder="Buenos Aires" class="form-control" required>
+                                <input type="text" name="provincia"  placeholder="Buenos Aires" class="form-control" required>
                                 <!-- <select class="form-select" ame="provincia" aria-label="Default select example" required>
                                     <option selected>Ciudad autónoma de Buenos Aires</option>
                                     <option>Afghanistan</option>
@@ -95,7 +98,7 @@ $envio = 0;
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
                                 <label>Localidad</label>
-                                <input type="text" placeholder="Belgrano" class="form-control" required>
+                                <input type="text" name="localidad" placeholder="Belgrano" class="form-control" required>
                                 <!-- <select class="form-select" name="localidad" aria-label="Default select example" required>
                                     <option selected>Belgrano</option>
                                     <option>Afghanistan</option>

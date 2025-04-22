@@ -26,6 +26,9 @@ p{
 // header
 .header{
     min-height: 400px;
+    @media (width <= 768px){
+        min-height:200px;
+    }
 }
 // bgs
 .bg-one{
@@ -115,6 +118,10 @@ p{
 }
 .bg-twenty-two{
     background: url(../../img/bg-frenos.png);
+    background-size: cover;
+}
+.bg-twenty-three{
+    background: url(../../img/bg-manubrios.png);
     background-size: cover;
 }
 .bg-twenty-four{

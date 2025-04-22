@@ -193,3 +193,9 @@ $input-placeholder-color: #999999;
         }
     }
 }
+// tabs
+div.nav-tabs[role="tablist"]{
+    .nav-link:focus, .nav-link:hover{
+        color: #f70180!important;
+    }
+}

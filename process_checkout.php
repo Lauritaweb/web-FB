@@ -17,7 +17,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 }
 
 // Validar datos recibidos
-$required = ['nombre', 'apellido', 'email', 'telefono', 'direccion', 'localidad'];
+$required = ['nombre', 'apellido', 'email', 'telefono', 'direccion'];
 foreach ($required as $field) {
     if (empty($_POST[$field])) {
         echo json_encode(['success' => false, 'message' => "Falta el campo $field"]);
@@ -34,7 +34,7 @@ $cliente = [
     'email' => $_POST['email'],
     'telefono' => $_POST['telefono'],
     'direccion' => $_POST['direccion'],
-    'localidad' => $_POST['localidad'],
+    'localidad' => "",
 ];
 
 $_SESSION['cliente'] = $cliente; // Me guardo el cliente en sesion para mandar el whatsapp
@@ -65,4 +65,6 @@ $cartModel->savePurchase($cliente,$orden);
 // Si todo salió bien:
 // unset($_SESSION['carrito']); // Vaciar el carrito
 Utils::mailSenderPurchase($cliente,$carrito);
+Utils::mailSenderPurchaseLau($cliente,$carrito);
+
 echo json_encode(['success' => true, 'orden' => $orden]);
