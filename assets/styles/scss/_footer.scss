@@ -14,3 +14,12 @@ footer{
         }
     }
 }
+
+.wame{
+    width: 50px;
+    position: fixed;
+    right: 30px;
+    bottom: 90px;
+    -webkit-animation: action 1s infinite alternate;
+    animation:action 1s infinite alternate;
+}

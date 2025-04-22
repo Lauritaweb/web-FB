@@ -171,7 +171,7 @@ p {
 }
 .navbar .nav-item .nav-link {
   font-size: 0.8em;
-  font-weight: 500;
+  font-weight: 600;
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0% 100%;
   background-repeat: no-repeat;
@@ -191,6 +191,15 @@ footer ul li a {
 }
 footer .payments img {
   width: 150px;
+}
+
+.wame {
+  width: 50px;
+  position: fixed;
+  right: 30px;
+  bottom: 90px;
+  -webkit-animation: action 1s infinite alternate;
+  animation: action 1s infinite alternate;
 }
 
 .marquee {

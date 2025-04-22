@@ -96,7 +96,7 @@ extract($product['product']);
                 </div>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 me-3">Colores:</p>
-                    <form class="d-flex">
+                    <form class="d-flex flex-wrap">
                     <?php foreach ($product['colors'] as $i => $color): ?>
                         <div class="custom-control custom-radio custom-control-inline ms-3">
                             <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color">
@@ -122,12 +122,12 @@ extract($product['product']);
                     <button class="btn btn-dark px-3"><i class="fa fa-shopping-cart me-1"></i> Agregar al carrito</button>
                 </div>
                 <div class="d-flex pt-2">
-                    <p class="text-dark font-weight-medium mb-0 mr-2">Comparti:</p>
+                    <p class="text-dark font-weight-medium mb-0 mr-2">Compartir:</p>
                     <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
+                        <a class="text-dark px-2"  
+                            id="whatsapp-share" 
+                            target="_blank" 
+                            title="Compartir por WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
                     </div>
@@ -268,131 +268,9 @@ extract($product['product']);
     </div>
     <!-- Products End -->
 
-    <footer class="py-5 border-bottom container border-top mt-5">
-        <div class="row row-cols-1 row-cols-md-4 pb-5">
-            <article>
-                <h3 class="fs-4 fw-bold">
-                    TIENDA
-                </h3>
-                <ul>
-                    <li>
-                        <a href="#">
-                            Bicicletas
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Componentes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Accesorios
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Indumentaria
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Taller
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Cursos
-                        </a>
-                    </li>
-                </ul>
-            </article>
-            <article>
-                <h3 class="fs-4 fw-bold">
-                    INFORMACIÓN
-                </h3>
-                <ul>
-                    <li>
-                        <a href="#">
-                            Nuestras bicis
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Services
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Quiénes somos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Familia Forever
-                        </a>
-                    </li>
-                </ul>
-            </article>
-            <article>
-                <h3 class="fs-4 fw-bold">
-                    LEGALES
-                </h3>
-                <ul>
-                    <li>
-                        <a href="#">
-                            Política de privacidad
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Política de cookies
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Términos y condiciones
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Preguntas frecuentes
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Arrepentimiento
-                        </a>
-                    </li>
-                </ul>
-            </article>
-            <article class="payments">
-                <h3 class="fs-4 fw-bold">
-                    MEDIOS DE PAGO
-                </h3>
-                <p class="fs-small fw-regular">
-                    Tarjetas de Débito
-                </p>
-                <img src="./assets/img/tarjetas-de-debito.png" alt="">
-                <p class="fs-small fw-regular">
-                    Tarjetas de Crédito
-                </p>
-                <img src="./assets/img/tarjetas-de-credito.png" alt="">
-                <p class="fs-small fw-regular">
-                    Puntos de Pago
-                </p>
-                <img src="./assets/img/puntos-de-pago.png" alt="">
-            </article>             
-        </div>
-        <div class="py-5 border-top">
-            <img src="./assets/img/logo-forever-bikes.svg" alt="" class="d-block mx-auto">
-            <p class="lh-sm fs-6 text-center">
-                @foreverbikesargentina <br>
-                Castillo 1332 - Villa Crespo- CABA <br>
-                © 2025 Forever Bikes. Todos los derechos reservados.
-            </p>
-        </div>
-    </footer>
+    <?php  
+        include('./footer.html');
+    ?>
 
 
     <!-- Back to Top -->
@@ -448,6 +326,15 @@ document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
         }
     });
 });
+</script>
+<!-- share -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const url = encodeURIComponent(window.location.href);
+    const mensaje = encodeURIComponent("Echale un vistazo a este producto que me gustó:");
+    const linkWhatsApp = `https://wa.me/?text=${mensaje}%20${url}`;
+    document.getElementById("whatsapp-share").href = linkWhatsApp;
+  });
 </script>
 
 </body>

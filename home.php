@@ -210,6 +210,7 @@
         <section class="py-5 banner-forever">
             <img src="./assets/img/banner-forever.png" alt="" class="w-100">
         </section>
+        <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
         <?php  
         include('./footer.html');
@@ -217,6 +218,6 @@
 
         <!-- js bs -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <!-- Back to Top -->
 </body>
 </html>

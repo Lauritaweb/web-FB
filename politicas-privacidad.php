@@ -15,8 +15,8 @@ unset($_SESSION['cart']); // Vaciar el carrito
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gracias por tu compra | Forever Bikes</title>
-    <meta name="description" content="¡Tu próxima aventura ya está en marcha! Gracias por elegir Forever Bikes. Muy pronto tu pedido estará listo para salir a rodar con vos.">
+    <title>Politica de privacidad | Forever Bikes</title>
+    <meta name="description" content="Conocé cómo protegemos tus datos en Forever Bikes. Te contamos de forma clara y transparente qué información recopilamos y cómo la usamos para que puedas navegar y comprar con total confianza.">
     <link rel="shortcut icon" href="./assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -68,7 +68,7 @@ unset($_SESSION['cart']); // Vaciar el carrito
 
     <!-- Checkout End -->
 
-    <?php include('../../footer.html'); ?>
+    <?php include('./footer.html'); ?>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>

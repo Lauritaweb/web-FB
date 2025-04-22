@@ -43,7 +43,7 @@ $envio = 0;
 
 
     <div class="d-inline-flex container-fluid px-xl-5">
-        <p class="m-0"><a href="./index.html" class="fw-bold text-dark">Home</a></p>
+        <p class="m-0"><a href="./index.php" class="fw-bold text-dark">Home</a></p>
         <p class="m-0 px-2">-</p>
         <p class="m-0">Checkout</p>
     </div>
@@ -84,22 +84,24 @@ $envio = 0;
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
                                 <label>Provincia</label>
-                                <select class="form-select" ame="provincia" aria-label="Default select example" required>
+                                <input type="text"  placeholder="Buenos Aires" class="form-control" required>
+                                <!-- <select class="form-select" ame="provincia" aria-label="Default select example" required>
                                     <option selected>Ciudad autónoma de Buenos Aires</option>
                                     <option>Afghanistan</option>
                                     <option>Albania</option>
                                     <option>Algeria</option>
-                                </select>
+                                </select> -->
                             </div>
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
                                 <label>Localidad</label>
-                                <select class="form-select" name="localidad" aria-label="Default select example" required>
+                                <input type="text" placeholder="Belgrano" class="form-control" required>
+                                <!-- <select class="form-select" name="localidad" aria-label="Default select example" required>
                                     <option selected>Belgrano</option>
                                     <option>Afghanistan</option>
                                     <option>Albania</option>
                                     <option>Algeria</option>
-                                </select>
+                                </select> -->
                             </div>
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
