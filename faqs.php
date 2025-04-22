@@ -184,9 +184,9 @@ unset($_SESSION['cart']); // Vaciar el carrito
     </section>
      
 
-  
+    <!-- Checkout End -->
 
-    <?php include('./footer.html'); ?>
+    <?php include('../../footer.html'); ?>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
