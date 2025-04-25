@@ -1,14 +1,19 @@
 <?php
-/*
+session_start();
 require 'vendor/autoload.php';
+
+use App\Utils\Utils;
 
 use App\Models\Cart;
 $cartModel = new Cart();
 
-session_start();
-$cartModel->sendMessage($_SESSION['cliente'] ,$_SESSION['cart']);
+$cartModel->updatePaymentStatus($_SESSION['orden_id'], 1); // Actualizo el estado de la orden a pagado
+
+// Recien aca envio el mail de compra
+Utils::mailSenderPurchase($cliente,$carrito);
+Utils::mailSenderPurchaseLau($cliente,$carrito);
+
 unset($_SESSION['cart']); // Vaciar el carrito
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +64,7 @@ unset($_SESSION['cart']); // Vaciar el carrito
 
     <!-- Checkout End -->
 
-    <?php include('../../footer.html'); ?>
+    <?php include('footer.html'); ?>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>

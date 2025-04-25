@@ -34,8 +34,7 @@ class Cart{
        return $cliente_id;
      }
 
-     private function saveCart($cliente_id, $cart){
-      //  var_dump($cart);
+     private function saveCart($cliente_id, $cart){         
         extract($cart);
         // 2. Insertar orden
         $fecha = date('Y-m-d H:i:s');
@@ -43,6 +42,7 @@ class Cart{
         $stmt->bind_param("iddds", $cliente_id, $subtotal, $envio, $total, $fecha);
         $stmt->execute();
         $orden_id = $stmt->insert_id;
+        $_SESSION['orden_id'] = $orden_id; // Me guardo el orden ID para poder usarlo en la confirmacion del pago
         $stmt->close();
 
         // 3. Insertar cada ítem del carrito
@@ -62,6 +62,13 @@ class Cart{
         }
         $stmt->close();
 
+     }
+
+     public function updatePaymentStatus($orden_id, $status = 1){
+        $stmt = $this->db->prepare("update ordenes set status_pago = ? where id = ? ");
+        $stmt->bind_param("ii", $status, $orden_id);
+        $stmt->execute();
+        $stmt->close();
      }
 
      public function sendMessage($cliente,$cart){

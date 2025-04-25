@@ -62,9 +62,7 @@ $orden = [
 $cartModel->savePurchase($cliente,$orden);
 
 
-// Si todo salió bien:
-// unset($_SESSION['carrito']); // Vaciar el carrito
-Utils::mailSenderPurchase($cliente,$carrito);
-Utils::mailSenderPurchaseLau($cliente,$carrito);
+// No puedo mandar aca el mail ya que no se si se va a aceptar el pago
+// Utils::mailSenderPurchase($cliente,$carrito);
 
 echo json_encode(['success' => true, 'orden' => $orden]);
