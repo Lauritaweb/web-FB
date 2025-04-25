@@ -1,14 +1,6 @@
 <?php
-/*
-require 'vendor/autoload.php';
-
-use App\Models\Cart;
-$cartModel = new Cart();
-
 session_start();
-$cartModel->sendMessage($_SESSION['cliente'] ,$_SESSION['cart']);
-unset($_SESSION['cart']); // Vaciar el carrito
-*/
+$_SESSION['orden_id'] = null; // Elimino la orden de pago, para que nadie intente ir al gracias y establecerlas como paga
 ?>
 <!DOCTYPE html>
 <html lang="en">
