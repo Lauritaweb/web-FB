@@ -46,12 +46,15 @@ $zip = htmlspecialchars($cliente['zip'] ?? '');
         <td>
           <h2 style="font-size: 18px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Orden de productos</h2>
 
-          <?php foreach ($cart as $item): ?>
-            <p style="margin: 5px 0;"><strong>Producto:</strong> <?= htmlspecialchars($item['name']) ?></p>
-            <p style="margin: 5px 0;"><strong>Cantidad:</strong> <?= $item['quantity'] ?></p>
-            <p style="margin: 5px 0;"><strong>Precio:</strong> $<?= number_format($item['price'], 2, ',', '.') ?></p>
-            <hr style="border-top: 1px solid #ccc; margin: 20px 0;">
-          <?php endforeach; ?>
+        <?php 
+        foreach ($cart as $item):
+        ?>
+          <p style="margin: 5px 0;"><strong>Producto:</strong> <?= htmlspecialchars($item['nombre']) ?></p>
+          <p style="margin: 5px 0;"><strong>Cantidad:</strong> <?= $item['cantidad'] ?></p>
+          <p style="margin: 5px 0;"><strong>Precio:</strong> $<?= number_format($item['precio'], 2, ',', '.') ?></p>
+          <hr style="border-top: 1px solid #ccc; margin: 20px 0;">
+        <?php endforeach; ?>
+
 
         <!--  <p style="margin: 5px 0;"><strong>Subtotal:</strong> $<?= number_format($subtotal, 2, ',', '.') ?></p> -->
         <!--  <p style="margin: 5px 0;"><strong>Envío:</strong> $<?= number_format($envio, 2, ',', '.') ?></p> -->

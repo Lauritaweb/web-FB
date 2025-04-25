@@ -232,8 +232,8 @@ $envio = 0;
                 dataType: 'json',
                 success: function(respuesta) {
                     if (respuesta.success) {                      
-                       window.location.href = "gracias.php";
-                     // window.location.href = "checkout_process_mp.php";
+                     //  window.location.href = "gracias.php";
+                     window.location.href = "checkout_process_mp.php";
                     } else {
                         alert("Error: " + respuesta.message);
                     }

@@ -97,10 +97,10 @@ class Cart{
 
      }
 
-    public function getOrdenCompleta($uuid) {
+    public function getOrdenCompleta($uuid) {                
         // 1. Buscar la orden
         $stmt = $this->db->prepare("SELECT * FROM ordenes WHERE uuid = ?");
-        $stmt->bind_param("i", $uuid);
+        $stmt->bind_param("s", $uuid);
         $stmt->execute();
         $resultado = $stmt->get_result();
         $orden = $resultado->fetch_assoc();
@@ -117,7 +117,7 @@ class Cart{
         $cliente = $resultado->fetch_assoc();
     
         if (!$cliente) return null;
-    
+      
         // 3. Buscar items del carrito
         $stmt = $this->db->prepare("SELECT * FROM orden_items WHERE orden_id = ?");
         $stmt->bind_param("i", $orden_id);
