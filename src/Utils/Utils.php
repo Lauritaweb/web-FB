@@ -12,12 +12,12 @@ class Utils
 {
 
 
-    public static function mailSenderPurchase($cliente, $cart){
+    public static function mailSenderPurchase($cliente, $cart, $total){
         include('templateMailPurchase.php');
         Utils::mandarMail("foreverbikesarg@gmail.com", "Compra desde el Sitio Web", $htmlEmail, "Forever Bikes");
     }
 
-    public static function mailSenderPurchaseLau($cliente, $cart){
+    public static function mailSenderPurchaseLau($cliente, $cart, $total){
         include('templateMailPurchase.php');
         Utils::mandarMail("laheavy@gmail.com", "Compra desde el Sitio Web", $htmlEmail, "Forever Bikes");
     }

@@ -66,3 +66,6 @@ $cartModel->savePurchase($cliente,$orden);
 // Utils::mailSenderPurchase($cliente,$carrito);
 
 echo json_encode(['success' => true, 'orden' => $orden]);
+
+// Ejemplo de salida
+// https://foreverbikes.com.ar/gracias.php?collection_id=108986497845&collection_status=approved&payment_id=108986497845&status=approved&external_reference=null&payment_type=account_money&merchant_order_id=30562388034&preference_id=67897237-f2e2365e-7731-43da-9dcd-f2fbf17ed1ed&site_id=MLA&processing_mode=aggregator&merchant_account_id=null

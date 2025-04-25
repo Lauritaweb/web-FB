@@ -53,8 +53,8 @@ $zip = htmlspecialchars($cliente['zip'] ?? '');
             <hr style="border-top: 1px solid #ccc; margin: 20px 0;">
           <?php endforeach; ?>
 
-          <p style="margin: 5px 0;"><strong>Subtotal:</strong> $<?= number_format($subtotal, 2, ',', '.') ?></p>
-          <p style="margin: 5px 0;"><strong>Envío:</strong> $<?= number_format($envio, 2, ',', '.') ?></p>
+        <!--  <p style="margin: 5px 0;"><strong>Subtotal:</strong> $<?= number_format($subtotal, 2, ',', '.') ?></p> -->
+        <!--  <p style="margin: 5px 0;"><strong>Envío:</strong> $<?= number_format($envio, 2, ',', '.') ?></p> -->
           <h3 style="margin-top: 10px; font-size: 18px;"><strong>Total:</strong> $<?= number_format($total, 2, ',', '.') ?></h3>
         </td>
       </tr>
