@@ -231,10 +231,9 @@ $envio = 0;
                 data: datos,
                 dataType: 'json',
                 success: function(respuesta) {
-                    if (respuesta.success) {
-                      //  alert("¡Compra realizada con éxito!");
-                      //  window.location.href = "gracias.php";
-                        window.location.href = "checkout_process_mp.php";
+                    if (respuesta.success) {                      
+                     //  window.location.href = "gracias.php";
+                     window.location.href = "checkout_process_mp.php";
                     } else {
                         alert("Error: " + respuesta.message);
                     }

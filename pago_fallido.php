@@ -49,7 +49,7 @@ $_SESSION['orden_id'] = null; // Elimino la orden de pago, para que nadie intent
 
     <!-- Checkout End -->
 
-    <?php include('../../footer.html'); ?>
+    <?php include('footer.html'); ?>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>

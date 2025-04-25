@@ -9,7 +9,7 @@ use MercadoPago\Item;
 // Configuración del Access Token
 $accessToken = getenv('MP_ACCESS_TOKEN');
 if (!$accessToken) {
-    $accessToken = 'APP_USR-1340048667292847-042419-373b2243be7e259c310098d5b5e977af-64449458'; // Reemplazalo por el real
+    $accessToken = 'APP_USR-6078037080788097-010917-cb3190d40d6413962b474777b48ec72c-67897237';
 }
 
 SDK::setAccessToken($accessToken);
