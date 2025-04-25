@@ -17,9 +17,9 @@ class Cart{
      }
      
      
-     public function savePurchase($cliente, $cart){
+     public function savePurchase($cliente, $cart, $uuid){
         $cliente_id = $this->saveClient($cliente);
-        $this->saveCart($cliente_id,$cart);        
+        $this->saveCart($cliente_id,$cart, $uuid);        
      }
 
      
@@ -34,12 +34,12 @@ class Cart{
        return $cliente_id;
      }
 
-     private function saveCart($cliente_id, $cart){         
+     private function saveCart($cliente_id, $cart, $uuid){         
         extract($cart);
         // 2. Insertar orden
         $fecha = date('Y-m-d H:i:s');
-        $stmt = $this->db->prepare("INSERT INTO ordenes (cliente_id, subtotal, envio, total, fecha) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iddds", $cliente_id, $subtotal, $envio, $total, $fecha);
+        $stmt = $this->db->prepare("INSERT INTO ordenes (cliente_id, subtotal, envio, total, fecha, uuid) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("idddss", $cliente_id, $subtotal, $envio, $total, $fecha, $uuid);
         $stmt->execute();
         $orden_id = $stmt->insert_id;
         $_SESSION['orden_id'] = $orden_id; // Me guardo el orden ID para poder usarlo en la confirmacion del pago
@@ -64,9 +64,9 @@ class Cart{
 
      }
 
-     public function updatePaymentStatus($orden_id, $status = 1){
-        $stmt = $this->db->prepare("update ordenes set status_pago = ? where id = ? ");
-        $stmt->bind_param("ii", $status, $orden_id);
+     public function updatePaymentStatus($uuid, $status = 1){
+        $stmt = $this->db->prepare("update ordenes set status_pago = ? where uuid = ? ");
+        $stmt->bind_param("is", $status, $uuid);
         $stmt->execute();
         $stmt->close();
      }
@@ -96,6 +96,51 @@ class Cart{
         exit;
 
      }
+
+    public function getOrdenCompleta($uuid) {
+        // 1. Buscar la orden
+        $stmt = $this->db->prepare("SELECT * FROM ordenes WHERE uuid = ?");
+        $stmt->bind_param("i", $uuid);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $orden = $resultado->fetch_assoc();
+        $orden_id = $orden['id'];
+    
+        if (!$orden) return null;
+    
+        // 2. Buscar cliente
+        $cliente_id = $orden['cliente_id'];
+        $stmt = $this->db->prepare("SELECT * FROM clientes WHERE id = ?");
+        $stmt->bind_param("i", $cliente_id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $cliente = $resultado->fetch_assoc();
+    
+        if (!$cliente) return null;
+    
+        // 3. Buscar items del carrito
+        $stmt = $this->db->prepare("SELECT * FROM orden_items WHERE orden_id = ?");
+        $stmt->bind_param("i", $orden_id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $items = [];
+    
+        while ($row = $resultado->fetch_assoc()) {
+            $producto_id = $row['producto_id'];
+            $items[$producto_id] = [
+                'nombre' => $row['nombre_producto'],
+                'cantidad' => (int)$row['cantidad'],
+                'precio' => (float)$row['precio_unitario'],
+                'subtotal' => (float)$row['subtotal'],
+            ];
+        }
+    
+        return [
+            'cliente' => $cliente,
+            'cart' => $items
+        ];
+    }
+    
  
  
 

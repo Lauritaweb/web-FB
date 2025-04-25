@@ -59,11 +59,14 @@ $orden = [
     'fecha' => date('Y-m-d H:i:s')
 ];
 
-$cartModel->savePurchase($cliente,$orden);
+$_SESSION['uuid'] = $uuid = Utils::generarCodigo(48);
+
+$cartModel->savePurchase($cliente,$orden, $uuid);
 
 
 // No puedo mandar aca el mail ya que no se si se va a aceptar el pago
-// Utils::mailSenderPurchase($cliente,$carrito);
+// Utils::mailSenderPurchase($cliente,$carrito, $total);
+// Utils::mailSenderPurchaseLau($cliente,$carrito, $total);
 
 echo json_encode(['success' => true, 'orden' => $orden]);
 

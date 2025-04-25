@@ -6,6 +6,8 @@ use MercadoPago\SDK;
 use MercadoPago\Preference;
 use MercadoPago\Item;
 
+$uuid = $_SESSION['uuid'];
+
 // Configuración del Access Token
 $accessToken = getenv('MP_ACCESS_TOKEN');
 if (!$accessToken) {
@@ -33,7 +35,7 @@ $preference->items = $items;
 
 // URLs de retorno
 $preference->back_urls = [
-    "success" => "https://foreverbikes.com.ar/gracias.php",
+    "success" => "https://foreverbikes.com.ar/gracias.php?uuid=$uuid",
     "failure" => "https://foreverbikes.com.ar/pago_fallido.php",
     "pending" => "https://foreverbikes.com.ar/pago_fallido.php"
 ];

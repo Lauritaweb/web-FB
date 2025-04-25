@@ -7,32 +7,31 @@ use App\Utils\Utils;
 use App\Models\Cart;
 $cartModel = new Cart();
 
-$cliente = $_SESSION['cliente'];
-$carrito = $_SESSION['cart'];
-$carrito = $_SESSION['cart'];
-
-$envio = 0;
-$subtotal = 0;
-
-foreach ($carrito as $item) {
-    $subtotal += $item['price'] * $item['quantity'];
-}
-
-$total = $subtotal + $envio;
+$uuid = $_SESSION['uuid'];
 
 $cartModel->updatePaymentStatus($_SESSION['orden_id'], 1); // Actualizo el estado de la orden a pagado
 
+$orden = $cartModel->getOrdenCompleta($uuid);
+
+$cliente = $orden['cliente'];
+$carrito  = $orden['cart'];
+/*
+var_dump($carrito);
+var_dump($cliente);
+*/
+$total = 0; // ToDo: recuperar el total
+
 // Recien aca envio el mail de compra
 if ($carrito != null){
-    Utils::mailSenderPurchase($cliente,$carrito, $total);
+  //  Utils::mailSenderPurchase($cliente,$carrito, $total); // ToDo: habilitarlo
     Utils::mailSenderPurchaseLau($cliente,$carrito, $total);
 }
-
+/*
 unset($_SESSION['cart']); // Vaciar el carrito
 unset($_SESSION['cliente']); // Vaciar el cliente
 unset($_SESSION['orden_id']); // Vaciar el orden_id
 $_SESSION = []; // Limpia el array en RAM
-
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
