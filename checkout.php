@@ -223,7 +223,7 @@ $envio = 0;
                 datos[field.name] = field.value;
             });
 
-            console.log("Enviando datos:", datos);
+            // console.log("Enviando datos:", datos);
 
             $.ajax({
                 url: 'process_checkout.php',
@@ -232,8 +232,9 @@ $envio = 0;
                 dataType: 'json',
                 success: function(respuesta) {
                     if (respuesta.success) {
-                        alert("¡Compra realizada con éxito!");
-                        window.location.href = "gracias.php";
+                      //  alert("¡Compra realizada con éxito!");
+                      //  window.location.href = "gracias.php";
+                        window.location.href = "checkout_process_mp.php";
                     } else {
                         alert("Error: " + respuesta.message);
                     }
