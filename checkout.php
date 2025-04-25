@@ -125,18 +125,21 @@ $envio = 0;
                 <div class="card-body contenedor-productos">
                 <h5 class="font-weight-medium mb-3">Productos</h5>
 
-            <?php if (empty($carrito)): ?>
+            <?php 
+          //  echo "<pre>";
+          //  var_dump($carrito);
+            if (empty($carrito)): ?>
                 <p class="text-muted">Tu carrito está vacío.</p>
             <?php else: ?>
                 <?php foreach ($carrito as $item): 
                     $totalItem = $item['price'] * $item['quantity'];
                     $subtotal += $totalItem;
                 ?>
-                <div class="item-producto d-flex justify-content-between mb-3 align-items-center">
+                <div class="item-producto d-flex justify-content-between mb-3 align-items-center item-producto"  data-id="<?=  $item['product_id']  ?>" >
                     <p class="mb-0"><?= htmlspecialchars($item['name']) ?></p>
                     <small class="text-muted mb-0">Cantidad: <?= $item['quantity'] ?></small>
                     <p class="mb-0 precio">$<?= number_format($totalItem, 0, ',', '.') ?></p>
-                    <button class="btn btn-sm btn-danger eliminar-producto">
+                    <button class="btn btn-sm btn-danger eliminar-producto" ">
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>
@@ -182,9 +185,18 @@ $envio = 0;
             const boton = e.target.closest(".eliminar-producto");
             if (boton) {
               const item = boton.closest(".item-producto");
+              const itemId = item?.dataset.id;
+                console.log("tengo el" + itemId);
               if (item) {
                 item.remove();
                 actualizarTotal();
+                fetch("eliminar_item_carrito.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ id: itemId }),
+                });
               }
             }
           });
