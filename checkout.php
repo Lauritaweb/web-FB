@@ -35,7 +35,6 @@ $envio = 0;
 
 <body class="bg-white">
     <?php include('nav.php'); ?>
-    
    
 
     <!-- Page Header Start -->
@@ -125,9 +124,7 @@ $envio = 0;
                 <div class="card-body contenedor-productos">
                 <h5 class="font-weight-medium mb-3">Productos</h5>
 
-            <?php 
-          //  echo "<pre>";
-          //  var_dump($carrito);
+            <?php        
             if (empty($carrito)): ?>
                 <p class="text-muted">Tu carrito está vacío.</p>
             <?php else: ?>
@@ -136,7 +133,7 @@ $envio = 0;
                     $subtotal += $totalItem;
                 ?>
                 <div class="item-producto d-flex justify-content-between mb-3 align-items-center item-producto"  data-id="<?=  $item['product_id']  ?>" >
-                    <p class="mb-0"><?= htmlspecialchars($item['name']) ?></p>
+                    <p class="mb-0"><?= htmlspecialchars($item['name']) . "(" . $item['size'] . ') - ' . $item['color']?></p>
                     <small class="text-muted mb-0">Cantidad: <?= $item['quantity'] ?></small>
                     <p class="mb-0 precio">$<?= number_format($totalItem, 0, ',', '.') ?></p>
                     <button class="btn btn-sm btn-danger eliminar-producto" ">
@@ -155,7 +152,6 @@ $envio = 0;
                 </div>
             <?php endif; ?>
         </div>
-
         <div class="card-footer border-secondary bg-transparent">
             <div class="d-flex justify-content-between mt-2">
                 <h5 class="font-weight-bold">Total</h5>
@@ -168,104 +164,110 @@ $envio = 0;
     </div>
 </div>
 
-        </div>
     </div>
+</div>
     <!-- Checkout End -->
 
     <?php  
         include('./footer.html');
-    ?>
-
-   
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          const contenedor = document.querySelector(".contenedor-productos");
-      
-          contenedor.addEventListener("click", function (e) {
-            const boton = e.target.closest(".eliminar-producto");
-            if (boton) {
-              const item = boton.closest(".item-producto");
-              const itemId = item?.dataset.id;
-                console.log("tengo el" + itemId);
-              if (item) {
-                item.remove();
-                actualizarTotal();
-                fetch("eliminar_item_carrito.php", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ id: itemId }),
-                });
-              }
-            }
-          });
-        });
-      
-        function actualizarTotal() {
-          let total = 0;
-          document.querySelectorAll(".item-producto .precio").forEach(precioElem => {
-            const texto = precioElem.textContent.replace(/\$|\./g, "").replace(",", ".");
-            const valor = parseFloat(texto);
-            if (!isNaN(valor)) {
-              total += valor;
-            }
-          });
-      
-          const envio = <?= $envio ?>; // valor fijo de envío
-          const totalFinal = total + envio;
-      
-          // Actualizamos el subtotal y total en el DOM
-          const subtotalElem = document.querySelector(".card-body .d-flex.justify-content-between.mb-3.pt-1 h6:last-child");
-          const totalElem = document.querySelector(".card-footer .d-flex.justify-content-between.mt-2 h5:last-child");
-      
-          if (subtotalElem) subtotalElem.textContent = `$${total.toLocaleString("es-AR")}`;
-          if (totalElem) totalElem.textContent = `$${totalFinal.toLocaleString("es-AR")}`;
-        }
-      </script>
-      
-      
-      <script>
-       $('#checkout-form').on('submit', function(e) {
-            e.preventDefault(); // evita el submit tradicional
-
-            const formData = $(this).serializeArray();
-            const datos = {};
-            formData.forEach(field => {
-                datos[field.name] = field.value;
-            });
-
-            // console.log("Enviando datos:", datos);
-
-            $.ajax({
-                url: 'process_checkout.php',
-                type: 'POST',
-                data: datos,
-                dataType: 'json',
-                success: function(respuesta) {
-                    if (respuesta.success) {                      
-                     //  window.location.href = "gracias.php";
-                     window.location.href = "checkout_process_mp.php";
-                    } else {
-                        alert("Error: " + respuesta.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error en el AJAX:", error);
-                    alert("Ocurrió un error al procesar la compra.");
-                }
-            });
-        });
-
-    
-        $('.btn-dark').on('click', function() {
-            $('#checkout-form').submit(); // dispara el submit cuando se hace clic en "Confirmar compra"
-            
-        });
-    </script>
-    
-      
-
+    ?>   
 </body>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedor = document.querySelector(".contenedor-productos");
+
+    contenedor.addEventListener("click", function (e) {
+    const boton = e.target.closest(".eliminar-producto");
+    if (boton) {
+        const item = boton.closest(".item-producto");
+        const itemId = item?.dataset.id;
+        console.log("tengo el" + itemId);
+        if (item) {
+        item.remove();
+        actualizarTotal();
+        fetch("eliminar_item_carrito.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: itemId }),
+        });
+        }
+    }
+    });
+});
+
+function actualizarTotal() {
+    let total = 0;
+    document.querySelectorAll(".item-producto .precio").forEach(precioElem => {
+    const texto = precioElem.textContent.replace(/\$|\./g, "").replace(",", ".");
+    const valor = parseFloat(texto);
+    if (!isNaN(valor)) {
+        total += valor;
+    }
+    });
+
+    const envio = <?= $envio ?>; // valor fijo de envío
+    const totalFinal = total + envio;
+
+    // Actualizamos el subtotal y total en el DOM
+    const subtotalElem = document.querySelector(".card-body .d-flex.justify-content-between.mb-3.pt-1 h6:last-child");
+    const totalElem = document.querySelector(".card-footer .d-flex.justify-content-between.mt-2 h5:last-child");
+
+    if (subtotalElem) subtotalElem.textContent = `$${total.toLocaleString("es-AR")}`;
+    if (totalElem) totalElem.textContent = `$${totalFinal.toLocaleString("es-AR")}`;
+}
+
+$('#checkout-form').on('submit', function(e) {
+    e.preventDefault(); // evita el submit tradicional
+
+    const formData = $(this).serializeArray();
+    const datos = {};
+    formData.forEach(field => {
+        datos[field.name] = field.value;
+    });
+
+    // console.log("Enviando datos:", datos);
+
+    $.ajax({
+        url: 'process_checkout.php',
+        type: 'POST',
+        data: datos,
+        dataType: 'json',
+        success: function(respuesta) {
+            if (respuesta.success) {                      
+                //  window.location.href = "gracias.php";
+                window.location.href = "checkout_process_mp.php";
+            } else {
+                alert("Error: " + respuesta.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Error en el AJAX:", error);
+            alert("Ocurrió un error al procesar la compra.");
+        }
+    });
+});
+
+    
+$('.btn-dark').on('click', function() {
+    $('#checkout-form').submit(); // dispara el submit cuando se hace clic en "Confirmar compra"
+    
+});
+</script>
+            
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- js bs -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/vendor/easing/easing.min.js"></script>
+    <script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Javascript -->
+    <script src="./assets/js/main.js"></script>            
 </html>
