@@ -1,5 +1,10 @@
 <?php
 session_start();
+require 'vendor/autoload.php';
+
+
+use App\Utils\Utils;
+
 
 $productId = $_POST['product_id'];
 $quantity = $_POST['quantity'];
@@ -30,6 +35,7 @@ unset($item);
 
 if (!$found) {
     $_SESSION['cart'][] = [
+        'hash' => Utils::generarCodigo(32),
         'product_id' => $productId,
         'name' => $name,
         'price' => $price,
