@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forever Bikes | Viví la pasión por el ciclismo</title>
     <meta name="description" content="Descubrí Forever Bikes, la comunidad de ciclistas que vive la pasión por las dos ruedas. Encontrá bicicletas, accesorios y service con beneficios exclusivos.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Forever Bikes | Viví la pasión por el ciclismo">
+    <meta property="og:description" content="Descubrí Forever Bikes, la comunidad de ciclistas que vive la pasión por las dos ruedas. Encontrá bicicletas, accesorios y service con beneficios exclusivos.">
+    <meta property="og:image" content="https://foreverbikes.com.ar/assets/img/forever-og.jpg"> <!-- Ideal 1200x630 -->
+    <meta property="og:url" content="https://foreverbikes.com.ar/">
+    <meta property="og:site_name" content="Forever Bikes">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Forever Bikes | Bicicletas personalizadas y accesorios para ciclistas">
+    <meta name="twitter:description" content="Forever Bikes: bicicletas urbanas personalizadas, accesorios exclusivos y service premium en Buenos Aires. Unite a la comunidad ciclista que vive la pasión sobre ruedas.">
+    <meta name="twitter:image" content="https://foreverbikes.com.ar/assets/img/forever-og.jpg">
+    <meta name="author" content="Forever Bikes">
+    <meta name="copyright" content="Forever Bikes 2025">
+    <meta name="robots" content="index, follow">
     <link rel="shortcut icon" href="./assets/img/profile-img.jpg" type="image/x-icon">
+    <link rel="canonical" href="https://foreverbikes.com.ar/">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Bootstrap Icons -->
@@ -13,21 +27,21 @@
     <!-- css main -->
     <link rel="stylesheet" href="./assets/styles/css/main.css">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-314617588"></script>
-    <script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-314617588"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'AW-314617588');
-    </script>
+</script>
 </head>
 <body class="bg-white">
 
     <?php include('./nav.php'); ?>
 
     <header class="header container mt-3 border-bottom pb-5">
-        <img src="./assets/img/header-forever-bike.png" alt="Forever Bikes Logo">
+        <img src="./assets/img/header-forever-bike.png" alt="Logo de Forever Bikes, marca especializada en bicicletas personalizadas">
     </header>
 
     <main class="container">
@@ -36,7 +50,7 @@
             <div class="row mt-5">
                 <article class="col-md-4 mb-5 mb-md-0 border-end border-bottom p-0">
                     <a href="./productos/bicis/bicis-ruta.php">
-                        <img src="./assets/img/forever-ruta.png" alt="" class="w-100">
+                        <img src="./assets/img/forever-ruta.png" alt="Bicicleta de ruta Forever Bikes" class="w-100">
                         <h2 class="fs-2 text-uppercase mt-3">Ruta</h2>
                     </a>
                     <ul>
@@ -60,7 +74,7 @@
                 <!-- end col4 -->
                 <article class="col-md-4 mb-5 mb-md-0 border-end border-bottom p-0">
                     <a href="./productos/bicis/bicis-urbanas.html">
-                        <img src="./assets/img/forever-urbanas.png" alt="" class="w-100">
+                        <img src="./assets/img/forever-urbanas.png" alt="Bicicleta urbana Forever Bikes" class="w-100">
                         <h2 class="fs-2 text-uppercase mt-3">Urbanas</h2>
                     </a>
                     <ul>
@@ -84,7 +98,7 @@
                 <!-- end col4 -->
                 <article class="col-md-4 mb-5 mb-md-0 border-end border-bottom p-0">
                     <a href="./productos/bicis/bicis-todo-terreno.html">
-                        <img src="./assets/img/forever-todo-terreno.png" alt="" class="w-100">
+                        <img src="./assets/img/forever-todo-terreno.png" alt="Bicicleta todo terreno Forever Bikes" class="w-100">
                         <h2 class="fs-2 text-uppercase mt-3">Todo terreno</h2>
                     </a>
                     <ul>
@@ -109,38 +123,38 @@
         </section>
         <section class="collage py-5 border-bottom">
             <h2 class="fs-2 text-center text-uppercase">Pedaleá más lejos y disfrutá el camino</h2>
-            <img src="./assets/img/forever-bikes-fotos-puerto-madero.png" alt="" class="w-100">
+            <img src="./assets/img/forever-bikes-fotos-puerto-madero.png" alt="Bicicleta en Puerto Madero, Buenos Aires" class="w-100">
         </section>
         <section class="categories py-5 border-top border-bottom">
             <h2 class="fs-2 text-uppercase text-center fw-bold">Categorías</h2>
             <div class="row row-cols-md-5 row-cols-sm-2 mt-5">
                 <figure class="bg-white d-flex flex-column justify-content-center align-items-center">
                     <a href="./productos/accesorios/index.php">
-                        <img src="./assets/img/accesories.png" alt="">
+                        <img src="./assets/img/accesories.png" alt="Accesorios para bicicletas">
                         <figcaption class="fs-5 text-center">Accesorios</figcaption>
                     </a>
                 </figure>
                 <figure class="bg-white d-flex flex-column justify-content-center align-items-center">
                     <a href="./productos/componentes/index.php">
-                        <img src="./assets/img/components.png" alt="">
+                        <img src="./assets/img/components.png" alt="Componentes para bicicletas">
                         <figcaption class="fs-5 text-center">Componentes</figcaption>
                     </a>
                 </figure>
                 <figure class="bg-white d-flex flex-column justify-content-center align-items-center">
                     <a href="./productos/bicis/index.php">
-                        <img src="./assets/img/bikes.png" alt="">
+                        <img src="./assets/img/bikes.png" alt="Imagen de bicicletas de Forever Bikes">
                         <figcaption class="fs-5 text-center">Bicicletas</figcaption>
                     </a>
                 </figure>
                 <figure class="bg-white d-flex flex-column justify-content-center align-items-center">
                     <a href="./productos/componentes/frenos.php">
-                        <img src="./assets/img/brakes.png" alt="">
+                        <img src="./assets/img/brakes.png" alt="Imagen de frenos para bicicletas">
                         <figcaption class="fs-5 text-center">Frenos</figcaption>
                     </a>
                 </figure>
                 <figure class="bg-white d-flex flex-column justify-content-center align-items-center">
                     <a href="./productos/indumentaria/index.php">
-                        <img src="./assets/img/clothing.png" alt="">
+                        <img src="./assets/img/clothing.png" alt="Imagen de indumentaria para ciclismo">
                         <h3 class="fs-5 text-center">Indumentaria</h3>
                     </a>
                 </figure>
@@ -202,7 +216,7 @@
         <section class="story-telling-2 py-5 border-bottom" id="forever-comunity">
             <div class="row row-cols-1 row-cols-md-2">
                 <div>
-                    <img src="./assets/img/forever-comunidad.png" alt="" class="w-100">
+                    <img src="./assets/img/forever-comunidad.png" alt="Imagen de la comunidad Forever Bikes" class="w-100">
                 </div>
                 <article class="d-flex flex-column justify-content-center mt-3 mt-md-0">
                     <h2 class="fs-2 fw-bold">
@@ -223,9 +237,13 @@
                     </p>
                 </article>
             </div>
+            <!-- aca te dejo la recomendacion comentada para no joder nada -->
+            <!-- <div class="text-center mt-4">
+                <p class="fs-6">Este sitio fue desarrollado por <strong><a href="https://www.twc.com.ar" target="_blank" rel="noopener noreferrer">TWC</a></strong></p>
+            </div> -->
         </section>
         <section class="py-5 banner-forever">
-            <img src="./assets/img/banner-forever.png" alt="" class="w-100">
+            <img src="./assets/img/banner-forever.png" alt="Imagen con el logo Forever Bikes" class="w-100">
         </section>
 
         <?php  
