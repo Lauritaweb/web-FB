@@ -35,7 +35,7 @@ $envio = 0;
 
 <body class="bg-white">
     <?php include('nav.php'); ?>
-   
+
 
     <!-- Page Header Start -->
     <header class="container-fluid header bg-two mb-5 mt-5">
@@ -54,7 +54,7 @@ $envio = 0;
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <form id="checkout-form" method="POST" class="col-lg-8">
-                <div >
+                <div>
                     <div class="mb-4">
                         <h4 class="font-weight-semi-bold mb-4">Datos de facturación</h4>
                         <div class="row">
@@ -86,7 +86,7 @@ $envio = 0;
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
                                 <label>Provincia</label>
-                                <input type="text" name="provincia"  placeholder="Buenos Aires" class="form-control" required>
+                                <input type="text" name="provincia" placeholder="Buenos Aires" class="form-control" required>
                                 <!-- <select class="form-select" ame="provincia" aria-label="Default select example" required>
                                     <option selected>Ciudad autónoma de Buenos Aires</option>
                                     <option>Afghanistan</option>
@@ -110,7 +110,7 @@ $envio = 0;
                                 <label>ZIP Code
                                 </label>
                                 <input class="form-control" type="text" name="zip" placeholder="1548" required>
-                            </div>                       
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,153 +121,153 @@ $envio = 0;
                     <div class="card-header bg-dark border-0">
                         <h4 class="font-weight-semi-bold m-0 text-white">Orden total</h4>
                     </div>
-                <div class="card-body contenedor-productos">
-                <h5 class="font-weight-medium mb-3">Productos</h5>
+                    <div class="card-body contenedor-productos">
+                        <h5 class="font-weight-medium mb-3">Productos</h5>
 
-            <?php        
-            if (empty($carrito)): ?>
-                <p class="text-muted">Tu carrito está vacío.</p>
-            <?php else: ?>
-                <?php foreach ($carrito as $item): 
-                    $totalItem = $item['price'] * $item['quantity'];
-                    $subtotal += $totalItem;
-                ?>
-                <div class="item-producto d-flex justify-content-between mb-3 align-items-center item-producto"  data-id="<?=  $item['product_id']  ?>" >
-                    <p class="mb-0"><?= htmlspecialchars($item['name']) . "(" . $item['size'] . ') - ' . $item['color']?></p>
-                    <small class="text-muted mb-0">Cantidad: <?= $item['quantity'] ?></small>
-                    <p class="mb-0 precio">$<?= number_format($totalItem, 0, ',', '.') ?></p>
-                    <button class="btn btn-sm btn-danger eliminar-producto" ">
-                        <i class="bi bi-trash"></i>
-                    </button>
+                        <?php
+                        if (empty($carrito)): ?>
+                            <p class="text-muted">Tu carrito está vacío.</p>
+                        <?php else: ?>
+                            <?php foreach ($carrito as $item):
+                                $totalItem = $item['price'] * $item['quantity'];
+                                $subtotal += $totalItem;
+                            ?>
+                                <div class="item-producto d-flex justify-content-between mb-3 align-items-center item-producto" data-id="<?= $item['product_id']  ?>">
+                                    <p class="mb-0"><?= htmlspecialchars($item['name']) . "(" . $item['size'] . ') - ' . $item['color'] ?></p>
+                                    <small class="text-muted mb-0">Cantidad: <?= $item['quantity'] ?></small>
+                                    <p class="mb-0 precio">$<?= number_format($totalItem, 0, ',', '.') ?></p>
+                                    <button class="btn btn-sm btn-danger eliminar-producto" ">
+                        <i class=" bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            <?php endforeach; ?>
+                            <hr class="mt-0">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Subtotal</h6>
+                                <h6 class="font-weight-medium">$<?= number_format($subtotal, 0, ',', '.') ?></h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Envío</h6>
+                                <h6 class="font-weight-medium">$<?= number_format($envio, 0, ',', '.') ?></h6>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5 class="font-weight-bold">Total</h5>
+                            <h5 class="font-weight-bold">$<?= number_format($subtotal + $envio, 0, ',', '.') ?></h5>
+                        </div>
+                    </div>
+                    <div class="card-footer border-secondary bg-transparent">
+                        <button class="btn btn-lg btn-block btn-dark font-weight-bold my-3 py-3">Confirmar compra</button>
+                    </div>
                 </div>
-                <?php endforeach; ?>
-                <hr class="mt-0">
-                <div class="d-flex justify-content-between mb-3 pt-1">
-                    <h6 class="font-weight-medium">Subtotal</h6>
-                    <h6 class="font-weight-medium">$<?= number_format($subtotal, 0, ',', '.') ?></h6>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <h6 class="font-weight-medium">Envío</h6>
-                    <h6 class="font-weight-medium">$<?= number_format($envio, 0, ',', '.') ?></h6>
-                </div>
-            <?php endif; ?>
-        </div>
-        <div class="card-footer border-secondary bg-transparent">
-            <div class="d-flex justify-content-between mt-2">
-                <h5 class="font-weight-bold">Total</h5>
-                <h5 class="font-weight-bold">$<?= number_format($subtotal + $envio, 0, ',', '.') ?></h5>
             </div>
         </div>
-        <div class="card-footer border-secondary bg-transparent">
-            <button class="btn btn-lg btn-block btn-dark font-weight-bold my-3 py-3">Confirmar compra</button>
-        </div>
     </div>
-</div>
-
-    </div>
-</div>
     <!-- Checkout End -->
 
-    <?php  
-        include('./footer.html');
-    ?>   
+    <?php
+    include('./footer.html');
+    ?>
 </body>
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const contenedor = document.querySelector(".contenedor-productos");
-
-    contenedor.addEventListener("click", function (e) {
-    const boton = e.target.closest(".eliminar-producto");
-    if (boton) {
-        const item = boton.closest(".item-producto");
-        const itemId = item?.dataset.id;
-        console.log("tengo el" + itemId);
-        if (item) {
-        item.remove();
-        actualizarTotal();
-        fetch("eliminar_item_carrito.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ id: itemId }),
-        });
-        }
-    }
-    });
-});
-
-function actualizarTotal() {
-    let total = 0;
-    document.querySelectorAll(".item-producto .precio").forEach(precioElem => {
-    const texto = precioElem.textContent.replace(/\$|\./g, "").replace(",", ".");
-    const valor = parseFloat(texto);
-    if (!isNaN(valor)) {
-        total += valor;
-    }
-    });
-
-    const envio = <?= $envio ?>; // valor fijo de envío
-    const totalFinal = total + envio;
-
-    // Actualizamos el subtotal y total en el DOM
-    const subtotalElem = document.querySelector(".card-body .d-flex.justify-content-between.mb-3.pt-1 h6:last-child");
-    const totalElem = document.querySelector(".card-footer .d-flex.justify-content-between.mt-2 h5:last-child");
-
-    if (subtotalElem) subtotalElem.textContent = `$${total.toLocaleString("es-AR")}`;
-    if (totalElem) totalElem.textContent = `$${totalFinal.toLocaleString("es-AR")}`;
-}
-
-$('#checkout-form').on('submit', function(e) {
-    e.preventDefault(); // evita el submit tradicional
-
-    const formData = $(this).serializeArray();
-    const datos = {};
-    formData.forEach(field => {
-        datos[field.name] = field.value;
-    });
-
-    // console.log("Enviando datos:", datos);
-
-    $.ajax({
-        url: 'process_checkout.php',
-        type: 'POST',
-        data: datos,
-        dataType: 'json',
-        success: function(respuesta) {
-            if (respuesta.success) {                      
-                //  window.location.href = "gracias.php";
-                window.location.href = "checkout_process_mp.php";
-            } else {
-                alert("Error: " + respuesta.message);
+    document.addEventListener("DOMContentLoaded", () => {
+        const contenedor = document.querySelector(".contenedor-productos");
+        contenedor.addEventListener("click", function(e) {
+            const boton = e.target.closest(".eliminar-producto");
+            if (boton) {
+                const item = boton.closest(".item-producto");
+                const itemId = item?.dataset.id;                
+                if (item) {
+                    item.remove();
+                    actualizarTotal();
+                    fetch("eliminar_item_carrito.php", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            id: itemId
+                        }),
+                    });
+                }
             }
-        },
-        error: function(xhr, status, error) {
-            console.error("Error en el AJAX:", error);
-            alert("Ocurrió un error al procesar la compra.");
-        }
+        });
     });
-});
 
-    
-$('.btn-dark').on('click', function() {
-    $('#checkout-form').submit(); // dispara el submit cuando se hace clic en "Confirmar compra"
-    
-});
+    function actualizarTotal() {
+        let total = 0;
+        document.querySelectorAll(".item-producto .precio").forEach(precioElem => {
+            const texto = precioElem.textContent.replace(/\$|\./g, "").replace(",", ".");
+            const valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+                total += valor;
+            }
+        });
+
+        const envio = <?= $envio ?>; // valor fijo de envío
+        const totalFinal = total + envio;
+
+        // Actualizamos el subtotal y total en el DOM
+        const subtotalElem = document.querySelector(".card-body .d-flex.justify-content-between.mb-3.pt-1 h6:last-child");
+        const totalElem = document.querySelector(".card-footer .d-flex.justify-content-between.mt-2 h5:last-child");
+
+        if (subtotalElem) subtotalElem.textContent = `$${total.toLocaleString("es-AR")}`;
+        if (totalElem) totalElem.textContent = `$${totalFinal.toLocaleString("es-AR")}`;
+    }
+
+    $('#checkout-form').on('submit', function(e) {
+        e.preventDefault(); // evita el submit tradicional
+
+        const formData = $(this).serializeArray();
+        const datos = {};
+        formData.forEach(field => {
+            datos[field.name] = field.value;
+        });
+
+        // console.log("Enviando datos:", datos);
+
+        $.ajax({
+            url: 'process_checkout.php',
+            type: 'POST',
+            data: datos,
+            dataType: 'json',
+            success: function(respuesta) {
+                if (respuesta.success) {
+                    //  window.location.href = "gracias.php";
+                    window.location.href = "checkout_process_mp.php";
+                } else {
+                    alert("Error: " + respuesta.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error en el AJAX:", error);
+                alert("Ocurrió un error al procesar la compra.");
+            }
+        });
+    });
+
+
+    $('.btn-dark').on('click', function() {
+        $('#checkout-form').submit(); // dispara el submit cuando se hace clic en "Confirmar compra"
+
+    });
 </script>
-            
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- js bs -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/vendor/easing/easing.min.js"></script>
-    <script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+<!-- Back to Top -->
+<a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-    <!-- Javascript -->
-    <script src="./assets/js/main.js"></script>            
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- js bs -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/vendor/easing/easing.min.js"></script>
+<script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Javascript -->
+<script src="./assets/js/main.js"></script>
+
 </html>
