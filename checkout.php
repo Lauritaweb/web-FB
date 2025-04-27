@@ -173,6 +173,21 @@ $envio = 0;
 </body>
 
 
+<!-- Back to Top -->
+<a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- js bs -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/vendor/easing/easing.min.js"></script>
+<script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Javascript -->
+<script src="./assets/js/main.js"></script>
+
+
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const contenedor = document.querySelector(".contenedor-productos");
@@ -256,18 +271,5 @@ $envio = 0;
 
     });
 </script>
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- js bs -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="./assets/vendor/easing/easing.min.js"></script>
-<script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
-
-<!-- Javascript -->
-<script src="./assets/js/main.js"></script>
 
 </html>
