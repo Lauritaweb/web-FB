@@ -3,6 +3,9 @@ require '../../vendor/autoload.php';
 
 use App\Models\Product;
 $bikeModel = new Product();
+$catAndSub = $bikeModel->getSubCategory($idSubCategory);
+$breadCrumbSub = $catAndSub['subCategory'];
+$breadCrumbCat = $catAndSub['category'];
 
 ?>
 
@@ -69,8 +72,8 @@ $bikeModel = new Product();
                 <div class="row">
                     <div class="d-inline-flex">
                         <p class="m-0 me-1 "><a href="../../index.php" class="text-key ">Home</a></p>
-                        <p class="m-0 me-1 "><a href="./index.php" class="text-key fw-bold ms-2">Nuestras bicis</a></p>
-                        <p class="m-0"> > Bicis de ruta</p>
+                        <p class="m-0 me-1 "><a href="./index.php" class="text-key fw-bold ms-2"><?= $breadCrumbCat ?></a></p>
+                        <p class="m-0"> > <?= $breadCrumbSub ?></p>
                     </div> 
                     <!--
                     <div class="col-12 pb-1 mt-3">

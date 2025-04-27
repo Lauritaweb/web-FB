@@ -208,20 +208,42 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
     ];
 }
 
+
+
+ public function getSubCategory($idSubcategory) {
+    if (is_array($idSubcategory)) {
+        // Generar los placeholders (?, ?, ?, ...)
+        $placeholders = implode(',', array_fill(0, count($idSubcategory), '?'));
+        $query = "SELECT precategories.description as subCategory, categories.description as category  FROM subcategories left outer JOIN precategories on id_pre_category = precategories.id INNER JOIN categories on categories.id = subcategories.id_category
+ WHERE subcategories.id IN ($placeholders)";
+        
+        $stmt = $this->db->prepare($query);
+
+        // Armar el tipo de datos para bind_param: todos enteros -> 'iii...'
+        $types = str_repeat('i', count($idSubcategory));
+        $stmt->bind_param($types, ...$idSubcategory);
+    } else {
+        // Si es un solo ID, usamos la versión original
+        $query = "SELECT subcategories.description as subCategory,categories.description as category  FROM subcategories INNER JOIN categories on categories.id = subcategories.id_category WHERE subcategories.id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idSubcategory);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Si es array devolvemos todas, si es uno solo devolvemos una
+  //  return is_array($idSubcategory) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
+  return $result->fetch_assoc();
+}
+
         
 
     
 
 // NO VAN MAS
            
-        // READ: Obtener un registro por ID
-        public function get($id) {
-            $query = "SELECT * FROM $this->table WHERE id = ?";
-            $stmt = $this->db->prepare($query);
-            $stmt->bind_param("i", $id);
-            $stmt->execute();
-            return $stmt->get_result()->fetch_assoc();
-        }
+       
 
         public function getAll($active = 1)
         {
