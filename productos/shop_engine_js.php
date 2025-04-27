@@ -17,19 +17,27 @@
         
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 <script>
-
-
-
     $(document).ready(function () {       
         $.getJSON('../get_filters.php', function (data) {
             renderFilters(data.colors, '#color-filters', 'color');
             renderFilters(data.sizes, '#size-filters', 'size');
              // Restaurar y aplicar después de que se rendericen
-             evaluatePageChange();
-            
-            
+             if(evaluatePageChange()){
+                localStorage.removeItem('selectedColorFilters');
+                localStorage.removeItem('selectedSizeFilters');
+                console.log("Filtros eliminados por cambio de página");
+             }else{
+                restoreFiltersFromLocalStorage();
+                console.log("Filtros conservados");
+             }
+             aplicarFiltros();
         });
 
+        /**
+         * 
+         * Evalua si se cambio de pagina o si nos mantenemos en la misma
+         * 
+         */
         function evaluatePageChange(){
           const referrer = document.referrer;
           const currentUrl = window.location.href;
@@ -42,16 +50,18 @@
 
           // Si no venís de la misma página y no fue una recarga o botón "atrás"
           if (!cameFromSamePage && navType === "navigate") {
-            localStorage.removeItem('selectedColorFilters');
-            localStorage.removeItem('selectedSizeFilters');
-            console.log("Filtros eliminados por cambio de página");
+              return true;
           } else {
-            restoreFiltersFromLocalStorage();
-            aplicarFiltros();
-            console.log("Filtros conservados");
+              return false;
           }
 
         }
+
+        /**
+         * 
+         * Despliega los filtros en pantalla
+         * 
+         */
 
         function renderFilters(items, containerId, prefix) {
             let html = `
@@ -72,100 +82,79 @@
 
             $(containerId).html(html);
         }
-    });
-
-    function aplicarFiltros() {
-  let category = <?= json_encode($idSubCategory) ?>;
-
-  // Obtener talles seleccionados
-  let sizes = [];
-  $('#size-filters input[type="checkbox"]:checked').each(function () {
-    const value = $(this).val();
-    if (value !== 'size-all') {
-      sizes.push(value);
-    }
   });
 
-  // Obtener colores seleccionados
-  let colors = [];
-  $('#color-filters input[type="checkbox"]:checked').each(function () {
-    const value = $(this).val();
-    if (value !== 'color-all') {
-      colors.push(value);
-    }
-  });
+  function aplicarFiltros() {
+      let category = <?= json_encode($idSubCategory) ?>;
+
+      // Obtener talles seleccionados
+      let sizes = [];
+      $('#size-filters input[type="checkbox"]:checked').each(function () {
+        const value = $(this).val();
+        if (value !== 'size-all') {
+          sizes.push(value);
+        }
+      });
+
+      // Obtener colores seleccionados
+      let colors = [];
+      $('#color-filters input[type="checkbox"]:checked').each(function () {
+        const value = $(this).val();
+        if (value !== 'color-all') {
+          colors.push(value);
+        }
+      });
 
   
 
-  $.ajax({
-    url: '../filter_products.php',
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      category: category,
-      sizes: sizes,
-      colors: colors
-    },
-    success: function (products) {
-      let html = '';
-      if (products.length > 0) {
-        products.forEach(function (product) {
-          html += `
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-              <div class="card product-item border-0 mb-4">
-                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                  <img class="img-fluid w-100" src="../../assets/media/image/${product.image}" alt="${product.name}">
-                </div>
-                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                  <h6 class="text-truncate mb-3">${product.name}</h6>
-                  <div class="d-flex justify-content-center">
-                    <h6>$${product.price}</h6>
+    $.ajax({
+      url: '../filter_products.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        category: category,
+        sizes: sizes,
+        colors: colors
+      },
+      success: function (products) {
+        let html = '';
+        if (products.length > 0) {
+          products.forEach(function (product) {
+            html += `
+              <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                  <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                    <img class="img-fluid w-100" src="../../assets/media/image/${product.image}" alt="${product.name}">
+                  </div>
+                  <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                    <h6 class="text-truncate mb-3">${product.name}</h6>
+                    <div class="d-flex justify-content-center">
+                      <h6>$${product.price}</h6>
+                    </div>
+                  </div>
+                  <div class="card-footer d-flex justify-content-between bg-light border">
+                    <a href="../../detail.php?id=${product.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
                   </div>
                 </div>
-                <div class="card-footer d-flex justify-content-between bg-light border">
-                  <a href="../../detail.php?id=${product.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
-                </div>
-              </div>
-            </div>`;
-        });
-      } else {
-        html = '<p>No se encontraron productos.</p>';
+              </div>`;
+          });
+        } else {
+          html = '<p>No se encontraron productos.</p>';
+        }
+        $('#product-list').html(html);
       }
-      $('#product-list').html(html);
-    }
-  });
-}
-
-
-    // Ejecutar al cargar la página
-    $(document).ready(function () {
-      aplicarFiltros();
     });
-    
-
-    $(document).ready(function () {
-    function setupFilterGroup(groupClassPrefix) {
-        $(`#${groupClassPrefix}-filters`).on('change', 'input[type=checkbox]', function () {
-            const isAll = $(this).attr('id') === `${groupClassPrefix}-all`;
-
-            if (isAll && $(this).is(':checked')) {
-                // Si se selecciona "Todos", desmarcar los demás
-                $(`#${groupClassPrefix}-filters input[type=checkbox]`).not(this).prop('checked', false);
-            } else if (!isAll) {
-                // Si se selecciona otro, desmarcar "Todos"
-                $(`#${groupClassPrefix}-filters #${groupClassPrefix}-all`).prop('checked', false);
-            }
-
-            // Aplicar filtros automáticamente
-            aplicarFiltros();
-        });
-    }
-
-    setupFilterGroup('color');
-    setupFilterGroup('size');
-});
+  }
 
 
+    /**
+     * 
+     * Si clickea "Todos" → se desmarcan los demás.
+     * Si marca algo → se desmarca "Todos".
+     * Si desmarca todo → se marca solo "Todos".
+     * Se guarda en localStorage y se restauran al volver.
+     * 
+     */
 
     $(document).ready(function () {
       function setupFilterGroup(groupClassPrefix) {
@@ -199,9 +188,6 @@
 });
 
 
-
-
-
 function saveFiltersToLocalStorage() {
     const filters = {
         sizes: $('#size-filters input[type=checkbox]:checked').map(function () { return this.id; }).get(),
@@ -209,9 +195,6 @@ function saveFiltersToLocalStorage() {
     };
     localStorage.setItem('productFilters', JSON.stringify(filters));
 }
-
-
-
 
 function restoreFiltersFromLocalStorage() {
     const saved = JSON.parse(localStorage.getItem('productFilters'));
