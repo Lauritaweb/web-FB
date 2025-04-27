@@ -60,8 +60,6 @@ $bikeModel = new Product();
                 </div> 
                 <!-- Size End -->
 
-                <a  class="btn btn-sm text-dark p-0" id="apply-filters"><i class="fas fa-eye text-dark me-1"></i>Filtrar</a>
-
             </div>
             <!-- Shop Sidebar End -->
 
@@ -74,6 +72,7 @@ $bikeModel = new Product();
                         <p class="m-0 me-1 "><a href="./index.php" class="text-key fw-bold ms-2">Nuestras bicis</a></p>
                         <p class="m-0"> > Bicis de ruta</p>
                     </div> 
+                    <!--
                     <div class="col-12 pb-1 mt-3">
                         <div class="d-block d-md-flex align-items-center justify-content-between mb-4">
                             <form action="">
@@ -98,6 +97,8 @@ $bikeModel = new Product();
                             
                         </div>
                     </div> 
+                    -->
+
                     <div id="product-list" class="row">
                     </div>                    
                     <!--
