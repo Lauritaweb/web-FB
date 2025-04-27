@@ -45,52 +45,65 @@
     });
 
     function aplicarFiltros() {
-      // let category = $('#filter-category').val();
-      let category = <?= json_encode($idSubCategory) ?>;
-      let sizes = $('#filter-size').val();
-      let colors = $('#filter-color').val();
+  let category = <?= json_encode($idSubCategory) ?>;
 
-
-      $.ajax({
-        url: '../filter_products.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-          category: category,
-          sizes: sizes,
-          colors: colors
-        },
-        success: function (products) {
-          let html = '';
-          if (products.length > 0) {
-            products.forEach(function (product) {
-              html += `
-                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                            <div class="card product-item border-0 mb-4">
-                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100" src="../../assets/media/image/${product.image}" alt="${product.name}">
-                                </div>
-                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                    <h6 class="text-truncate mb-3">${product.name}</h6>
-                                    <div class="d-flex justify-content-center">
-                                        <h6>$${product.price}</h6>
-                                    </div>
-                                </div>
-                                <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="../../detail.php?id=${product.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
-                                    <!-- <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-dark me-1"></i>Agregar al carrito</a> -->
-                                </div>
-                            </div>
-                    </div>          
-              `;
-            });
-          } else {
-            html = '<p>No se encontraron productos.</p>';
-          }
-          $('#product-list').html(html);
-        }
-      });
+  // Obtener talles seleccionados
+  let sizes = [];
+  $('#size-filters input[type="checkbox"]:checked').each(function () {
+    const value = $(this).val();
+    if (value !== 'all') {
+      sizes.push(value);
     }
+  });
+
+  // Obtener colores seleccionados
+  let colors = [];
+  $('#color-filters input[type="checkbox"]:checked').each(function () {
+    const value = $(this).val();
+    if (value !== 'all') {
+      colors.push(value);
+    }
+  });
+
+  $.ajax({
+    url: '../filter_products.php',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      category: category,
+      sizes: sizes,
+      colors: colors
+    },
+    success: function (products) {
+      let html = '';
+      if (products.length > 0) {
+        products.forEach(function (product) {
+          html += `
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+              <div class="card product-item border-0 mb-4">
+                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                  <img class="img-fluid w-100" src="../../assets/media/image/${product.image}" alt="${product.name}">
+                </div>
+                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                  <h6 class="text-truncate mb-3">${product.name}</h6>
+                  <div class="d-flex justify-content-center">
+                    <h6>$${product.price}</h6>
+                  </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between bg-light border">
+                  <a href="../../detail.php?id=${product.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
+                </div>
+              </div>
+            </div>`;
+        });
+      } else {
+        html = '<p>No se encontraron productos.</p>';
+      }
+      $('#product-list').html(html);
+    }
+  });
+}
+
 
     // Ejecutar al cargar la página
     $(document).ready(function () {
@@ -98,6 +111,7 @@
 
       // Ejecutar también cuando se hace clic en el botón
       $('#apply-filters').on('click', function () {
+        console.log("aplicando filtros");
         aplicarFiltros();
       });
     });

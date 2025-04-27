@@ -6,6 +6,15 @@ $bikeModel = new Product();
 
 ?>
 
+ <!-- Color Start -->
+ <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
+                    <form id="color-filters">
+                    </form>
+                </div> 
+                <!-- Color End -->
+                <a  class="btn btn-sm text-dark p-0" id="apply-filters"><i class="fas fa-eye text-dark me-1"></i>Filtrar</a>
+
     <!-- Shop Start -->
     <div class="container-fluid pt-0 pt-md-5">
         <div class="row px-xl-5">
@@ -13,7 +22,7 @@ $bikeModel = new Product();
             <div class="col-lg-2 col-md-12 d-none">
 
                 <!-- Price Start -->
-            <!-- <div class="border-bottom mb-4 pb-4">
+             <div class="border-bottom mb-4 pb-4">
                 <h5 class="font-weight-semi-bold mb-4">Filtrar por precios</h5>
                 <form class="filter-form" data-filter="price">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
@@ -41,22 +50,15 @@ $bikeModel = new Product();
                         <label class="custom-control-label ms-2" for="price-5">$400 - $500</label>
                     </div>
                 </form>
-            </div> -->
+            </div> 
             <!-- Price End -->
                 
-                <!-- Color Start -->
-                <!-- <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
-                    <form id="color-filters">
-                    </form>
-                </div> -->
-                <!-- Color End -->
-
+               
                 <!-- Size Start -->
-                <!-- <div class="mb-5">
+                 <div class="mb-5">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por tamaño</h5>
                     <form id="size-filters"></form>
-                </div> -->
+                </div> 
                 <!-- Size End -->
 
 
