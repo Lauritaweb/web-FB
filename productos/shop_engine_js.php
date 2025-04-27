@@ -51,7 +51,7 @@
   let sizes = [];
   $('#size-filters input[type="checkbox"]:checked').each(function () {
     const value = $(this).val();
-    if (value !== 'all') {
+    if (value !== 'size-all') {
       sizes.push(value);
     }
   });
@@ -60,10 +60,12 @@
   let colors = [];
   $('#color-filters input[type="checkbox"]:checked').each(function () {
     const value = $(this).val();
-    if (value !== 'all') {
+    if (value !== 'color-all') {
       colors.push(value);
     }
   });
+
+  
 
   $.ajax({
     url: '../filter_products.php',

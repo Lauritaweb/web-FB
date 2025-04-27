@@ -6,14 +6,6 @@ $bikeModel = new Product();
 
 ?>
 
- <!-- Color Start -->
- <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
-                    <form id="color-filters">
-                    </form>
-                </div> 
-                <!-- Color End -->
-                <a  class="btn btn-sm text-dark p-0" id="apply-filters"><i class="fas fa-eye text-dark me-1"></i>Filtrar</a>
 
     <!-- Shop Start -->
     <div class="container-fluid pt-0 pt-md-5">
@@ -68,6 +60,8 @@ $bikeModel = new Product();
                 </div> 
                 <!-- Size End -->
 
+                <a  class="btn btn-sm text-dark p-0" id="apply-filters"><i class="fas fa-eye text-dark me-1"></i>Filtrar</a>
+
             </div>
             <!-- Shop Sidebar End -->
 
@@ -106,7 +100,7 @@ $bikeModel = new Product();
                     </div> 
                     <div id="product-list" class="row">
                     </div>                    
-                    
+                    <!--
                     <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
                           <ul class="pagination justify-content-center mb-3">
@@ -128,6 +122,9 @@ $bikeModel = new Product();
                           </ul>
                         </nav>
                     </div>
+                    -->
+
+
                 </div>
             </main>
             <!-- Shop Product End -->

@@ -90,15 +90,23 @@ class Product
 
                 ";
     
-        if (!empty($colors)) {
-            $inColors = implode(',', array_map('intval', $colors));
+    if (!empty($colors)) {
+        // Filtra valores válidos (distintos de 0)
+        $validColors = array_filter($colors, function($c) { return intval($c) !== 0; });
+        if (!empty($validColors)) {
+            $inColors = implode(',', array_map('intval', $validColors));
             $where[] = "pv.id_color IN ($inColors)";
         }
+    }
     
-        if (!empty($sizes)) {
-            $inSizes = implode(',', array_map('intval', $sizes));
+    if (!empty($sizes)) {
+        // Filtra valores válidos (distintos de 0)
+        $validSizes = array_filter($sizes, function($s) { return intval($s) !== 0; });
+        if (!empty($validSizes)) {
+            $inSizes = implode(',', array_map('intval', $validSizes));
             $where[] = "pv.id_size IN ($inSizes)";
         }
+    }
        
         if (!empty($idCategory)) {
             if (is_array($idCategory)) {
@@ -118,7 +126,7 @@ class Product
     
         // Evitar duplicados por múltiples variantes
         $sql .= " GROUP BY p.id";
-       
+  
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
         $result = $stmt->get_result();
