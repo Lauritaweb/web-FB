@@ -138,13 +138,14 @@ extract($product['product']);
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                     <a class="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Descripción</a>
-                    <a class="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-2">Información</a>
+                   <!-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-2">Información</a> -->
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3"><?= $name ?></h4>
                         <p><?= $description ?></p>                    
                     </div>
+                    <!--
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Información adicional</h4>
                         <p>
@@ -171,6 +172,7 @@ extract($product['product']);
                             </div>
                         </div>
                     </div>
+                    -->
                     
                 </div>
             </div>
