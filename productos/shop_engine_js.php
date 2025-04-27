@@ -1,111 +1,108 @@
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- js bs -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/vendor/easing/easing.min.js"></script>
+<script src="../../assets/vendor/owlcarousel/owl.carousel.min.js"></script>
 
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <!-- js bs -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/easing/easing.min.js"></script>
-    <script src="../../assets/vendor/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Contact Javascript 
+<!-- Contact Javascript 
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>File -->
 
-    <!-- Javascript -->
-    <script src="../../assets/js/main.js"></script>
-        
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+<!-- Javascript -->
+<script src="../../assets/js/main.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {       
-        $.getJSON('../get_filters.php', function (data) {
-            renderFilters(data.colors, '#color-filters', 'color');
-            renderFilters(data.sizes, '#size-filters', 'size');
-             // Restaurar y aplicar después de que se rendericen
-             if(evaluatePageChange()){
-                localStorage.removeItem('selectedColorFilters');
-                localStorage.removeItem('selectedSizeFilters');
-                console.log("Filtros eliminados por cambio de página");
-             }else{
-                restoreFiltersFromLocalStorage();
-                console.log("Filtros conservados");
-             }
-             aplicarFiltros();
-        });
+  $(document).ready(function() {
+    $.getJSON('../get_filters.php', function(data) {
+      renderFilters(data.colors, '#color-filters', 'color');
+      renderFilters(data.sizes, '#size-filters', 'size');
+      // Restaurar y aplicar después de que se rendericen
+      if (evaluatePageChange()) {
+        localStorage.removeItem('selectedColorFilters');
+        localStorage.removeItem('selectedSizeFilters');
+        console.log("Filtros eliminados por cambio de página");
+      } else {
+        restoreFiltersFromLocalStorage();
+        console.log("Filtros conservados");
+      }
+      aplicarFiltros();
+    });
 
-        /**
-         * 
-         * Evalua si se cambio de pagina o si nos mantenemos en la misma
-         * 
-         */
-        function evaluatePageChange(){
-          const referrer = document.referrer;
-          const currentUrl = window.location.href;
-          const currentPath = window.location.pathname;
-          const currentHost = window.location.host;
+    /**
+     * 
+     * Evalua si se cambio de pagina o si nos mantenemos en la misma
+     * 
+     */
+    function evaluatePageChange() {
+      const referrer = document.referrer;
+      const currentUrl = window.location.href;
+      const currentPath = window.location.pathname;
+      const currentHost = window.location.host;
 
-          const cameFromSamePage = referrer.includes(currentPath);
-          const cameFromSameHost = referrer.includes(currentHost);
-          const navType = performance.getEntriesByType("navigation")[0].type;
+      const cameFromSamePage = referrer.includes(currentPath);
+      const cameFromSameHost = referrer.includes(currentHost);
+      const navType = performance.getEntriesByType("navigation")[0].type;
 
-          // Si no venís de la misma página y no fue una recarga o botón "atrás"
-          if (!cameFromSamePage && navType === "navigate") {
-              return true;
-          } else {
-              return false;
-          }
+      // Si no venís de la misma página y no fue una recarga o botón "atrás"
+      if (!cameFromSamePage && navType === "navigate") {
+        return true;
+      } else {
+        return false;
+      }
 
-        }
+    }
 
-        /**
-         * 
-         * Despliega los filtros en pantalla
-         * 
-         */
+    /**
+     * 
+     * Despliega los filtros en pantalla
+     * 
+     */
 
-        function renderFilters(items, containerId, prefix) {
-            let html = `
+    function renderFilters(items, containerId, prefix) {
+      let html = `
                 <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
                     <input type="checkbox" class="custom-control-input" checked id="${prefix}-all">
                     <label class="custom-control-label ms-2" for="${prefix}-all">Todos</label>
                 </div>
             `;
 
-            items.forEach(item => {            
-                html += `
+      items.forEach(item => {
+        html += `
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
                         <input type="checkbox" class="custom-control-input" id="${prefix}-${item.id}" value="${item.id}">
                         <label class="custom-control-label ms-2" for="${prefix}-${item.id}">${item.description}</label>
                     </div>
                 `;
-            });
+      });
 
-            $(containerId).html(html);
-        }
+      $(containerId).html(html);
+    }
   });
 
   function aplicarFiltros() {
-      let category = <?= json_encode($idSubCategory) ?>;
+    let category = <?= json_encode($idSubCategory) ?>;
 
-      // Obtener talles seleccionados
-      let sizes = [];
-      $('#size-filters input[type="checkbox"]:checked').each(function () {
-        const value = $(this).val();
-        if (value !== 'size-all') {
-          sizes.push(value);
-        }
-      });
+    // Obtener talles seleccionados
+    let sizes = [];
+    $('#size-filters input[type="checkbox"]:checked').each(function() {
+      const value = $(this).val();
+      if (value !== 'size-all') {
+        sizes.push(value);
+      }
+    });
 
-      // Obtener colores seleccionados
-      let colors = [];
-      $('#color-filters input[type="checkbox"]:checked').each(function () {
-        const value = $(this).val();
-        if (value !== 'color-all') {
-          colors.push(value);
-        }
-      });
+    // Obtener colores seleccionados
+    let colors = [];
+    $('#color-filters input[type="checkbox"]:checked').each(function() {
+      const value = $(this).val();
+      if (value !== 'color-all') {
+        colors.push(value);
+      }
+    });
 
-  
+
 
     $.ajax({
       url: '../filter_products.php',
@@ -116,10 +113,10 @@
         sizes: sizes,
         colors: colors
       },
-      success: function (products) {
+      success: function(products) {
         let html = '';
         if (products.length > 0) {
-          products.forEach(function (product) {
+          products.forEach(function(product) {
             html += `
               <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
@@ -147,67 +144,70 @@
   }
 
 
-    /**
-     * 
-     * Si clickea "Todos" → se desmarcan los demás.
-     * Si marca algo → se desmarca "Todos".
-     * Si desmarca todo → se marca solo "Todos".
-     * Se guarda en localStorage y se restauran al volver.
-     * 
-     */
+  /**
+   * 
+   * Si clickea "Todos" → se desmarcan los demás.
+   * Si marca algo → se desmarca "Todos".
+   * Si desmarca todo → se marca solo "Todos".
+   * Se guarda en localStorage y se restauran al volver.
+   * 
+   */
 
-    $(document).ready(function () {
-      function setupFilterGroup(groupClassPrefix) {
-          const containerSelector = `#${groupClassPrefix}-filters`;
+  $(document).ready(function() {
+    function setupFilterGroup(groupClassPrefix) {
+      const containerSelector = `#${groupClassPrefix}-filters`;
 
-          $(containerSelector).on('change', 'input[type=checkbox]', function () {
-              const isAll = $(this).attr('id') === `${groupClassPrefix}-all`;
+      $(containerSelector).on('change', 'input[type=checkbox]', function() {
+        const isAll = $(this).attr('id') === `${groupClassPrefix}-all`;
 
-              if (isAll && $(this).is(':checked')) {
-                  $(containerSelector + ' input[type=checkbox]').not(this).prop('checked', false);
-              } else if (!isAll) {
-                  $(`#${groupClassPrefix}-all`).prop('checked', false);
-              }
+        if (isAll && $(this).is(':checked')) {
+          $(containerSelector + ' input[type=checkbox]').not(this).prop('checked', false);
+        } else if (!isAll) {
+          $(`#${groupClassPrefix}-all`).prop('checked', false);
+        }
 
-              // 🧠 Si no hay ningún checkbox marcado, se marca "Todos"
-              const checked = $(`${containerSelector} input[type=checkbox]:checked`);
-              if (checked.length === 0) {
-                  $(`#${groupClassPrefix}-all`).prop('checked', true);
-              }
+        // 🧠 Si no hay ningún checkbox marcado, se marca "Todos"
+        const checked = $(`${containerSelector} input[type=checkbox]:checked`);
+        if (checked.length === 0) {
+          $(`#${groupClassPrefix}-all`).prop('checked', true);
+        }
 
-              // Guardar filtros
-              saveFiltersToLocalStorage();
+        // Guardar filtros
+        saveFiltersToLocalStorage();
 
-              // Aplicar automáticamente
-              aplicarFiltros();
-          });
-      }
+        // Aplicar automáticamente
+        aplicarFiltros();
+      });
+    }
 
-      setupFilterGroup('color');
-      setupFilterGroup('size');
-});
+    setupFilterGroup('color');
+    setupFilterGroup('size');
+  });
 
 
-function saveFiltersToLocalStorage() {
+  function saveFiltersToLocalStorage() {
     const filters = {
-        sizes: $('#size-filters input[type=checkbox]:checked').map(function () { return this.id; }).get(),
-        colors: $('#color-filters input[type=checkbox]:checked').map(function () { return this.id; }).get()
+      sizes: $('#size-filters input[type=checkbox]:checked').map(function() {
+        return this.id;
+      }).get(),
+      colors: $('#color-filters input[type=checkbox]:checked').map(function() {
+        return this.id;
+      }).get()
     };
     localStorage.setItem('productFilters', JSON.stringify(filters));
-}
+  }
 
-function restoreFiltersFromLocalStorage() {
+  function restoreFiltersFromLocalStorage() {
     const saved = JSON.parse(localStorage.getItem('productFilters'));
 
     if (saved) {
-        // Restaurar colores
-        $('#color-filters input[type=checkbox]').prop('checked', false);
-        saved.colors.forEach(id => $(`#${id}`).prop('checked', true));
+      // Restaurar colores
+      $('#color-filters input[type=checkbox]').prop('checked', false);
+      saved.colors.forEach(id => $(`#${id}`).prop('checked', true));
 
-        // Restaurar tamaños
-        $('#size-filters input[type=checkbox]').prop('checked', false);
-        saved.sizes.forEach(id => $(`#${id}`).prop('checked', true));
+      // Restaurar tamaños
+      $('#size-filters input[type=checkbox]').prop('checked', false);
+      saved.sizes.forEach(id => $(`#${id}`).prop('checked', true));
     }
-}
-
+  }
 </script>
