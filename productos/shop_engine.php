@@ -17,7 +17,9 @@ $breadCrumbCat = $catAndSub['category'];
             <div class="col-lg-2 col-md-12 d-none d-md-block">
 
             <!-- Price Start -->
+                <!--
                 <div class="border-bottom mb-4 pb-4">
+                    
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por precios</h5>
                     <form class="filter-form" data-filter="price">
                         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
@@ -46,6 +48,7 @@ $breadCrumbCat = $catAndSub['category'];
                         </div>
                     </form>
                 </div> 
+                -->
             <!-- Price End -->
                 
                 <!-- Color Start -->
