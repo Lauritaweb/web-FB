@@ -239,6 +239,86 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
 
         
 
+    public function getRandomProducts($idCategory = null, $cantidad = 5) {
+        $where = [];
+        $params = [];
+
+        $sql = "SELECT 
+                    p.id, 
+                    p.name, 
+                    p.price, 
+                    p.saleprice, 
+                    (SELECT url FROM product_pictures WHERE product_id = p.id LIMIT 1) as image
+                FROM products p
+                JOIN product_variants pv ON p.id = pv.product_id
+                LEFT JOIN subcategories sc ON sc.id = p.id_subcategory
+                LEFT JOIN (
+                    SELECT product_id, MIN(id) AS min_id
+                    FROM product_pictures
+                    GROUP BY product_id
+                ) pp_min ON pp_min.product_id = p.id
+
+                ";
+
+        if (!empty($idCategory)) {
+            if (is_array($idCategory)) {
+                $placeholders = implode(',', array_fill(0, count($idCategory), '?'));
+                $where[] = "p.id_subcategory IN ($placeholders)";
+                $params = array_merge($params, $idCategory);
+            } else {
+                $where[] = "p.id_subcategory = ?";
+                $params[] = $idCategory;
+            }
+        }
+        
+
+        if (!empty($where)) {
+            $sql .= " WHERE " . implode(' AND ', $where);
+        }
+
+        // Evitar duplicados por múltiples variantes
+        $sql .= " GROUP BY p.id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->get_result();
+
+        $elements = [];
+        while ($row = $result->fetch_assoc()) {
+            $elements[] = $row;
+        }
+
+        $stmt->close();
+
+        $rta = $this->obtenerElementosAleatorios($elements, $cantidad);
+
+        return $rta;
+    }
+
+     private function obtenerElementosAleatorios(array $array, int $n): array {
+        // Si el número solicitado es mayor o igual a la cantidad de elementos disponibles, devolvemos el array completo
+        if ($n >= count($array)) {
+            return $array;
+        }
+    
+        // Obtenemos claves aleatorias
+        $clavesAleatorias = array_rand($array, $n);
+    
+        // Si se pide solo 1, array_rand devuelve una sola clave, no un array
+        if ($n === 1) {
+            $clavesAleatorias = [$clavesAleatorias];
+        }
+    
+        // Armamos el nuevo array con las claves seleccionadas
+        $resultado = [];
+        foreach ($clavesAleatorias as $clave) {
+            $resultado[$clave] = $array[$clave];
+        }
+    
+        return $resultado;
+    }
+    
+
     
 
 // NO VAN MAS
