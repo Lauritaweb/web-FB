@@ -1,5 +1,5 @@
 <?php
-$idSubCategory=33;
+$idSubCategory=29;
 ?>
 <!DOCTYPE html>
 <html lang="en">
