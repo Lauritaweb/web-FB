@@ -97,14 +97,27 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 </div>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 me-3">Colores:</p>
-                    <form class="d-flex flex-wrap">
-                    <?php foreach ($product['colors'] as $i => $color): ?>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color">
-                            <label class="custom-control-label" for="color-<?= $i ?>"><?= ($color) ?></label>
-                        </div>
-                    <?php endforeach; ?>
+                   <!-- Radios visibles solo en desktop -->
+                    <form class="d-none d-md-flex flex-wrap">
+                        <?php foreach ($product['colors'] as $i => $color): ?>
+                            <div class="custom-control custom-radio custom-control-inline ms-3">
+                                <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color" value="<?= $color ?>">
+                                <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
+                            </div>
+                        <?php endforeach; ?>
                     </form>
+
+                    <!-- Select visible solo en mobile -->
+                    <form class="d-block d-md-none">
+                        <div class="form-group">
+                            <select class="form-select" name="color" id="colorSelect">
+                                <?php foreach ($product['colors'] as $color): ?>
+                                    <option value="<?= $color ?>"><?= $color ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </form>
+
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity me-3" style="width: 130px;">
