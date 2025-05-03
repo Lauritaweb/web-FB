@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use App\Config\Database;
@@ -80,10 +79,12 @@ class Product
                     p.name, 
                     p.price, 
                     p.saleprice, 
+                    c.description as category,
                     (SELECT url FROM product_pictures WHERE product_id = p.id LIMIT 1) as image
                 FROM products p
                 JOIN product_variants pv ON p.id = pv.product_id
                 LEFT JOIN subcategories sc ON sc.id = p.id_subcategory
+                LEFT JOIN categories c on c.id = p.id_category
                 LEFT JOIN (
                     SELECT product_id, MIN(id) AS min_id
                     FROM product_pictures
@@ -161,6 +162,28 @@ class Product
         return $elements;
     }
 
+    public function getProductWithVariantsSlug($slugSubcategory, $slugProduct){
+        $query = "
+        SELECT p.id
+        FROM products p
+        JOIN categories c ON c.id = p.id_category
+        WHERE p.name = ? AND c.description = ?
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', $slugProduct, $slugSubcategory);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+
+        if (!$product) {
+            http_response_code(404);
+            echo "Producto no encontrado";
+            exit;
+        }
+        return $product;
+    }
+
     public function getProductWithVariants($idProduct){
         // 1. Obtener el producto
         $query = "SELECT * FROM $this->table WHERE id = ?";
@@ -227,6 +250,28 @@ class Product
         ];
     }
 
+    public function getProductCategoryAndName($id){
+        $query = "
+        SELECT c.description as category,
+        p.name 
+        FROM products p
+        JOIN categories c ON c.id = p.id_category
+        WHERE p.id = ? 
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+
+        if (!$product) {
+            http_response_code(404);
+            echo "Producto no encontrado";
+            exit;
+        }
+        return $product;
+    }
 
 
     public function getSubCategory($idSubcategory){

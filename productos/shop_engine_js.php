@@ -174,7 +174,7 @@
                     </div>
                   </div>
                   <div class="card-footer d-flex justify-content-between bg-light border">
-                    <a href="../../detail.php?id=${product.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
+                    <a href="../${product.category}/${product.name}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
                   </div>
                 </div>
               </div>`;

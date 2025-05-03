@@ -5,8 +5,26 @@ use App\Models\Product;
 use App\Utils\Utils;
 
 $productModel = new Product();
+/*
 $productId = isset($_GET['id']) ? ($_GET['id']) : 0;
 $product = $productModel->getProductWithVariants($productId);
+*/
+
+if (isset($_GET['id'])){ // Compatibilidad con URLS details.pph?id=XXXXXXX
+    $productId = isset($_GET['id']) ? ($_GET['id']) : 0;
+    $product = $productModel->getProductCategoryAndName($productId);
+    extract($product);
+    $url = "productos/$category/$name";
+    header("Location: $url");    
+    die();
+}else{ // A partir de la subcategoria y el producto de la url, obtengo el producto
+    $slugSubcategory = $_GET['subcategory'] ?? '';
+    $slugProduct = $_GET['product'] ?? '';
+
+    $productId = $productModel->getProductWithVariantsSlug($slugSubcategory, $slugProduct )['id'];
+    $product = $productModel->getProductWithVariants($productId);
+}
+
 
 if (!$product) {
     echo "Producto no encontrado.";
@@ -25,19 +43,19 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forever Bikes | Viví la pasión por el ciclismo</title>
     <meta name="description" content="Descubrí Forever Bikes, la comunidad de ciclistas que vive la pasión por las dos ruedas. Encontrá bicicletas, accesorios y service con beneficios exclusivos.">
-    <link rel="shortcut icon" href="./assets/img/profile-img.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <!-- css main -->
-    <link rel="stylesheet" href="./assets/styles/css/main.css">
+    <link rel="stylesheet" href="../../assets/styles/css/main.css">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="./assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 </head>
 
@@ -61,7 +79,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                     <div class="carousel-inner border">
                         <?php foreach ($product['images'] as $i => $imgUrl): ?>
                             <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
-                                <img class="w-100 h-100" src="assets/media/image/<?= htmlspecialchars($imgUrl) ?>" alt="Producto">
+                                <img class="w-100 h-100" src="../../assets/media/image/<?= htmlspecialchars($imgUrl) ?>" alt="Producto">
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -193,7 +211,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                     <?php foreach($randomProducts as $random){?>
                     <div class="card product-item border-0">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="assets/media/image/<?= $random['image'] ?>" alt="">
+                            <img class="img-fluid w-100" src="../../assets/media/image/<?= $random['image'] ?>" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3"><?= $random['name'] ?></h6>
@@ -226,15 +244,15 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- js bs -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/vendor/easing/easing.min.js"></script>
-    <script src="./assets/vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../../assets/vendor/easing/easing.min.js"></script>
+    <script src="../../assets/vendor/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Contact Javascript 
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>File -->
 
     <!-- Javascript -->
-    <script src="./assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
     <script>
 document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
     const productId = '<?= $productId ?>';
@@ -251,7 +269,7 @@ document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
         return;
     }
 
-    fetch('add_to_cart.php', {
+    fetch('../../add_to_cart.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
