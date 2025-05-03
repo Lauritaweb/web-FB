@@ -4,7 +4,14 @@ require '../vendor/autoload.php';
 
 use App\Models\Product;
 
-$idSubcategory = isset($_GET['idSubcategory']) ? intval($_GET['idSubcategory']) : 0;
+$idSubcategory = $_GET['idSubcategory'] ?? null;
+
+if (is_array($idSubcategory)) {
+    // manejar array
+} else {
+    // convertir a array si es un solo valor
+    $idSubcategory = [$idSubcategory];
+}
 
 $bikeModel = new Product();
 $colorResult = $bikeModel->getAllColors();

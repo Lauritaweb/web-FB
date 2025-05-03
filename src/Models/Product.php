@@ -387,19 +387,55 @@ class Product
         return $resultado;
     }
 
-    public function getSubcategoriesPrices($idSubcategory){        
-        $query = "  SELECT * 
-                    FROM `subcategories_ranges`
-                    WHERE subcategories_ranges.id_subcategory = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $idSubcategory);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $prices = $result->fetch_assoc();
-
-        return $prices;        
+    public function getSubcategoriesPrices($idSubcategory)
+    {
+        $where = [];
+        $params = [];
+        $types = '';
+        
+        if (!empty($idSubcategory)) {
+            if (is_array($idSubcategory)) {
+                $query = "SELECT 
+                            MAX(max_price) AS max_price,
+                            MIN(min_price) AS min_price
+                          FROM subcategories_ranges";
+    
+                $placeholders = implode(',', array_fill(0, count($idSubcategory), '?'));
+                $where[] = "id_subcategory IN ($placeholders)";
+                $params = $idSubcategory;
+                $types = str_repeat('i', count($idSubcategory));
+            } else {
+                $query = "SELECT 
+                            MAX(max_price) AS max_price,
+                            MIN(min_price) AS min_price
+                          FROM subcategories_ranges";
+    
+                $where[] = "id_subcategory = ?";
+                $params[] = $idSubcategory;
+                $types = 'i';
+            }
+    
+            if (!empty($where)) {
+                $query .= " WHERE " . implode(' AND ', $where);
+            }
+    
+            $stmt = $this->db->prepare($query);
+    
+            if (!$stmt) {
+                throw new \Exception("Error en prepare: " . $this->db->error);
+            }
+    
+            // Vincular parámetros dinámicamente
+            $stmt->bind_param($types, ...$params);
+            $stmt->execute();
+    
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+    
+        return null;
     }
-
+    
     public function getSubcategoriesApplyFilters($idSubCategory){
         if (is_array($idSubCategory))
             $useThisIdSubCategory =  $idSubCategory[0];
