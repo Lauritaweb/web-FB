@@ -16,41 +16,14 @@ $breadCrumbCat = $catAndSub['category'];
             <!-- Shop Sidebar Start -->
             <div class="col-lg-2 col-md-12 d-none d-md-block">
 
-            <!-- Price Start -->
-                <!--
+                 <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
-                    
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por precios</h5>
-                    <form class="filter-form" data-filter="price">
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input price-filter" checked id="price-all" value="all">
-                            <label class="custom-control-label ms-2" for="price-all">Todos los precios</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input price-filter" id="price-1" value="0-100">
-                            <label class="custom-control-label ms-2" for="price-1">$0 - $100</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input price-filter" id="price-2" value="100-200">
-                            <label class="custom-control-label ms-2" for="price-2">$100 - $200</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input price-filter" id="price-3" value="200-300">
-                            <label class="custom-control-label ms-2" for="price-3">$200 - $300</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
-                            <input type="checkbox" class="custom-control-input price-filter" id="price-4" value="300-400">
-                            <label class="custom-control-label ms-2" for="price-4">$300 - $400</label>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start">
-                            <input type="checkbox" class="custom-control-input price-filter" id="price-5" value="400-500">
-                            <label class="custom-control-label ms-2" for="price-5">$400 - $500</label>
-                        </div>
+                    <form class="filter-form" data-filter="price" id="price-filters">                       
                     </form>
                 </div> 
-                -->
-            <!-- Price End -->
-                
+                <!-- Price End -->
+
                 <!-- Color Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
@@ -130,8 +103,6 @@ $breadCrumbCat = $catAndSub['category'];
                         </nav>
                     </div>
                     -->
-
-
                 </div>
             </main>
             <!-- Shop Product End -->

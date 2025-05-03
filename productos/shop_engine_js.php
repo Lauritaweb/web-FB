@@ -14,23 +14,29 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  $(document).ready(function() {
-    $.getJSON('../get_filters.php', function(data) {
+  let idSubcategory = <?= $idSubCategory ?>;
+  $(document).ready(function () {
+    $.getJSON('../get_filters.php', { idSubcategory: idSubcategory } , function (data) {
       renderFilters(data.colors, '#color-filters', 'color');
       renderFilters(data.sizes, '#size-filters', 'size');
-      // Restaurar y aplicar después de que se rendericen
+      renderPriceFilters(data.prices, '#price-filters');
+
       if (evaluatePageChange()) {
         localStorage.removeItem('selectedColorFilters');
         localStorage.removeItem('selectedSizeFilters');
+        localStorage.removeItem('selectedPriceFilters');
         console.log("Filtros eliminados por cambio de página");
       } else {
         restoreFiltersFromLocalStorage();
         console.log("Filtros conservados");
       }
+
       aplicarFiltros();
     });
+  });
 
-    /**
+
+/**
      * 
      * Evalua si se cambio de pagina o si nos mantenemos en la misma
      * 
@@ -55,11 +61,10 @@
     }
 
     /**
-     * 
-     * Despliega los filtros en pantalla
-     * 
-     */
-
+    * 
+    * Despliega los filtros en pantalla
+    * 
+    */
     function renderFilters(items, containerId, prefix) {
       let html = `
                 <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
@@ -79,7 +84,34 @@
 
       $(containerId).html(html);
     }
-  });
+
+
+
+    function renderPriceFilters(prices, containerSelector) {
+      const $container = $(containerSelector);
+      $container.empty();
+
+      // Filtro "Todos los precios"
+      const allFilter = `
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
+          <input type="checkbox" class="custom-control-input price-filter" id="price-all" value="all" checked>
+          <label class="custom-control-label ms-2" for="price-all">Todos los precios</label>
+        </div>
+      `;
+      $container.append(allFilter);
+
+      prices.forEach((price, index) => {
+        const id = `price-${index + 1}`;
+        const filter = `
+          <div class="custom-control custom-checkbox d-flex align-items-center justify-content-start mb-3">
+            <input type="checkbox" class="custom-control-input price-filter" id="${id}" value="${price.id}">
+            <label class="custom-control-label ms-2" for="${id}">${price.label}</label>
+          </div>
+        `;
+        $container.append(filter);
+      });
+    }
+
 
   function aplicarFiltros() {
     let category = <?= json_encode($idSubCategory) ?>;
@@ -102,7 +134,14 @@
       }
     });
 
-
+    // Obtener precios seleccionados
+    let prices = [];
+    $('#price-filters input[type="checkbox"]:checked').each(function() {
+      const value = $(this).val();
+      if (value !== 'price-all') {
+        prices.push(value);
+      }
+    });
 
     $.ajax({
       url: '../filter_products.php',
@@ -111,7 +150,8 @@
       data: {
         category: category,
         sizes: sizes,
-        colors: colors
+        colors: colors,
+        prices: prices
       },
       success: function(products) {
         let html = '';
@@ -145,14 +185,13 @@
 
 
   /**
-   * 
-   * Si clickea "Todos" → se desmarcan los demás.
-   * Si marca algo → se desmarca "Todos".
-   * Si desmarca todo → se marca solo "Todos".
-   * Se guarda en localStorage y se restauran al volver.
-   * 
-   */
-
+  * 
+  * Si clickea "Todos" → se desmarcan los demás.
+  * Si marca algo → se desmarca "Todos".
+  * Si desmarca todo → se marca solo "Todos".
+  * Se guarda en localStorage y se restauran al volver.
+  * 
+  */
   $(document).ready(function() {
     function setupFilterGroup(groupClassPrefix) {
       const containerSelector = `#${groupClassPrefix}-filters`;
@@ -182,6 +221,8 @@
 
     setupFilterGroup('color');
     setupFilterGroup('size');
+    setupFilterGroup('price');
+
   });
 
 

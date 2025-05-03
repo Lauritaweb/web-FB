@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Models;
+
 use App\Config\Database;
+
 class Product
 {
     /**************************************************************************************************************
@@ -11,16 +14,16 @@ class Product
 
     private $db;
     private $table = 'products';
-    protected $fields = [ 
-        'apellido', 'nombre', 'celular', 'email', 'provincia', 'localidad', 
-        'direccion', 'cp', 'fecha_nacimiento', 'genero', 'tipo_documento', 'edad'
+    protected $fields = [
+        'none'       
     ];
     private $encryption_key = "h4rdTod3c0d33ncrypt!0nKeyH4s";
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = (new Database())->getConnection();
     }
-    
+
 
     /****************************************************************************************************************
      * 
@@ -28,9 +31,8 @@ class Product
      * 
      ***************************************************************************************************************/
 
-     public function getProductsByCategory($idCategory)
-     {
-         $query = "
+    public function getProductsByCategory($idCategory){
+        $query = "
                  SELECT
                     p.*,
                     c.description AS Categoria,
@@ -49,30 +51,30 @@ class Product
                 LEFT JOIN product_pictures pp ON pp.id = pp_min.min_id
                 WHERE sc.id = $idCategory;
          ";
-                    
-         $stmt = $this->db->prepare($query);
- 
-         if ($stmt === false) {
-             die('Prepare failed: ' . $this->db->error);
-         }
- 
-         $stmt->execute();
-         $result = $stmt->get_result();
- 
-         $users = [];
-         while ($row = $result->fetch_assoc()) {
-             $users[] = $row;
-         }
- 
-         $stmt->close();
- 
-         return $users;
-     }
 
-    public function getFilteredProducts($idCategory = null, $sizes = [], $colors = []) {
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->error);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $users = [];
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+
+        $stmt->close();
+
+        return $users;
+    }
+
+    public function getFilteredProducts($idCategory = null, $sizes = [], $colors = [], $prices = []){
         $where = [];
         $params = [];
-    
+
         $sql = "SELECT 
                     p.id, 
                     p.name, 
@@ -89,25 +91,45 @@ class Product
                 ) pp_min ON pp_min.product_id = p.id
 
                 ";
-    
-    if (!empty($colors)) {
-        // Filtra valores válidos (distintos de 0)
-        $validColors = array_filter($colors, function($c) { return intval($c) !== 0; });
-        if (!empty($validColors)) {
-            $inColors = implode(',', array_map('intval', $validColors));
-            $where[] = "pv.id_color IN ($inColors)";
+
+        $priceConditions = [];
+        $params = [];
+
+        if (!empty($prices)) {
+            foreach ($prices as $range) {
+                if (strpos($range, '-') !== false) {
+                    list($min, $max) = explode('-', $range);
+                    $priceConditions[] = "(p.price BETWEEN ? AND ?)";
+                    $params[] = $min;
+                    $params[] = $max;
+                }
+            }
+
+            if (!empty($priceConditions)) {
+                $where[] = '(' . implode(' OR ', $priceConditions) . ')';
+            }
         }
-    }
-    
-    if (!empty($sizes)) {
-        // Filtra valores válidos (distintos de 0)
-        $validSizes = array_filter($sizes, function($s) { return intval($s) !== 0; });
-        if (!empty($validSizes)) {
-            $inSizes = implode(',', array_map('intval', $validSizes));
-            $where[] = "pv.id_size IN ($inSizes)";
+
+        if (!empty($sizes)) {
+            $validSizes = array_filter($sizes, function ($s) {
+                return intval($s) !== 0;
+            });
+            if (!empty($validSizes)) {
+                $inSizes = implode(',', array_map('intval', $validSizes));
+                $where[] = "pv.id_size IN ($inSizes)";
+            }
         }
-    }
-       
+
+        if (!empty($colors)) {
+            $validColors = array_filter($colors, function ($c) {
+                return intval($c) !== 0;
+            });
+            if (!empty($validColors)) {
+                $inColors = implode(',', array_map('intval', $validColors));
+                $where[] = "pv.id_color IN ($inColors)";
+            }
+        }
+
         if (!empty($idCategory)) {
             if (is_array($idCategory)) {
                 $placeholders = implode(',', array_fill(0, count($idCategory), '?'));
@@ -118,128 +140,129 @@ class Product
                 $params[] = $idCategory;
             }
         }
-        
-    
+
         if (!empty($where)) {
             $sql .= " WHERE " . implode(' AND ', $where);
         }
-    
-        // Evitar duplicados por múltiples variantes
+
         $sql .= " GROUP BY p.id";
-  
+
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
         $result = $stmt->get_result();
-    
+
         $elements = [];
-         while ($row = $result->fetch_assoc()) {
-             $elements[] = $row;
-         }
- 
-         $stmt->close();
- 
-         return $elements;
-    }
-
-    public function getProductWithVariants($idProduct)
-{
-    // 1. Obtener el producto
-    $query = "SELECT * FROM $this->table WHERE id = ?";
-    $stmt = $this->db->prepare($query);
-    $stmt->bind_param("s", $idProduct);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $product = $result->fetch_assoc();
-
-    if (!$product) return null;
-
-    // 2. Obtener variantes del producto
-    $query = "SELECT
-	product_variants.*, 
-	sh_bike_sizes.description as size,
-	sh_bike_colors.description as color
-FROM
-	product_variants 
-LEFT JOIN sh_bike_sizes on product_variants.id_size = sh_bike_sizes.id
-LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
- WHERE product_id = ? ";
-    $stmt = $this->db->prepare($query);
-    $stmt->bind_param("s", $idProduct);
-    $stmt->execute();
-    $variantsResult = $stmt->get_result();
-
-    $sizes = [];
-    $colors = [];
-    $images = [];
-  //  echo $idProduct;die;
-
-    // 3. Obtener imágenes 
-    $queryImg = "SELECT * FROM product_pictures WHERE product_id = ?";
-    $stmtImg = $this->db->prepare($queryImg);
-    $stmtImg->bind_param("s", $idProduct);       
-    $stmtImg->execute();
-    $imgResult = $stmtImg->get_result();
-    
-
-    while ($img = $imgResult->fetch_assoc()) {       
-        if (!in_array($img['url'], $images)) {
-            $images[] = $img['url'];
-        }        
-    }
-   
-
-    while ($variant = $variantsResult->fetch_assoc()) {
-        // Sumar tamaños únicos
-        if (!in_array($variant['size'], $sizes)) {
-            $sizes[] = $variant['size'];
+        while ($row = $result->fetch_assoc()) {
+            $elements[] = $row;
         }
 
-        // Sumar colores únicos
-        if (!in_array($variant['color'], $colors)) {
-            $colors[] = $variant['color'];
-        }        
+        $stmt->close();
+
+        return $elements;
     }
 
-    return [
-        'product' => $product,
-        'sizes' => $sizes,
-        'colors' => $colors,
-        'images' => $images
-    ];
-}
-
-
-
- public function getSubCategory($idSubcategory) {
-    if (is_array($idSubcategory)) {
-        // Generar los placeholders (?, ?, ?, ...)
-        $placeholders = implode(',', array_fill(0, count($idSubcategory), '?'));
-        $query = "SELECT precategories.description as subCategory, categories.description as category  FROM subcategories left outer JOIN precategories on id_pre_category = precategories.id INNER JOIN categories on categories.id = subcategories.id_category
- WHERE subcategories.id IN ($placeholders)";
-        
+    public function getProductWithVariants($idProduct){
+        // 1. Obtener el producto
+        $query = "SELECT * FROM $this->table WHERE id = ?";
         $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $idProduct);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
 
-        // Armar el tipo de datos para bind_param: todos enteros -> 'iii...'
-        $types = str_repeat('i', count($idSubcategory));
-        $stmt->bind_param($types, ...$idSubcategory);
-    } else {
-        // Si es un solo ID, usamos la versión original
-        $query = "SELECT subcategories.description as subCategory,categories.description as category  FROM subcategories INNER JOIN categories on categories.id = subcategories.id_category WHERE subcategories.id = ?";
+        if (!$product) return null;
+
+        // 2. Obtener variantes del producto
+        $query = "  SELECT
+                        product_variants.*, 
+                        sh_bike_sizes.description as size,
+                        sh_bike_colors.description as color
+                    FROM
+                        product_variants 
+                    LEFT JOIN sh_bike_sizes on product_variants.id_size = sh_bike_sizes.id
+                    LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
+                WHERE product_id = ? ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("i", $idSubcategory);
+        $stmt->bind_param("s", $idProduct);
+        $stmt->execute();
+        $variantsResult = $stmt->get_result();
+
+        $sizes = [];
+        $colors = [];
+        $images = [];
+        //  echo $idProduct;die;
+
+        // 3. Obtener imágenes 
+        $queryImg = "SELECT * FROM product_pictures WHERE product_id = ?";
+        $stmtImg = $this->db->prepare($queryImg);
+        $stmtImg->bind_param("s", $idProduct);
+        $stmtImg->execute();
+        $imgResult = $stmtImg->get_result();
+
+
+        while ($img = $imgResult->fetch_assoc()) {
+            if (!in_array($img['url'], $images)) {
+                $images[] = $img['url'];
+            }
+        }
+
+
+        while ($variant = $variantsResult->fetch_assoc()) {
+            // Sumar tamaños únicos
+            if (!in_array($variant['size'], $sizes)) {
+                $sizes[] = $variant['size'];
+            }
+
+            // Sumar colores únicos
+            if (!in_array($variant['color'], $colors)) {
+                $colors[] = $variant['color'];
+            }
+        }
+
+        return [
+            'product' => $product,
+            'sizes' => $sizes,
+            'colors' => $colors,
+            'images' => $images
+        ];
     }
 
-    $stmt->execute();
-    $result = $stmt->get_result();
 
-    // Si es array devolvemos todas, si es uno solo devolvemos una
-  //  return is_array($idSubcategory) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
-  return $result->fetch_assoc();
-}
 
-        
+    public function getSubCategory($idSubcategory){
+        if (is_array($idSubcategory)) {
+            // Generar los placeholders (?, ?, ?, ...)
+            $placeholders = implode(',', array_fill(0, count($idSubcategory), '?'));
+            $query = "  SELECT precategories.description as subCategory, categories.description as category  
+                        FROM subcategories 
+                        LEFT OUTER JOIN precategories on id_pre_category = precategories.id 
+                        INNER JOIN categories on categories.id = subcategories.id_category
+                        WHERE subcategories.id IN ($placeholders)";
 
-    public function getRandomProducts($idCategory = null, $cantidad = 5) {
+            $stmt = $this->db->prepare($query);
+
+            // Armar el tipo de datos para bind_param: todos enteros -> 'iii...'
+            $types = str_repeat('i', count($idSubcategory));
+            $stmt->bind_param($types, ...$idSubcategory);
+        } else {
+            // Si es un solo ID, usamos la versión original
+            $query = "SELECT subcategories.description as subCategory,categories.description as category  FROM subcategories INNER JOIN categories on categories.id = subcategories.id_category WHERE subcategories.id = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param("i", $idSubcategory);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Si es array devolvemos todas, si es uno solo devolvemos una
+        //  return is_array($idSubcategory) ? $result->fetch_all(MYSQLI_ASSOC) : $result->fetch_assoc();
+        return $result->fetch_assoc();
+    }
+
+
+
+    public function getRandomProducts($idCategory = null, $cantidad = 5)
+    {
         $where = [];
         $params = [];
 
@@ -270,7 +293,7 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
                 $params[] = $idCategory;
             }
         }
-        
+
 
         if (!empty($where)) {
             $sql .= " WHERE " . implode(' AND ', $where);
@@ -295,39 +318,54 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
         return $rta;
     }
 
-     private function obtenerElementosAleatorios(array $array, int $n): array {
+    private function obtenerElementosAleatorios(array $array, int $n): array
+    {
         // Si el número solicitado es mayor o igual a la cantidad de elementos disponibles, devolvemos el array completo
         if ($n >= count($array)) {
             return $array;
         }
-    
+
         // Obtenemos claves aleatorias
         $clavesAleatorias = array_rand($array, $n);
-    
+
         // Si se pide solo 1, array_rand devuelve una sola clave, no un array
         if ($n === 1) {
             $clavesAleatorias = [$clavesAleatorias];
         }
-    
+
         // Armamos el nuevo array con las claves seleccionadas
         $resultado = [];
         foreach ($clavesAleatorias as $clave) {
             $resultado[$clave] = $array[$clave];
         }
-    
+
         return $resultado;
     }
-    
 
-    
+    public function getSubcategoriesPrices($idSubcategory){
+        
+        $query = "  SELECT * 
+                    FROM `subcategories_ranges`
+                    WHERE subcategories_ranges.id_subcategory = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $idSubcategory);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $prices = $result->fetch_assoc();
 
-// NO VAN MAS
-           
-       
+        return $prices;        
+    }
 
-        public function getAll($active = 1)
-        {
-            $query = "
+
+
+
+    // NO VAN MAS
+
+
+
+    public function getAll($active = 1)
+    {
+        $query = "
                     SELECT -- sh_bike_combinations.*,
                     sh_bikes.description, 
                     sh_bikes.characteristics,
@@ -344,140 +382,146 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
                     where active = $active
                     -- and id_bycicle = 1 
             ";
-                       
-            $stmt = $this->db->prepare($query);
-    
-            if ($stmt === false) {
-                die('Prepare failed: ' . $this->db->error);
-            }
-    
-            $stmt->execute();
-            $result = $stmt->get_result();
-    
-            $users = [];
-            while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
-            }
-    
-            $stmt->close();
-    
-            return $users;
+
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->error);
         }
-    
-        
-        public function update($id, $data) {        
-            $setClause = implode(", ", array_map(fn($field) => "$field = ?", array_keys($data)));      // Construimos dinámicamente la parte SET del UPDATE
-                    
-            $query = "UPDATE $this->table SET $setClause WHERE id = ?";
-            $stmt = $this->db->prepare($query);
-        
-            if (!$stmt) 
-                die('Error en prepare: ' . $this->db->error);
-                    
-            $types = str_repeat("s", count($data)) . "i";  // "ssssssssi" // Armamos los tipos (todas cadenas excepto el ID que es entero)
-                        
-            $values = array_values($data); // Creamos un array de valores y agregamos el ID al final
-            $values[] = $id;         
-            
-            $stmt->bind_param($types, ...$values); // Vinculamos parámetros dinámicamente
-        
-            return $stmt->execute();
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $users = [];
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
         }
-          
-        public function delete($id) {
-            $query = "UPDATE $this->table 
+
+        $stmt->close();
+
+        return $users;
+    }
+
+
+    public function update($id, $data)
+    {
+        $setClause = implode(", ", array_map(fn($field) => "$field = ?", array_keys($data)));      // Construimos dinámicamente la parte SET del UPDATE
+
+        $query = "UPDATE $this->table SET $setClause WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+
+        if (!$stmt)
+            die('Error en prepare: ' . $this->db->error);
+
+        $types = str_repeat("s", count($data)) . "i";  // "ssssssssi" // Armamos los tipos (todas cadenas excepto el ID que es entero)
+
+        $values = array_values($data); // Creamos un array de valores y agregamos el ID al final
+        $values[] = $id;
+
+        $stmt->bind_param($types, ...$values); // Vinculamos parámetros dinámicamente
+
+        return $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $query = "UPDATE $this->table 
             SET active = 0 
             WHERE id = ?";
-            $stmt = $this->db->prepare($query);
-            if ($stmt === false) 
-                die('Prepare failed: ' . $this->db->error); 
-            $stmt->bind_param("i", $id);
-            
-            if ($stmt->execute()) {
-                $stmt->close();
-                return true;
-            } else {
-                $stmt->close();
-                return false;
-            }
-        }
+        $stmt = $this->db->prepare($query);
+        if ($stmt === false)
+            die('Prepare failed: ' . $this->db->error);
+        $stmt->bind_param("i", $id);
 
-        public function emailExists($email) {
-            $query = "SELECT * FROM `affiliates` WHERE email = ?";
-            $stmt = $this->db->prepare($query);
-        
-            if ($stmt === false) 
-                die('Prepare failed: ' . $this->db->error);
-            
-        
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-        
-            $result = $stmt->get_result();
-            $numRows = $result->num_rows;
-        
+        if ($stmt->execute()) {
             $stmt->close();
-            
-            return $numRows > 0;
+            return true;
+        } else {
+            $stmt->close();
+            return false;
         }
-        
-    
-        public function updateImage(
-            $id,  $urlImageFile
-        ) {
-            $query = "UPDATE $this->table SET 
+    }
+
+    public function emailExists($email)
+    {
+        $query = "SELECT * FROM `affiliates` WHERE email = ?";
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt === false)
+            die('Prepare failed: ' . $this->db->error);
+
+
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $numRows = $result->num_rows;
+
+        $stmt->close();
+
+        return $numRows > 0;
+    }
+
+
+    public function updateImage(
+        $id,
+        $urlImageFile
+    ) {
+        $query = "UPDATE $this->table SET 
             url_file_image = ?
             WHERE id = ?";
-        
-            $stmt = $this->db->prepare($query);
-        
-            if ($stmt === false) {
-                die('Prepare failed: ' . $this->db->error);
-            }
-        
-            $stmt->bind_param(
-                "si",           
-                $urlImageFile, 
-                $id
-            );
-        
-            if ($stmt->execute()) {
-                $stmt->close();
-                return true;
-            } else {
-                $stmt->close();
-                return false;
-            }
+
+        $stmt = $this->db->prepare($query);
+
+        if ($stmt === false) {
+            die('Prepare failed: ' . $this->db->error);
         }
 
-        public function setActivationStatus($id, $status) {
-            $query = "UPDATE $this->table 
+        $stmt->bind_param(
+            "si",
+            $urlImageFile,
+            $id
+        );
+
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
+    }
+
+    public function setActivationStatus($id, $status)
+    {
+        $query = "UPDATE $this->table 
                     SET active = ? 
                     WHERE id = ?";
 
-            $stmt = $this->db->prepare($query);
+        $stmt = $this->db->prepare($query);
 
-            if ($stmt === false) 
-                die('Prepare failed: ' . $this->db->error);    
+        if ($stmt === false)
+            die('Prepare failed: ' . $this->db->error);
 
-            $stmt->bind_param(
-                "ii",
-                $status, $id
-            );
+        $stmt->bind_param(
+            "ii",
+            $status,
+            $id
+        );
 
-            if ($stmt->execute()) {
-                $stmt->close();
-                return true;
-            } else {
-                $stmt->close();
-                return false;
-            }
+        if ($stmt->execute()) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
         }
+    }
 
-   
 
-   
-    
+
+
+
 
     /***************************************************************************************************************
      * 
@@ -552,9 +596,10 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
     }
     */
 
-    public function getLocalities($id_province) {        
+    public function getLocalities($id_province)
+    {
         $query = "SELECT id, locality FROM localities WHERE id_province = ?";
-        
+
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $id_province);
         if ($stmt === false) {
@@ -568,7 +613,7 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
         while ($row = $result->fetch_assoc()) {
             $localities[] = $row;
         }
-    
+
         $stmt->close();
         return $localities;
     }
@@ -581,23 +626,27 @@ LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
      * 
      **************************************************************************************************************/
 
-    public function getAllDocumentTypes(){
-        return $this->getGenericTable("affiliate_document_types");        
-    } 
-
-    public function getAllProvinces(){
-        return $this->getGenericTable("affiliate_provinces");        
+    public function getAllDocumentTypes()
+    {
+        return $this->getGenericTable("affiliate_document_types");
     }
 
-    public function getAllColors(){
-        return $this->getGenericTable("sh_bike_colors");        
+    public function getAllProvinces()
+    {
+        return $this->getGenericTable("affiliate_provinces");
     }
 
-    public function getAllSizes(){
-        return $this->getGenericTable("sh_bike_sizes");        
+    public function getAllColors()
+    {
+        return $this->getGenericTable("sh_bike_colors");
     }
 
-        
+    public function getAllSizes()
+    {
+        return $this->getGenericTable("sh_bike_sizes");
+    }
+
+
 
     public function getGenericTable($table)
     {
