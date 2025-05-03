@@ -33,7 +33,7 @@ $sizes = array_map(function ($size) {
 $min = (int) $priceResult['min_price'];
 $max = (int) $priceResult['max_price'];
 
-$rangeCount = 4;
+$rangeCount = 3;
 $rangeSize = ceil(($max - $min) / $rangeCount);
 
 $priceRanges = [];
