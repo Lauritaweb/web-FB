@@ -489,6 +489,10 @@ div.nav-tabs[role=tablist] .nav-link:focus, div.nav-tabs[role=tablist] .nav-link
   .navbar .container ul {
     background-color: white;
   }
+  .container a.navbar-brand.position-absolute.top-50.start-50.translate-middle,
+  .navbar .container a.navbar-brand.position-absolute.top-50.start-50.translate-middle {
+    top: 47px !important;
+  }
   .header {
     padding-left: 0;
     padding-right: 0;

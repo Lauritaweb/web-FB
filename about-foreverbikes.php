@@ -23,7 +23,7 @@
 
     <main class="container">
         <section class="py-5">
-            <div class="text-center px-5">
+            <div class="text-center px-2 px-md-5">
                 <h2 class="fs-2 text-center text-uppercase fw-bold">QUIENES SOMOS</h2>
                 <p class="fs-6">
                     Todo empezó en 2015 con una mensajera, una bici y muchas horas de pedaleo. Romina recorría la ciudad soñando con una bici más liviana, cómoda y simple. <br>Entre recorridos y averías, la mecánica se volvió una pasión, y ese amor por los detalles fue tomando forma en un taller.
@@ -36,7 +36,7 @@
                 </p>
             </div>
         </section>
-        <section class="py-5">
+        <section class="py-0 py-md-5">
             <img src="./assets/img/banner-nosotros-2.png" alt="" class="w-100">
         </section>
         
@@ -48,9 +48,9 @@
                 muted 
                 width="320px" 
                 loop
-                class="col-md-4">
+                class="col-md-4 order-2 order-md-1">
             </video>
-            <div class="col-md-4">
+            <div class="col-md-4 order-1 order-md-2">
                 <h4 class="fs-6 fw-bold">
                     # Pasión por rodar distinto
                 </h4>
@@ -114,7 +114,7 @@
                     Porque una bici puede ser fuerte y hermosa a la vez.
                 </p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 order-3 order-md-3 mt-3 mt-md-0">
                 <img src="./assets/img/nosotros-3.png" alt="" class="h-100 object-fit-cover w-100">
             </div>
         </section>
