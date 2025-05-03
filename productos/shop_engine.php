@@ -7,6 +7,14 @@ $catAndSub = $bikeModel->getSubCategory($idSubCategory);
 $breadCrumbSub = $catAndSub['subCategory'];
 $breadCrumbCat = $catAndSub['category'];
 
+$applyAllFilters = $bikeModel->getSubcategoriesApplyFilters($idSubCategory);
+
+if ($applyAllFilters)
+    $hide = "";
+else
+    $hide = "d-none";
+
+    
 ?>
 
 
@@ -24,16 +32,16 @@ $breadCrumbCat = $catAndSub['category'];
                 </div> 
                 <!-- Price End -->
 
-                <!-- Color Start -->
-                <div class="border-bottom mb-4 pb-4">
+                <!-- Color Start -->                
+                <div class="border-bottom mb-4 pb-4 <?= $hide ?>" >
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
                     <form id="color-filters">
                     </form>
-                </div> 
+                </div>            
                 <!-- Color End -->
 
                 <!-- Size Start -->
-                <div class="mb-5">
+                <div class="mb-5 <?= $hide ?>">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por tamaño</h5>
                     <form id="size-filters"></form>
                 </div> 

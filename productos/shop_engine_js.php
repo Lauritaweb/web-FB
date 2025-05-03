@@ -14,7 +14,11 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  let idSubcategory = <?= $idSubCategory ?>;
+  let idSubcategory = <?php if (is_array($idSubCategory))
+                              echo $idSubCategory[0];
+                            else 
+                              echo $idSubCategory;                      
+                      ?>;
   $(document).ready(function () {
     $.getJSON('../get_filters.php', { idSubcategory: idSubcategory } , function (data) {
       renderFilters(data.colors, '#color-filters', 'color');

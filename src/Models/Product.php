@@ -342,8 +342,7 @@ class Product
         return $resultado;
     }
 
-    public function getSubcategoriesPrices($idSubcategory){
-        
+    public function getSubcategoriesPrices($idSubcategory){        
         $query = "  SELECT * 
                     FROM `subcategories_ranges`
                     WHERE subcategories_ranges.id_subcategory = ?";
@@ -354,6 +353,24 @@ class Product
         $prices = $result->fetch_assoc();
 
         return $prices;        
+    }
+
+    public function getSubcategoriesApplyFilters($idSubCategory){
+        if (is_array($idSubCategory))
+            $useThisIdSubCategory =  $idSubCategory[0];
+        else 
+            $useThisIdSubCategory = $idSubCategory;
+
+        $query = "  SELECT * FROM `subcategories`
+                    WHERE id = ?
+                    and id_category = 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $useThisIdSubCategory);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $reg = $result->fetch_assoc();
+
+        return ($reg != null && count($reg));
     }
 
 
