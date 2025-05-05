@@ -73,7 +73,7 @@
                 </article>
                 <!-- end col4 -->
                 <article class="col-md-4 mb-5 mb-md-0 border-end border-bottom p-0">
-                    <a href="./productos/bicis/bicis-urbanas.html">
+                    <a href="./productos/bicis/bicis-urbanas.php">
                         <img src="./assets/img/forever-urbanas.png" alt="Bicicleta urbana Forever Bikes" class="w-100">
                         <h2 class="fs-2 text-uppercase mt-3">Urbanas</h2>
                     </a>
@@ -97,7 +97,7 @@
                 </article>
                 <!-- end col4 -->
                 <article class="col-md-4 mb-5 mb-md-0 border-end border-bottom p-0">
-                    <a href="./productos/bicis/bicis-todo-terreno.html">
+                    <a href="./productos/bicis/bicis-todo-terreno.php">
                         <img src="./assets/img/forever-todo-terreno.png" alt="Bicicleta todo terreno Forever Bikes" class="w-100">
                         <h2 class="fs-2 text-uppercase mt-3">Todo terreno</h2>
                     </a>
