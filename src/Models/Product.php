@@ -144,7 +144,10 @@ class Product
 
         if (!empty($where)) {
             $sql .= " WHERE " . implode(' AND ', $where);
-        }
+            $sql .= " AND active = 1 ";
+        }else 
+            $sql .= " WHERE active = 1";
+        
 
         $sql .= " GROUP BY p.id";
 
