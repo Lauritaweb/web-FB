@@ -236,7 +236,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="detail.php?id=<?= $random['id']?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
+                            <a href="../../detail.php?id=<?= $random['id']?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
                             
                         </div>
                     </div>
