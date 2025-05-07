@@ -278,7 +278,8 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
 
     const quantity = parseInt(document.querySelector('.form-control').value);
     const size = document.querySelector('input[name="size"]:checked')?.nextElementSibling.textContent.trim();
-    const color = document.querySelector('input[name="color"]:checked')?.nextElementSibling.textContent.trim();
+    // const color = document.querySelector('input[name="color"]:checked')?.nextElementSibling.textContent.trim();
+    const color = document.querySelector('select[name="color"]').value; // En Mobile es un desplegable, no un checkbox
 
     if (!size || !color) {
         // alert("Seleccioná tamaño y color");
