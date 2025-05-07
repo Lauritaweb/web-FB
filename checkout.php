@@ -14,6 +14,7 @@ $envio = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forever Bikes | Viví la pasión por el ciclismo</title>
     <meta name="description" content="Descubrí Forever Bikes, la comunidad de ciclistas que vive la pasión por las dos ruedas. Encontrá bicicletas, accesorios y service con beneficios exclusivos.">
+    <meta name="robots" content="nofollow, noindex">
     <link rel="shortcut icon" href="./assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -30,6 +31,8 @@ $envio = 0;
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -255,12 +258,27 @@ $envio = 0;
                     //  window.location.href = "gracias.php";
                     window.location.href = "checkout_process_mp.php";
                 } else {
-                    alert("Error: " + respuesta.message);
+                    // alert("Error: " + respuesta.message);
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Ocurrió un error',
+                    text: respuesta.message,
+                    confirmButtonText: 'Cerrar',
+                    confirmButtonColor: '#d33'
+                    });
+
                 }
             },
             error: function(xhr, status, error) {
                 console.error("Error en el AJAX:", error);
-                alert("Ocurrió un error al procesar la compra.");
+                // alert("Ocurrió un error al procesar la compra.");
+                Swal.fire({
+                icon: 'error',
+                title: 'Error al procesar la compra',
+                text: 'Ocurrió un error al procesar la compra.',
+                confirmButtonText: 'Cerrar',
+                confirmButtonColor: '#d33'
+                });
             }
         });
     });

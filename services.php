@@ -36,7 +36,7 @@
         <section class="py-5 border-bottom" id="service">
             <div class="row">
                 <article class="col-md-6 order-2 order-md-1">
-                    <h2 class="fs-2 text-uppercase fw-bold mt-3 mt-md-0">TALLER MECÁNICO</h2>
+                    <h2 class="fs-2 text-uppercase fw-bold mt-3 mt-md-0">SERVICE MECÁNICO</h2>
                     <p class="fs-6 mt-3">
                         En Forever le abrimos las puertas del taller a todas las bicis que quieran rodar mejor. Nuestro equipo mecánico está listo para darle ese empujón que tu bici necesita para seguir acompañándote a puro pedal. <br> <br>
                         Ofrecemos dos tipos de service, pensados para cuidar cada detalle:

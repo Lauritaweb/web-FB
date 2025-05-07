@@ -57,6 +57,9 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     <!-- Libraries Stylesheet -->
     <link href="../../assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+    <!-- Sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="bg-white">    
@@ -102,7 +105,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <h3 class="font-weight-semi-bold mb-4">$<?= Utils::mostrarTarifaSinCentavos($price) ?></h3>
                 <p class="mb-4"><?= $shortdetails ?></p>
                 <div class="d-flex mb-3">
-                    <p class="text-dark font-weight-medium mb-0 me-3">Sizes:</p>
+                    <p class="text-dark font-weight-medium mb-0 me-3 w-60">Sizes:</p>
                     <form class="d-flex">
                     <?php foreach ($product['sizes'] as $i => $size): ?>
                         <div class="custom-control custom-radio custom-control-inline ms-3">
@@ -114,7 +117,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                     </form>
                 </div>
                 <div class="d-flex mb-4">
-                    <p class="text-dark font-weight-medium mb-0 me-3">Colores:</p>
+                    <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
                    <!-- Radios visibles solo en desktop -->
                     <form class="d-none d-md-flex flex-wrap">
                         <?php foreach ($product['colors'] as $i => $color): ?>
@@ -151,7 +154,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                             </button>
                         </div>
                     </div>
-                    <button class="btn btn-dark px-3"><i class="fa fa-shopping-cart me-1"></i> Agregar al carrito</button>
+                    <button class="btn btn-dark px-3 btnAgregar"><i class="fa fa-shopping-cart me-1"></i> Agregar al carrito</button>
                 </div>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Compartir:</p>
@@ -267,7 +270,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     <!-- Javascript -->
     <script src="../../assets/js/main.js"></script>
     <script>
-document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
+    document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
     const productId = '<?= $productId ?>';
     const name = <?= json_encode($name) ?>;
     const price = <?= $price ?>;
@@ -278,7 +281,14 @@ document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
     const color = document.querySelector('input[name="color"]:checked')?.nextElementSibling.textContent.trim();
 
     if (!size || !color) {
-        alert("Seleccioná tamaño y color");
+        // alert("Seleccioná tamaño y color");
+        Swal.fire({
+        icon: 'warning',
+        title: '¡Atención!',
+        text: 'Seleccioná tamaño y color',
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: '#d33'
+        });
         return;
     }
 
@@ -298,7 +308,13 @@ document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
     .then(res => res.json())
     .then(data => {
         if (data.success) {
-            alert("Producto agregado al carrito");
+            // alert("Producto agregado al carrito");
+            Swal.fire({
+                icon: 'success',
+                title: '¡Listo!',
+                text: 'Producto agregado al carrito',
+                confirmButtonColor: '#000'
+            });
         }
     });
 });
@@ -312,6 +328,7 @@ document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
     document.getElementById("whatsapp-share").href = linkWhatsApp;
   });
 </script>
+
 
 </body>
 

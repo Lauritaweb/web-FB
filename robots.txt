@@ -1,0 +1,18 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /cgi-bin/
+Disallow: /checkout.php
+Disallow: /cart.php
+Disallow: /my-account.php
+Disallow: /login.php
+Disallow: /register.php
+Disallow: /password-recovery.php
+Disallow: /thank-you.php
+
+# Permitir acceso a recursos esenciales (por si los bots los bloquean)
+Allow: /assets/
+Allow: /images/
+
+# Sitemap principal
+Sitemap: https://www.foreverbikes.com.ar/sitemap.xml

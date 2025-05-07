@@ -54,7 +54,7 @@ else
             <!-- Shop Product Start -->
             <main class="col-md-12 col-lg-10">
                 <div class="row">
-                    <div class="d-inline-flex">
+                    <div class="d-inline-flex mb-2">
                         <p class="m-0 me-1 "><a href="../../index.php" class="text-key ">Home</a></p>
                         <p class="m-0 me-1 "><a href="./index.php" class="text-key fw-bold ms-2"><?= $breadCrumbCat ?></a></p>
                         <p class="m-0"> > <?= $breadCrumbSub ?></p>

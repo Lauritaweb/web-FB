@@ -175,6 +175,10 @@ p {
   background-color: white;
 }
 
+.w-60 {
+  width: 60px;
+}
+
 .navbar .container {
   padding-left: 0;
   padding-right: 0;

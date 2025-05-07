@@ -55,17 +55,17 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB004">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Sport%20Aluminio%20-%20Talle%20M%20-%207%20velocidades%20Shimano">
                                 Sport
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB006">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Aero">
                                 Aero
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB018">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Lite%20Aluminio">
                                 Lite Aluminio
                             </a>
                         </li>
@@ -79,17 +79,17 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB020">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Chill">
                                 Chill
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB013">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Classic">
                                Classic
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB004">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Sport%20Aluminio%20-%20Talle%20M%20-%207%20velocidades%20Shimano">
                                 Sport Aluminio
                             </a>
                         </li>
@@ -103,17 +103,17 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB014">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Storm">
                                 Storm
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB022T">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Traveler%201.0%20|%20Gravel%20|%207%20velocidades%20Shimano">
                                 Traveler
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/detail.php?id=BICIFB016">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Traveler%20|%207%20velocidades%20Shimano">
                                 Traveler 1.3
                             </a>
                         </li>
@@ -176,7 +176,7 @@
             <h2 class="fs-2 text-center text-uppercase fw-bold">Services</h2>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 mt-5">
                 <figure class="border-bottom border-end">
-                    <a href="./services.php#posventa">
+                    <a href="./services.php#postventa">
                         <img src="./assets/img/icon-post-venta.svg" alt="" class="d-block mx-auto">
                         <figcaption class="fs-5 fw-bold text-center text-uppercase mt-4">Post venta</figcaption>
                         <p class="fs-6 fw-light lh-sm text-center">

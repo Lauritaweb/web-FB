@@ -26,7 +26,7 @@ $idSubCategory=31;
 <body class="bg-white">
     <?php include('../../nav.php'); ?>
     <!-- Page Header Start -->
-    <header class="container-fluid header bg-eleven mb-5 mt-5">
+    <header class="container-fluid header bg-twelve mb-5 mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center">
         </div>
     </header>
