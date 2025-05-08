@@ -120,7 +120,12 @@
       
             <!-- Iconos a la derecha -->
             <div class="d-flex gap-3 align-items-center">
-              <a href="<?= $url_base ?>/checkout.php" class="nav-link border-end pe-3"><i class="bi bi-cart"></i></a>
+              <a href="<?= $url_base ?>/checkout.php" class="nav-link border-end pe-3">
+                <!-- <span id="cart-count" class="badge rounded-pill bg-danger cart-badge" style="font-size: 0.7rem;">
+                  0
+                </span> -->
+                <i class="bi bi-cart"></i>
+              </a>
               <a href="https://www.instagram.com/foreverbikesargentina/" class="nav-link"><i class="bi bi-instagram"></i></a>
               <a href="https://www.youtube.com/@foreverbikesargentina9001" class="nav-link"><i class="bi bi-youtube"></i></a>
               <a href="https://www.facebook.com/Foreverbikesarg" class="nav-link"><i class="bi bi-facebook"></i></a>
