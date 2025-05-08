@@ -46,4 +46,10 @@ if (!$found) {
     ];
 }
 
-echo json_encode(['success' => true]);
+$totalItems = array_sum(array_column($_SESSION['cart'], 'quantity'));
+
+echo json_encode([
+    'success' => true,
+    'total_items' => $totalItems
+]);
+

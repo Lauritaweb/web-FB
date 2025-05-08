@@ -310,6 +310,8 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     .then(data => {
         if (data.success) {
             // alert("Producto agregado al carrito");
+            document.getElementById('cart-count').textContent = data.total_items;
+            
             Swal.fire({
                 icon: 'success',
                 title: '¡Listo!',

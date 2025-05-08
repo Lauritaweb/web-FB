@@ -1,6 +1,7 @@
 <?php
 //$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
  $url_base = 'https://www.foreverbikes.com.ar';
+ $url_base = 'http://localhost/dev/web-FB';
 ?>
 <div class="marquee bg-black text-white text-center mb-2">
         <p>
@@ -121,9 +122,9 @@
             <!-- Iconos a la derecha -->
             <div class="d-flex gap-3 align-items-center">
               <a href="<?= $url_base ?>/checkout.php" class="nav-link border-end pe-3">
-                <!-- <span id="cart-count" class="badge rounded-pill bg-danger cart-badge" style="font-size: 0.7rem;">
-                  0
-                </span> -->
+                <span id="cart-count" class="badge rounded-pill bg-danger cart-badge" style="font-size: 0.7rem;">
+                  
+                </span>
                 <i class="bi bi-cart"></i>
               </a>
               <a href="https://www.instagram.com/foreverbikesargentina/" class="nav-link"><i class="bi bi-instagram"></i></a>
@@ -135,3 +136,21 @@
         </div>
       </nav>
     <!-- end navbar -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    actualizarContadorCarrito();
+});
+
+function actualizarContadorCarrito() {
+    fetch('<?= $url_base ?>/get_cart_count.php')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('cart-count').textContent = data.count;
+        })
+        .catch(error => {
+            console.error('Error al obtener el contador del carrito:', error);
+        });
+}
+</script>

@@ -193,28 +193,31 @@ $envio = 0;
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const contenedor = document.querySelector(".contenedor-productos");
-        contenedor.addEventListener("click", function(e) {
-            const boton = e.target.closest(".eliminar-producto");
-            if (boton) {
-                const item = boton.closest(".item-producto");
-                const itemId = item?.dataset.id;                
-                if (item) {
-                    item.remove();
-                    actualizarTotal();
-                    fetch("eliminar_item_carrito.php", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            id: itemId
-                        }),
+    const contenedor = document.querySelector(".contenedor-productos");
+    contenedor.addEventListener("click", function(e) {
+        const boton = e.target.closest(".eliminar-producto");
+        if (boton) {
+            const item = boton.closest(".item-producto");
+            const itemId = item?.dataset.id;                
+            if (item) {
+                item.remove();
+                actualizarTotal();
+                fetch("eliminar_item_carrito.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: itemId
+                    }),
+                    }).then(() => {
+                        actualizarContadorCarrito(); 
                     });
                 }
             }
         });
     });
+
 
     function actualizarTotal() {
         let total = 0;
