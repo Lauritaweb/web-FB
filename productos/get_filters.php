@@ -14,8 +14,10 @@ if (is_array($idSubcategory)) {
 }
 
 $bikeModel = new Product();
-$colorResult = $bikeModel->getAllColors();
-$sizeResult  = $bikeModel->getAllSizes();
+// $colorResult = $bikeModel->getAllColors();
+// $sizeResult  = $bikeModel->getAllSizes();
+$colorResult = $bikeModel->getShowColors();
+$sizeResult  = $bikeModel->getShowSizes();
 $priceResult = $bikeModel->getSubcategoriesPrices($idSubcategory);
 
 
