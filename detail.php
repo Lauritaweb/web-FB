@@ -172,43 +172,13 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
         <div class="row px-xl-5">
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                    <a class="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Descripción</a>
-                   <!-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-2">Información</a> -->
+                    <a class="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Descripción</a>                  
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3"><?= $name ?></h4>
                         <p><?= $description ?></p>                    
-                    </div>
-                    <!--
-                    <div class="tab-pane fade" id="tab-pane-2">
-                        <h4 class="mb-3">Información adicional</h4>
-                        <p>
-                            La Lite Aluminio te ofrecen un andar ultraliviano ya que cuentan con cuadro de aluminio y horquilla de carbono.
-                        </p>
-                        <p>
-                            El diseño de esta bici favorece la aerodinámica para alcanzar una mejor velocidad final. Todos sus rodamientos son Shimano y cuenta con postura regulable. Esta bici está preparada para recorrer largas distancias y acompañarte en tus entrenamientos. Si buscas liviandad, velocidad y una postura aerodinámica, esta bici es para vos.
-                        </p>
-                        <ul class="list-group list-group-flush">
-                            
-                        </ul>
-                            </p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item px-0">
-                                        Cuadro de aluminio hidroformado con horquilla de carbono.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Bicolor en negro mate y rosa metalizado.
-                                    </li>
-                                    
-                                  </ul> 
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                    
+                    </div>                                        
                 </div>
             </div>
         </div>
