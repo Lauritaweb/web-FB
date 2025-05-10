@@ -104,40 +104,48 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 
                 <h3 class="font-weight-semi-bold mb-4">$<?= Utils::mostrarTarifaSinCentavos($price) ?></h3>
                 <p class="mb-4"><?= $shortdetails ?></p>
-                <div class="d-flex mb-3">
-                    <p class="text-dark font-weight-medium mb-0 me-3 w-60">Sizes:</p>
-                    <form class="d-flex">
-                    <?php foreach ($product['sizes'] as $i => $size): ?>
-                        <div class="custom-control custom-radio custom-control-inline ms-3">
-                            <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size">
-                            <label class="custom-control-label" for="size-<?= $i ?>"><?= ($size) ?></label>
-                        </div>
-                    <?php endforeach; ?>
-
-                    </form>
-                </div>
-                <div class="d-flex mb-4">
-                    <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
-                   <!-- Radios visibles solo en desktop -->
-                    <form class="d-none d-md-flex flex-wrap">
-                        <?php foreach ($product['colors'] as $i => $color): ?>
+                
+                <?php if (count($product['sizes']) > 1){ ?>
+                    <div class="d-flex mb-3">
+                        <p class="text-dark font-weight-medium mb-0 me-3 w-60">Tamaños:</p>
+                        <form class="d-flex">
+                        <?php foreach ($product['sizes'] as $i => $size): ?>
                             <div class="custom-control custom-radio custom-control-inline ms-3">
-                                <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color" value="<?= $color ?>">
-                                <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
+                                <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size">
+                                <label class="custom-control-label" for="size-<?= $i ?>"><?= ($size) ?></label>
                             </div>
                         <?php endforeach; ?>
-                    </form>
+                        </form>
+                    </div>
+                <?php } ?>
 
+                
+                <div class="d-flex mb-4">
+                    <?php if (count($product['colors']) > 1){ ?>
+                        <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
+                    <!-- Radios visibles solo en desktop -->
+                        <form class="d-none d-md-flex flex-wrap">
+                            <?php foreach ($product['colors'] as $i => $color): ?>
+                                <div class="custom-control custom-radio custom-control-inline ms-3">
+                                    <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color" value="<?= $color ?>">
+                                    <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </form>
+                    <?php } ?>
+
+                    <?php if (count($product['colors']) > 1){ ?>
                     <!-- Select visible solo en mobile -->
-                    <form class="d-block d-md-none">
-                        <div class="form-group">
-                            <select class="form-select" name="color" id="colorSelect">
-                                <?php foreach ($product['colors'] as $color): ?>
-                                    <option value="<?= $color ?>"><?= $color ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </form>
+                        <form class="d-block d-md-none">
+                            <div class="form-group">
+                                <select class="form-select" name="color" id="colorSelect">
+                                    <?php foreach ($product['colors'] as $color): ?>
+                                        <option value="<?= $color ?>"><?= $color ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </form>
+                    <?php } ?>
 
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -172,43 +180,13 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
         <div class="row px-xl-5">
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                    <a class="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Descripción</a>
-                   <!-- <a class="nav-item nav-link" data-bs-toggle="tab" href="#tab-pane-2">Información</a> -->
+                    <a class="nav-item nav-link active" data-bs-toggle="tab" href="#tab-pane-1">Descripción</a>                  
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3"><?= $name ?></h4>
                         <p><?= $description ?></p>                    
-                    </div>
-                    <!--
-                    <div class="tab-pane fade" id="tab-pane-2">
-                        <h4 class="mb-3">Información adicional</h4>
-                        <p>
-                            La Lite Aluminio te ofrecen un andar ultraliviano ya que cuentan con cuadro de aluminio y horquilla de carbono.
-                        </p>
-                        <p>
-                            El diseño de esta bici favorece la aerodinámica para alcanzar una mejor velocidad final. Todos sus rodamientos son Shimano y cuenta con postura regulable. Esta bici está preparada para recorrer largas distancias y acompañarte en tus entrenamientos. Si buscas liviandad, velocidad y una postura aerodinámica, esta bici es para vos.
-                        </p>
-                        <ul class="list-group list-group-flush">
-                            
-                        </ul>
-                            </p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item px-0">
-                                        Cuadro de aluminio hidroformado con horquilla de carbono.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Bicolor en negro mate y rosa metalizado.
-                                    </li>
-                                    
-                                  </ul> 
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                    
+                    </div>                                        
                 </div>
             </div>
         </div>
@@ -279,21 +257,58 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     const image = <?= json_encode($product['images'][0] ?? '') ?>;
 
     const quantity = parseInt(document.querySelector('.form-control').value);
-    const size = document.querySelector('input[name="size"]:checked')?.nextElementSibling.textContent.trim();
-    // const color = document.querySelector('input[name="color"]:checked')?.nextElementSibling.textContent.trim();
-    const color = document.querySelector('select[name="color"]').value; // En Mobile es un desplegable, no un checkbox
 
-    if (!size || !color) {
-        // alert("Seleccioná tamaño y color");
-        Swal.fire({
-        icon: 'warning',
-        title: '¡Atención!',
-        text: 'Seleccioná tamaño y color',
-        confirmButtonText: 'Entendido',
-        confirmButtonColor: '#d33'
-        });
-        return;
-    }
+
+    const sizeInputs = document.querySelectorAll('input[name="size"]');
+    size = null;
+    if (sizeInputs.length > 0) {        
+        size = document.querySelector('input[name="size"]:checked')?.nextElementSibling.textContent.trim();
+        
+        if (!size ) {        
+            Swal.fire({
+            icon: 'warning',
+            title: '¡Atención!',
+            text: 'Seleccioná tamaño',
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#d33'
+            });
+            return;
+        }
+    }else
+        size = "-";
+
+
+    const colorInputs = document.querySelectorAll('input[name="color"]');
+    let color = null;
+    
+    if (colorInputs.length > 0) { 
+        const radioForm = document.querySelector('form.d-md-flex');
+        const selectForm = document.querySelector('form.d-md-none');
+
+        if (radioForm?.offsetParent !== null) { // Está visible el form de radios (desktop)            
+            const radioChecked = radioForm.querySelector('input[name="color"]:checked');
+            if (radioChecked)               
+                color = radioChecked.value.trim();
+            
+        } else if (selectForm?.offsetParent !== null) { // Está visible el form del select (mobile)            
+            const selectColor = selectForm.querySelector('select[name="color"]');
+            if (selectColor) // Eligio un color (al ser desplegable, esta elegido el 1ero)
+                color = selectColor.value.trim();            
+        }
+
+        // Validación final
+        if (!color) {
+            Swal.fire({
+                icon: 'warning',
+                title: '¡Atención!',
+                text: 'Seleccioná un color',
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#d33'
+            });
+            return;
+        }
+    }else
+        color = "-";
 
     fetch('../../add_to_cart.php', {
         method: 'POST',

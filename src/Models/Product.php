@@ -629,74 +629,6 @@ class Product
      * Satelite
      * 
      **************************************************************************************************************/
-
-    /*
-    public function findLawyer($tipo_abogado, $provincia, $localidad, $status = 2 ) {        
-        $query = "SELECT 
-                    affiliates.id, 
-                    name,
-                    last_name,                
-                    affiliates.id_province,
-                    id_locality,
-                    url_file_image,       
-                    GROUP_CONCAT(DISTINCT assigned_specialties.description SEPARATOR ', ') AS specialty,
-                    affiliate_provinces.province,
-                    localities.locality,
-                    (
-                        SELECT GROUP_CONCAT(
-                            CASE 
-                                WHEN cerrado = 1 THEN CONCAT(dia, ': Cerrado')
-                                ELSE CONCAT(dia, ': ', TIME_FORMAT(hora_inicio, '%H:%i'), ' - ', TIME_FORMAT(hora_fin, '%H:%i'))
-                            END
-                            SEPARATOR '<br>'
-                        )
-                        FROM affliate_schedule
-                        WHERE affliate_schedule.id_affiliate = affiliates.id
-                    ) AS schedule
-                FROM affiliates 
-                LEFT JOIN affiliate_specilities_assigned ON affiliate_specilities_assigned.id_affiliate = affiliates.id
-                LEFT JOIN affiliate_specialties AS assigned_specialties ON affiliate_specilities_assigned.id_speciality = assigned_specialties.id
-                LEFT JOIN affiliate_provinces ON affiliate_provinces.id = affiliates.id_province
-                LEFT JOIN localities ON localities.id = affiliates.id_locality
-                
-                WHERE active = $status";                    
-
-        $conditions = [];
-        if ($tipo_abogado != 0) {
-            $conditions[] = "affiliate_specilities_assigned.id_speciality = " . intval($tipo_abogado);
-        }
-        if ($provincia != 0)  {
-            $conditions[] = "affiliates.id_province = " . intval($provincia);
-        }
-        if ($localidad != 0 && $localidad != '') {
-            $conditions[] = "id_locality = " . intval($localidad);
-        }
-
-        if (count($conditions) > 0) {
-            $query .= " AND " . implode(" AND ", $conditions);
-        }
-
-        $query .= " GROUP BY affiliates.id";       
-
-        $stmt = $this->db->prepare($query);
-
-        if ($stmt === false) {
-            die('Prepare failed: ' . $this->db->error);
-        }
-
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        $users = [];
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
-        }
-    
-        $stmt->close();
-        return $users;
-    }
-    */
-
     public function getLocalities($id_province)
     {
         $query = "SELECT id, locality FROM localities WHERE id_province = ?";
@@ -718,6 +650,46 @@ class Product
         $stmt->close();
         return $localities;
     }
+
+    public function getShowColors(){
+        $query = "SELECT * FROM sh_bike_colors WHERE display = 1";
+
+        $stmt = $this->db->prepare($query);
+        if ($stmt === false) 
+            die('Prepare failed: ' . $this->db->error);
+        
+         $stmt->execute();
+        $result = $stmt->get_result();
+
+        $response = [];
+        while ($row = $result->fetch_assoc()) {
+            $response[] = $row;
+        }
+
+        $stmt->close();
+
+        return $response;
+    }
+
+    public function getShowSizes(){
+        $query = "SELECT * FROM sh_bike_sizes WHERE display = 1";
+
+        $stmt = $this->db->prepare($query);
+        if ($stmt === false) 
+            die('Prepare failed: ' . $this->db->error);
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $sizes = [];
+        while ($row = $result->fetch_assoc()) {
+            $sizes[] = $row;
+        }
+
+        $stmt->close();
+        return $sizes;
+    }
+
 
 
 

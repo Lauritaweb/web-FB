@@ -136,11 +136,17 @@ $envio = 0;
                                 $subtotal += $totalItem;
                             ?>
                                 <div class="item-producto d-flex justify-content-between mb-3 align-items-center item-producto" data-id="<?= $item['hash']  ?>">
-                                    <p class="mb-0"><?= htmlspecialchars($item['name']) . "(" . $item['size'] . ') - ' . $item['color'] ?></p>
+                                    <p class="mb-0">
+                                    <?php 
+                                        echo htmlspecialchars($item['name']);
+                                        if ($item['size'] != "-" )
+                                            echo  "(" . $item['size']  . ')';
+                                        if ($item['color'] != "-" )
+                                            echo ' ' . $item['color'] ?></p>
                                     <small class="text-muted mb-0">Cantidad: <?= $item['quantity'] ?></small>
                                     <p class="mb-0 precio">$<?= number_format($totalItem, 0, ',', '.') ?></p>
-                                    <button class="btn btn-sm btn-danger eliminar-producto" ">
-                        <i class=" bi bi-trash"></i>
+                                    <button class="btn btn-sm btn-danger eliminar-producto">
+                                        <i class=" bi bi-trash"></i>
                                     </button>
                                 </div>
                             <?php endforeach; ?>
