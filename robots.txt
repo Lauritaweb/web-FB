@@ -9,6 +9,7 @@ Disallow: /login.php
 Disallow: /register.php
 Disallow: /password-recovery.php
 Disallow: /thank-you.php
+Disallow: /testing/
 
 # Permitir acceso a recursos esenciales (por si los bots los bloquean)
 Allow: /assets/
