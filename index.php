@@ -55,7 +55,7 @@
                     </a>
                     <ul>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Sport%20Aluminio%20-%20Talle%20M%20-%207%20velocidades%20Shimano">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Sport">
                                 Sport
                             </a>
                         </li>
@@ -89,7 +89,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Sport%20Aluminio%20-%20Talle%20M%20-%207%20velocidades%20Shimano">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Sport%20Aluminio">
                                 Sport Aluminio
                             </a>
                         </li>
@@ -108,12 +108,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Traveler%201.0%20|%20Gravel%20|%207%20velocidades%20Shimano">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Traveler%20%7C%207%20velocidades%20Shimano">
                                 Traveler
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Traveler%20|%207%20velocidades%20Shimano">
+                            <a href="https://www.foreverbikes.com.ar/productos/Bicis/Traveler%201.3">
                                 Traveler 1.3
                             </a>
                         </li>
