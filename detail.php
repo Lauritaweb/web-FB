@@ -193,7 +193,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     </div>
     <!-- Shop Detail End -->
 
-
+<?php if (count($randomProducts) >= 1){ ?>
     <!-- Products Start -->
     <div class="container-fluid py-5">
         <div class="text-center mb-4">
@@ -226,6 +226,8 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
         </div>
     </div>
     <!-- Products End -->
+    <?php } ?>
+
 
     <?php  
         include('./footer.html');

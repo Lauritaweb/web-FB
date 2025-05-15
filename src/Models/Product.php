@@ -368,6 +368,10 @@ class Product
 
     private function obtenerElementosAleatorios(array $array, int $n): array
     {
+
+        if (count($array) < 2) // Asi no tenemos que mostrar productos si no hay al menos 2
+            return [];
+        
         // Si el número solicitado es mayor o igual a la cantidad de elementos disponibles, devolvemos el array completo
         if ($n >= count($array)) {
             return $array;
