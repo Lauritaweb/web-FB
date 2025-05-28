@@ -77,19 +77,18 @@ class Product
         $sql = "SELECT 
                     p.id, 
                     p.name, 
-                    p.price, 
-                    p.saleprice, 
+                    p.price,                   
                     c.description as category,
-                    (SELECT url FROM product_pictures WHERE product_id = p.id LIMIT 1) as image
+                    (SELECT url FROM product_pictures WHERE id_producto = p.id LIMIT 1) as image
                 FROM products p
-                JOIN product_variants pv ON p.id = pv.product_id
+                JOIN product_variants pv ON p.id = pv.id_producto
                 LEFT JOIN subcategories sc ON sc.id = p.id_subcategory
                 LEFT JOIN categories c on c.id = p.id_category
                 LEFT JOIN (
-                    SELECT product_id, MIN(id) AS min_id
+                    SELECT id_producto, MIN(id) AS min_id
                     FROM product_pictures
-                    GROUP BY product_id
-                ) pp_min ON pp_min.product_id = p.id
+                    GROUP BY id_producto
+                ) pp_min ON pp_min.id_producto = p.id
 
                 ";
 
@@ -151,6 +150,7 @@ class Product
 
         $sql .= " GROUP BY p.id";
 
+     
         $stmt = $this->db->prepare($sql);
         $stmt->execute($params);
         $result = $stmt->get_result();
@@ -317,17 +317,16 @@ class Product
         $sql = "SELECT 
                     p.id, 
                     p.name, 
-                    p.price, 
-                    p.saleprice, 
-                    (SELECT url FROM product_pictures WHERE product_id = p.id LIMIT 1) as image
+                    p.price,                    
+                    (SELECT url FROM product_pictures WHERE id_producto = p.id LIMIT 1) as image
                 FROM products p
-                JOIN product_variants pv ON p.id = pv.product_id
+                JOIN product_variants pv ON p.id = pv.id_producto
                 LEFT JOIN subcategories sc ON sc.id = p.id_subcategory
                 LEFT JOIN (
-                    SELECT product_id, MIN(id) AS min_id
+                    SELECT id_producto, MIN(id) AS min_id
                     FROM product_pictures
-                    GROUP BY product_id
-                ) pp_min ON pp_min.product_id = p.id
+                    GROUP BY id_producto
+                ) pp_min ON pp_min.id_producto = p.id
 
                 ";
 
