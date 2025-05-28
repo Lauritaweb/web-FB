@@ -191,7 +191,7 @@ class Product
         // 1. Obtener el producto
         $query = "SELECT * FROM $this->table WHERE id = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("s", $idProduct);
+        $stmt->bind_param("i", $idProduct);
         $stmt->execute();
         $result = $stmt->get_result();
         $product = $result->fetch_assoc();
@@ -207,9 +207,9 @@ class Product
                         product_variants 
                     LEFT JOIN sh_bike_sizes on product_variants.id_size = sh_bike_sizes.id
                     LEFT JOIN sh_bike_colors on product_variants.id_color = sh_bike_colors.id
-                WHERE product_id = ? ";
+                WHERE id_producto = ? ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("s", $idProduct);
+        $stmt->bind_param("i", $idProduct);
         $stmt->execute();
         $variantsResult = $stmt->get_result();
 
@@ -221,7 +221,7 @@ class Product
         // 3. Obtener imágenes 
         $queryImg = "SELECT * FROM product_pictures WHERE id_producto = ?";
         $stmtImg = $this->db->prepare($queryImg);
-        $stmtImg->bind_param("s", $idProduct);
+        $stmtImg->bind_param("i", $idProduct);
         $stmtImg->execute();
         $imgResult = $stmtImg->get_result();
 
