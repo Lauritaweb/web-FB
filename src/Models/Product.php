@@ -219,7 +219,7 @@ class Product
         //  echo $idProduct;die;
 
         // 3. Obtener imágenes 
-        $queryImg = "SELECT * FROM product_pictures WHERE product_id = ?";
+        $queryImg = "SELECT * FROM product_pictures WHERE id_producto = ?";
         $stmtImg = $this->db->prepare($queryImg);
         $stmtImg->bind_param("s", $idProduct);
         $stmtImg->execute();
