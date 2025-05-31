@@ -216,8 +216,8 @@ class Product
         $sizes = [];
         $colors = [];
         $images = [];
-        //  echo $idProduct;die;
-
+        $variants = [];
+        
         // 3. Obtener imágenes 
         $queryImg = "SELECT * FROM product_pictures WHERE id_producto = ?";
         $stmtImg = $this->db->prepare($queryImg);
@@ -232,14 +232,22 @@ class Product
             }
         }
 
-
+        // 4. Construir el array de variantes
         while ($variant = $variantsResult->fetch_assoc()) {
-            // Sumar tamaños únicos
+            // Agregar tamaño si no existe
+            if (!isset($variants[$variant['size']])) {
+                $variants[$variant['size']] = [];
+            }
+            
+            // Agregar color si no existe para este tamaño
+            if (!in_array($variant['color'], $variants[$variant['size']])) {
+                $variants[$variant['size']][] = $variant['color'];
+            }
+
+            // Agregar tamaño y color únicos
             if (!in_array($variant['size'], $sizes)) {
                 $sizes[] = $variant['size'];
             }
-
-            // Sumar colores únicos
             if (!in_array($variant['color'], $colors)) {
                 $colors[] = $variant['color'];
             }
@@ -249,6 +257,7 @@ class Product
             'product' => $product,
             'sizes' => $sizes,
             'colors' => $colors,
+            'variants' => $variants,
             'images' => $images
         ];
     }

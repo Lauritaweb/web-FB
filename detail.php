@@ -21,7 +21,7 @@ if (isset($_GET['id'])){ // Compatibilidad con URLS details.pph?id=XXXXXXX
     $slugSubcategory = $_GET['subcategory'] ?? '';
     $slugProduct = $_GET['product'] ?? '';
 
-    $productId = $productModel->getProductWithVariantsSlug($slugSubcategory, $slugProduct )['id'];
+    $productId = $productModel->getProductWithVariantsSlug($slugSubcategory, $slugProduct )['id'];    
     $product = $productModel->getProductWithVariants($productId);
 }
 
@@ -32,7 +32,7 @@ if (!$product) {
 }
 
 extract($product['product']);
-
+// var_dump($product);
 $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
 ?>
 
@@ -105,13 +105,14 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <h3 class="font-weight-semi-bold mb-4">$<?= Utils::mostrarTarifaSinCentavos($price) ?></h3>
                 <p class="mb-4"><?= $shortdetails ?></p>
                 
+                <!-- Si hay más de un tamaño disponible -->
                 <?php if (count($product['sizes']) > 1){ ?>
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Tamaños:</p>
                         <form class="d-flex">
                         <?php foreach ($product['sizes'] as $i => $size): ?>
                             <div class="custom-control custom-radio custom-control-inline ms-3">
-                                <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size">
+                                <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size" value="<?= $size ?>">
                                 <label class="custom-control-label" for="size-<?= $i ?>"><?= ($size) ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -119,35 +120,34 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                     </div>
                 <?php } ?>
 
-                
-                <div class="d-flex mb-4">
-                    <?php if (count($product['colors']) > 1){ ?>
+                <!-- Si hay más de un color disponible -->
+                <?php if (count($product['colors']) > 1){ ?>
+                    <div class="d-flex mb-4">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
-                    <!-- Radios visibles solo en desktop -->
-                        <form class="d-none d-md-flex flex-wrap">
+                        <!-- Radios visibles solo en desktop -->
+                        <form class="d-none d-md-flex flex-wrap" id="colorOptions">
                             <?php foreach ($product['colors'] as $i => $color): ?>
-                                <div class="custom-control custom-radio custom-control-inline ms-3">
+                                <div class="custom-control custom-radio custom-control-inline ms-3 color-option" style="display: none;">
                                     <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color" value="<?= $color ?>">
                                     <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </form>
-                    <?php } ?>
 
-                    <?php if (count($product['colors']) > 1){ ?>
-                    <!-- Select visible solo en mobile -->
-                        <form class="d-block d-md-none">
+                        <!-- Select visible solo en mobile -->
+                        <form class="d-block d-md-none" id="mobileColorOptions">
                             <div class="form-group">
-                                <select class="form-select" name="color" id="colorSelect">
-                                    <?php foreach ($product['colors'] as $color): ?>
-                                        <option value="<?= $color ?>"><?= $color ?></option>
-                                    <?php endforeach; ?>
+                                <select class="form-select" name="color" id="colorSelect" disabled>
+                                    <option value="">Selecciona un tamaño primero</option>
                                 </select>
                             </div>
                         </form>
-                    <?php } ?>
+                    </div>
+                <?php } ?>
 
-                </div>
+                <!-- Agregar el campo hidden para el id_variant -->
+                <input type="hidden" id="id_variant" name="id_variant" value="">
+
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity me-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -252,94 +252,116 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     <!-- Javascript -->
     <script src="../../assets/js/main.js"></script>
     <script>
-    document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
-    const productId = '<?= $productId ?>';
-    const name = <?= json_encode($name) ?>;
-    const price = <?= $price ?>;
-    const image = <?= json_encode($product['images'][0] ?? '') ?>;
+    // Inicializar los colores disponibles para cada tamaño
+    const availableColors = <?= json_encode($product['variants']) ?>;
 
-    const quantity = parseInt(document.querySelector('.form-control').value);
-
-
-    const sizeInputs = document.querySelectorAll('input[name="size"]');
-    size = null;
-    if (sizeInputs.length > 0) {        
-        size = document.querySelector('input[name="size"]:checked')?.nextElementSibling.textContent.trim();
-        
-        if (!size ) {        
-            Swal.fire({
-            icon: 'warning',
-            title: '¡Atención!',
-            text: 'Seleccioná tamaño',
-            confirmButtonText: 'Entendido',
-            confirmButtonColor: '#d33'
-            });
-            return;
-        }
-    }else
-        size = "-";
-
-
-    const colorInputs = document.querySelectorAll('input[name="color"]');
-    let color = null;
-    
-    if (colorInputs.length > 0) { 
-        const radioForm = document.querySelector('form.d-md-flex');
-        const selectForm = document.querySelector('form.d-md-none');
-
-        if (radioForm?.offsetParent !== null) { // Está visible el form de radios (desktop)            
-            const radioChecked = radioForm.querySelector('input[name="color"]:checked');
-            if (radioChecked)               
-                color = radioChecked.value.trim();
+    // Manejar la selección de tamaño
+    document.querySelectorAll('input[name="size"]').forEach(sizeInput => {
+        sizeInput.addEventListener('change', function() {
+            const selectedSize = this.value;
             
-        } else if (selectForm?.offsetParent !== null) { // Está visible el form del select (mobile)            
-            const selectColor = selectForm.querySelector('select[name="color"]');
-            if (selectColor) // Eligio un color (al ser desplegable, esta elegido el 1ero)
-                color = selectColor.value.trim();            
-        }
+            // Obtener los colores disponibles para este tamaño
+            const colorsForSize = availableColors[selectedSize] || [];
+            
+            // Actualizar los colores disponibles
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                const colorValue = option.querySelector('input').value;
+                option.style.display = colorsForSize.includes(colorValue) ? 'block' : 'none';
+            });
 
-        // Validación final
-        if (!color) {
+            // Habilitar el select de color en mobile
+            const colorSelect = document.getElementById('colorSelect');
+            colorSelect.disabled = false;
+            colorSelect.innerHTML = '<option value="">Selecciona un color</option>' +
+                colorsForSize.map(color => `<option value="${color}">${color}</option>`).join('');
+        });
+    });
+
+    // Manejar la selección de color
+    document.querySelectorAll('input[name="color"]').forEach(colorInput => {
+        colorInput.addEventListener('change', function() {
+            const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+            const selectedColor = this.value;
+            
+            // Actualizar el id_variant
+            const variants = availableColors;
+            const id_variant = Object.keys(variants).find(size => 
+                size === selectedSize && variants[size].includes(selectedColor)
+            );
+
+            if (id_variant) {
+                document.getElementById('id_variant').value = id_variant;
+            }
+        });
+    });
+
+    // Manejar el select de color en mobile
+    document.getElementById('colorSelect').addEventListener('change', function() {
+        const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+        const selectedColor = this.value;
+        
+        // Actualizar el id_variant
+        const variants = availableColors;
+        const id_variant = Object.keys(variants).find(size => 
+            size === selectedSize && variants[size].includes(selectedColor)
+        );
+
+        if (id_variant) {
+            document.getElementById('id_variant').value = id_variant;
+        }
+    });
+
+    // Manejar el botón de agregar al carrito
+    document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
+        const productId = '<?= $productId ?>';
+        const name = <?= json_encode($name) ?>;
+        const price = <?= $price ?>;
+        const image = <?= json_encode($product['images'][0] ?? '') ?>;
+
+        const quantity = parseInt(document.querySelector('.form-control').value);
+        const id_variant = document.getElementById('id_variant').value;
+        const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+        const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+
+        if (!id_variant) {
             Swal.fire({
                 icon: 'warning',
                 title: '¡Atención!',
-                text: 'Seleccioná un color',
+                text: 'Seleccioná una variante (tamaño y color)',
                 confirmButtonText: 'Entendido',
                 confirmButtonColor: '#d33'
             });
             return;
         }
-    }else
-        color = "-";
 
-    fetch('../../add_to_cart.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-            product_id: productId,
-            name,
-            price,
-            quantity,
-            size,
-            color,
-            image
+        fetch('../../add_to_cart.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                product_id: productId,
+                name,
+                price,
+                quantity,
+                id_variant,
+                size: selectedSize,
+                color: selectedColor,
+                image
+            })
         })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            // alert("Producto agregado al carrito");
-            document.getElementById('cart-count').textContent = data.total_items;
-            
-            Swal.fire({
-                icon: 'success',
-                title: '¡Listo!',
-                text: 'Producto agregado al carrito',
-                confirmButtonColor: '#000'
-            });
-        }
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('cart-count').textContent = data.total_items;
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Listo!',
+                    text: 'Producto agregado al carrito',
+                    confirmButtonColor: '#000'
+                });
+            }
+        });
     });
-});
 </script>
 <!-- share -->
 <script>
