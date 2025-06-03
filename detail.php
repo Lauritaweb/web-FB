@@ -106,13 +106,15 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <p class="mb-4"><?= $shortdetails ?></p>
                 
                 <!-- Si hay más de un tamaño disponible -->
-                <?php if (count($product['sizes']) > 1){ ?>
+                <?php if (count($product['sizes']) > 1){ 
+                    var_dump($product['sizes']);
+                    ?>
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Tamaños:</p>
                         <form class="d-flex">
                         <?php foreach ($product['sizes'] as $i => $size): ?>
                             <div class="custom-control custom-radio custom-control-inline ms-3">
-                                <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size" value="<?= $size ?>">
+                                <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size" data-size="<?= $i ?>" value="<?= $size ?>">
                                 <label class="custom-control-label" for="size-<?= $i ?>"><?= ($size) ?></label>
                             </div>
                         <?php endforeach; ?>
@@ -121,14 +123,16 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <?php } ?>
 
                 <!-- Si hay más de un color disponible -->
-                <?php if (count($product['colors']) > 1){ ?>
+                <?php if (count($product['colors']) > 1){ 
+                    var_dump($product['colors']);
+                    ?>
                     <div class="d-flex mb-4">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
                         <!-- Radios visibles solo en desktop -->
                         <form class="d-none d-md-flex flex-wrap" id="colorOptions">
                             <?php foreach ($product['colors'] as $i => $color): ?>
                                 <div class="custom-control custom-radio custom-control-inline ms-3 color-option" style="display: none;">
-                                    <input type="radio" class="custom-control-input" id="color-<?= $i ?>" name="color" value="<?= $color ?>">
+                                    <input type="radio" class="custom-control-input" id="color-<?= $i ?>" data-color="<?= $i ?>" name="color" value="<?= $color ?>">
                                     <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
                                 </div>
                             <?php endforeach; ?>
@@ -323,6 +327,10 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
         const id_variant = document.getElementById('id_variant').value;
         const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
         const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+        const selectedSizeId = document.querySelector('input[name="size"]:checked')?.dataset.size;
+        const selectedColorId = document.querySelector('input[name="color"]:checked')?.dataset.color;
+        console.log(selectedSizeId, selectedColorId);
+
 
         if (!id_variant) {
             Swal.fire({
@@ -346,7 +354,9 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 id_variant,
                 size: selectedSize,
                 color: selectedColor,
-                image
+                image,
+                selectedSizeId,
+                selectedColorId
             })
         })
         .then(res => res.json())

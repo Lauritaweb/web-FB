@@ -246,10 +246,10 @@ class Product
 
             // Agregar tamaño y color únicos
             if (!in_array($variant['size'], $sizes)) {
-                $sizes[] = $variant['size'];
+                $sizes[$variant['id_size']] = $variant['size'];
             }
             if (!in_array($variant['color'], $colors)) {
-                $colors[] = $variant['color'];
+                $colors[$variant['id_color']] = $variant['color'];
             }
         }
 
@@ -283,6 +283,34 @@ class Product
             exit;
         }
         return $product;
+    }
+
+    public function getVariantByProductColorSize($idProducto, $idColor, $idSize){
+         $query = "
+                SELECT
+                    *
+                FROM
+                    product_variants pv 
+                    where 
+                    pv.id_color = ?
+                    and pv.id_size = ?
+                    and pv.id_producto = ?
+         ";
+      
+
+         $stmt = $this->db->prepare($query);
+         $stmt->bind_param('iii', $idColor, $idSize, $idProducto);
+         $stmt->execute();
+         $result = $stmt->get_result();
+         $variant = $result->fetch_assoc();
+ 
+         if (!$variant) {
+             http_response_code(404);
+             echo "variant no encontrado";
+             exit;
+         }
+         return $variant;
+
     }
 
 

@@ -45,18 +45,23 @@ class Cart{
         $_SESSION['orden_id'] = $orden_id; // Me guardo el orden ID para poder usarlo en la confirmacion del pago
         $stmt->close();
 
+
+#0 C:\wamp\www\dev\web-FB\src\Models\Cart.php(52): mysqli_stmt-&gt;bind_param('isisidds', 99, '4', 83, 'Sport', '1', '637500', 637500)
+
+
         // 3. Insertar cada ítem del carrito
-        $stmt = $this->db->prepare("INSERT INTO orden_items (orden_id, producto_id, nombre_producto, cantidad, precio_unitario, subtotal) VALUES (?, ?, ?, ?, ?, ?)");
-        foreach ($productos as $item) {
+        $stmt = $this->db->prepare("INSERT INTO orden_items (orden_id, producto_id, variante_id, nombre_producto, cantidad, precio_unitario, subtotal) VALUES (?, ?, ?, ?, ?, ?, ?)");
+           foreach ($productos as $item) {
             $item_subtotal = $item['price'] * $item['quantity'];
             $stmt->bind_param(
-                "iisidd",
+                "isissds",
                 $orden_id,
-                $item['id'],
+                $item['product_id'],
+                $item['id_variant'],
                 $item['name'],
                 $item['quantity'],
                 $item['price'],
-                $item_subtotal
+                $item_subtotal               
             );
             $stmt->execute();
         }
@@ -132,6 +137,9 @@ class Cart{
                 'cantidad' => (int)$row['cantidad'],
                 'precio' => (float)$row['precio_unitario'],
                 'subtotal' => (float)$row['subtotal'],
+                'id_variant' => $row['id_variant'],
+                'size' => $row['size'],
+                'color' => $row['color']
             ];
         }
     

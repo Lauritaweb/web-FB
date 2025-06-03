@@ -3,6 +3,7 @@ session_start();
 require 'vendor/autoload.php';
 
 use App\Utils\Utils;
+use App\Models\Product;
 
 $productId = $_POST['product_id'];
 $quantity = $_POST['quantity'];
@@ -10,6 +11,11 @@ $id_variant = $_POST['id_variant'];
 $name = $_POST['name'];
 $price = $_POST['price'];
 $image = $_POST['image'] ?? null;
+$selectedSizeId = $_POST['selectedSizeId'] ?? null;
+$selectedColorId = $_POST['selectedColorId'] ?? null;
+
+$productModel = new Product();
+$variant_id = $productModel->getVariantByProductColorSize($productId, $selectedColorId, $selectedSizeId)['id'];
 
 // Obtener size y color del id_variant
 $size = $_POST['size'] ?? null;
@@ -41,7 +47,7 @@ if (!$found) {
         'name' => $name,
         'price' => $price,
         'quantity' => $quantity,
-        'id_variant' => $id_variant,
+        'id_variant' => $variant_id,
         'size' => $size,
         'color' => $color,
         'image' => $image
