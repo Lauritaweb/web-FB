@@ -106,8 +106,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <p class="mb-4"><?= $shortdetails ?></p>
                 
                 <!-- Si hay más de un tamaño disponible -->
-                <?php if (count($product['sizes']) > 1){ 
-                    var_dump($product['sizes']);
+                <?php if (count($product['sizes']) > 1){                   
                     ?>
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Tamaños:</p>
@@ -123,8 +122,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <?php } ?>
 
                 <!-- Si hay más de un color disponible -->
-                <?php if (count($product['colors']) > 1){ 
-                    var_dump($product['colors']);
+                <?php if (count($product['colors']) > 1){                     
                     ?>
                     <div class="d-flex mb-4">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
