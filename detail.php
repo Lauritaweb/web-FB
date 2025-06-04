@@ -298,78 +298,83 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
         });
     });
 
-    // Manejar el select de color en mobile
-    document.getElementById('colorSelect').addEventListener('change', function() {
-        const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-        const selectedColor = this.value;
-        
-        // Actualizar el id_variant
-        const variants = availableColors;
-        const id_variant = Object.keys(variants).find(size => 
-            size === selectedSize && variants[size].includes(selectedColor)
-        );
+    // Manejar el select de color en mobile solo si existe
+    const colorSelect = document.getElementById('colorSelect');
+    if (colorSelect) {
+        colorSelect.addEventListener('change', function() {
+            const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+            const selectedColor = this.value;
+            
+            // Actualizar el id_variant
+            const variants = availableColors;
+            const id_variant = Object.keys(variants).find(size => 
+                size === selectedSize && variants[size].includes(selectedColor)
+            );
 
-        if (id_variant) {
-            document.getElementById('id_variant').value = id_variant;
-        }
-    });
-
-    // Manejar el botón de agregar al carrito
-    document.querySelector('.btn-dark.px-3').addEventListener('click', function () {
-        const productId = '<?= $productId ?>';
-        const name = <?= json_encode($name) ?>;
-        const price = <?= $price ?>;
-        const image = <?= json_encode($product['images'][0] ?? '') ?>;
-
-        const quantity = parseInt(document.querySelector('.form-control').value);
-        const id_variant = document.getElementById('id_variant').value;
-        const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-        const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
-        const selectedSizeId = document.querySelector('input[name="size"]:checked')?.dataset.size;
-        const selectedColorId = document.querySelector('input[name="color"]:checked')?.dataset.color;
-        console.log(selectedSizeId, selectedColorId);
-
-
-        if (!id_variant) {
-            Swal.fire({
-                icon: 'warning',
-                title: '¡Atención!',
-                text: 'Seleccioná una variante (tamaño y color)',
-                confirmButtonText: 'Entendido',
-                confirmButtonColor: '#d33'
-            });
-            return;
-        }
-
-        fetch('../../add_to_cart.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                product_id: productId,
-                name,
-                price,
-                quantity,
-                id_variant,
-                size: selectedSize,
-                color: selectedColor,
-                image,
-                selectedSizeId,
-                selectedColorId
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('cart-count').textContent = data.total_items;
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Listo!',
-                    text: 'Producto agregado al carrito',
-                    confirmButtonColor: '#000'
-                });
+            if (id_variant) {
+                document.getElementById('id_variant').value = id_variant;
             }
         });
-    });
+    }
+
+    // Manejar el botón de agregar al carrito
+    const addToCartButton = document.querySelector('.btn-dark.px-3');
+    if (addToCartButton) {
+        addToCartButton.addEventListener('click', function () {
+            const productId = '<?= $productId ?>';
+            const name = <?= json_encode($name) ?>;
+            const price = <?= $price ?>;
+            const image = <?= json_encode($product['images'][0] ?? '') ?>;
+
+            const quantity = parseInt(document.querySelector('.form-control').value);
+            const id_variant = document.getElementById('id_variant').value;
+            const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
+            const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
+            const selectedSizeId = document.querySelector('input[name="size"]:checked')?.dataset.size;
+            const selectedColorId = document.querySelector('input[name="color"]:checked')?.dataset.color;
+            console.log(selectedSizeId, selectedColorId);
+/*
+            if (!id_variant) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '¡Atención!',
+                    text: 'Seleccioná una variante (tamaño y color)',
+                    confirmButtonText: 'Entendido',
+                    confirmButtonColor: '#d33'
+                });
+                return;
+            }
+*/
+            fetch('../../add_to_cart.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    product_id: productId,
+                    name,
+                    price,
+                    quantity,
+                    id_variant,
+                    size: selectedSize,
+                    color: selectedColor,
+                    image,
+                    selectedSizeId,
+                    selectedColorId
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('cart-count').textContent = data.total_items;
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Listo!',
+                        text: 'Producto agregado al carrito',
+                        confirmButtonColor: '#000'
+                    });
+                }
+            });
+        });
+    }
 </script>
 <!-- share -->
 <script>
@@ -380,7 +385,6 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
     document.getElementById("whatsapp-share").href = linkWhatsApp;
   });
 </script>
-
 
 </body>
 

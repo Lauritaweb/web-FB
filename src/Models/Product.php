@@ -304,11 +304,9 @@ class Product
          $result = $stmt->get_result();
          $variant = $result->fetch_assoc();
  
-         if (!$variant) {
-             http_response_code(404);
-             echo "variant no encontrado";
-             exit;
-         }
+         if (!$variant) 
+             $variant = -1;
+         
          return $variant;
 
     }
