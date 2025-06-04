@@ -139,9 +139,9 @@ $envio = 0;
                                     <p class="mb-0">
                                     <?php 
                                         echo htmlspecialchars($item['name']);
-                                        if ($item['size'] != "-" )
+                                        if ($item['size'] != "-" && $item['size'] != "undefined")
                                             echo  "(" . $item['size']  . ')';
-                                        if ($item['color'] != "-" )
+                                        if ($item['color'] != "-" && $item['color'] != "undefined")
                                             echo ' ' . $item['color'] ?></p>
                                     <small class="text-muted mb-0">Cantidad: <?= $item['quantity'] ?></small>
                                     <p class="mb-0 precio">$<?= number_format($totalItem, 0, ',', '.') ?></p>
