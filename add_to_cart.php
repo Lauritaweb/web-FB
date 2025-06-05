@@ -15,11 +15,20 @@ $selectedSizeId = $_POST['selectedSizeId'] ?? null;
 $selectedColorId = $_POST['selectedColorId'] ?? null;
 
 $productModel = new Product();
-
-if ($selectedColorId != "undefined" && $selectedSizeId != "undefined")
-    $variant_id = $productModel->getVariantByProductColorSize($productId, $selectedColorId, $selectedSizeId)['id'];
+$variant_stock = 0;
+if ($selectedColorId != "undefined" && $selectedSizeId != "undefined"){
+    $variant = $productModel->getVariantByProductColorSize($productId, $selectedColorId, $selectedSizeId);
+    $variant_id = $variant['id'];
+    $variant_stock = $variant['stock'];
+}    
 else 
     $variant_id = -1;
+
+if ($variant_stock <= 0) {
+    echo json_encode(['success' => false, 'message' => 'No hay stock disponible para este producto']);
+    exit;
+}
+
 
 // Obtener size y color del id_variant
 $size = $_POST['size'] ?? null;
