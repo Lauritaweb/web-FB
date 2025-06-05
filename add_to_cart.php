@@ -16,6 +16,7 @@ $selectedColorId = $_POST['selectedColorId'] ?? null;
 
 $productModel = new Product();
 $variant_stock = 0;
+
 if ($selectedColorId != "undefined" && $selectedSizeId != "undefined"){
     $variant = $productModel->getVariantByProductColorSize($productId, $selectedColorId, $selectedSizeId);
     $variant_id = $variant['id'];
