@@ -17,13 +17,17 @@ $selectedColorId = $_POST['selectedColorId'] ?? null;
 $productModel = new Product();
 $variant_stock = 0;
 
-if ($selectedColorId != "undefined" && $selectedSizeId != "undefined"){
-    $variant = $productModel->getVariantByProductColorSize($productId, $selectedColorId, $selectedSizeId);
-    $variant_id = $variant['id'];
-    $variant_stock = $variant['stock'];
-}    
-else 
-    $variant_id = -1;
+// Si no esta definido es porque no se selecciono ningun color ni size. Existe una sola variante: -1 -1
+if ($selectedColorId == "undefined")
+    $selectedColorId = -1;
+
+if ($selectedSizeId == "undefined")
+    $selectedSizeId = -1;
+
+$variant = $productModel->getVariantByProductColorSize($productId, $selectedColorId, $selectedSizeId);
+
+$variant_id = $variant['id'];
+$variant_stock = $variant['stock'];
 
 if ($variant_stock <= 0) {
     echo json_encode(['success' => false, 'message' => 'No hay stock disponible para este producto']);
