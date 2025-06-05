@@ -371,7 +371,23 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                         text: 'Producto agregado al carrito',
                         confirmButtonColor: '#000'
                     });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡Error!',
+                        text: data.message || 'Hubo un error al agregar el producto',
+                        confirmButtonColor: '#000'
+                    });
                 }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: 'Hubo un error al procesar la solicitud',
+                    confirmButtonColor: '#000'
+                });
             });
         });
     }
