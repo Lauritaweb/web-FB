@@ -79,17 +79,11 @@ class Product
                     p.name, 
                     p.price,                   
                     c.description as category,
-                    (SELECT url FROM product_pictures WHERE id_producto = p.id LIMIT 1) as image
+                    (SELECT url FROM product_pictures WHERE id_producto = p.id and product_pictures.orden = 1 LIMIT 1) as image
                 FROM products p
                 JOIN product_variants pv ON p.id = pv.id_producto
                 LEFT JOIN subcategories sc ON sc.id = p.id_subcategory
-                LEFT JOIN categories c on c.id = p.id_category
-                LEFT JOIN (
-                    SELECT id_producto, MIN(id) AS min_id
-                    FROM product_pictures
-                    GROUP BY id_producto
-                ) pp_min ON pp_min.id_producto = p.id
-
+                LEFT JOIN categories c on c.id = p.id_category 
                 ";
 
         $priceConditions = [];
