@@ -117,7 +117,20 @@
 
 
   function aplicarFiltros() {
-    let category = <?= json_encode($idSubCategory) ?>;
+   // let category = <?= json_encode($idSubCategory) ?>;
+   // Obtener subcategorías seleccionadas
+   let selectedSubcategories = [];
+    $('#subcategory-filters input[type="checkbox"]:checked').each(function() {
+      const value = $(this).val();
+      if (value !== 'subcategory-all') {
+        selectedSubcategories.push(value);
+      }
+    });
+
+    // Si no hay subcategorías seleccionadas, usar todas
+    if (selectedSubcategories.length === 0) {
+      selectedSubcategories = null;
+    }
 
     // Obtener talles seleccionados
     let sizes = [];
