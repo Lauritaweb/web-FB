@@ -23,7 +23,31 @@ else
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
             <div class="col-lg-2 col-md-12 d-none d-md-block">
-
+                <!-- Subcategories Start -->
+                <?php if (isset($subfilter) && $subfilter === true): ?>
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filtrar por subcategorías</h5>
+                    <form id="subcategories-filters">
+                        <?php 
+                        // Obtener todas las subcategorías disponibles
+                        $allSubcategories = $bikeModel->getSubCategoriesById($idSubCategory);
+                       
+                        foreach ($allSubcategories as $subcat): ?>
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input type="checkbox" class="custom-control-input" 
+                                   id="subcat-<?php echo $subcat['id']; ?>" 
+                                   value="<?php echo $subcat['id']; ?>"
+                                   <?php echo in_array($subcat['id'], $idSubCategory) ? 'checked' : ''; ?>>
+                            <label class="custom-control-label" for="subcat-<?php echo $subcat['id']; ?>">
+                                <?php echo htmlspecialchars($subcat['description']); ?>
+                            </label>
+                        </div>
+                        <?php endforeach; ?>
+                    </form>
+                </div>
+                <?php endif; ?>
+                <!-- Subcategories End -->               
+                
                  <!-- Price Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por precios</h5>
@@ -117,6 +141,65 @@ else
         </div>
     </div>
     <!-- Shop End -->
+
+    <script>
+        // Manejar cambios en los filtros de subcategorías
+        document.addEventListener('DOMContentLoaded', function() {
+            const subcategoryFilters = document.getElementById('subcategories-filters');
+            if (subcategoryFilters) {
+                subcategoryFilters.addEventListener('change', function(e) {
+                    const selectedSubcategories = Array.from(
+                        subcategoryFilters.querySelectorAll('input[type="checkbox"]:checked')
+                    ).map(checkbox => checkbox.value);
+
+                    // Actualizar los productos filtrados
+                    updateFilteredProducts(selectedSubcategories);
+                });
+            }
+        });
+
+        function updateFilteredProducts(subcategories) {
+            // Aquí deberías hacer una llamada AJAX para actualizar los productos
+            // basado en las subcategorías seleccionadas
+            // Por ejemplo:
+            fetch('filter_products.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    subcategories: subcategories
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Actualizar la lista de productos con los nuevos resultados
+                updateProductList(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function updateProductList(products) {
+            const productList = document.getElementById('product-list');
+            if (!productList) return;
+
+            productList.innerHTML = '';
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'col-lg-4 col-md-6 col-sm-12 mb-4';
+                productDiv.innerHTML = `
+                    <div class="card product-item">
+                        <div class="card-body text-center">
+                            <img src="${product.image}" alt="${product.name}" class="img-fluid mb-3">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">$${product.price}</p>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(productDiv);
+            });
+        }
+    </script>
 
 
  

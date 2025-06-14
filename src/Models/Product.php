@@ -337,10 +337,34 @@ class Product
     }
 
 
+    public function getSubCategoriesById($idSubcategory){      
+        // Generar los placeholders (?, ?, ?, ...)
+        $placeholders = implode(',', array_fill(0, count($idSubcategory), '?'));
+        $query = "  SELECT id, description  
+                    FROM subcategories                        
+                    WHERE subcategories.id IN ($placeholders)";
+
+        $stmt = $this->db->prepare($query);
+
+        // Armar el tipo de datos para bind_param: todos enteros -> 'iii...'
+        $types = str_repeat('i', count($idSubcategory));
+        $stmt->bind_param($types, ...$idSubcategory);
+        $stmt->execute();
+        $result = $stmt->get_result();
+  
+        $subcategories = [];
+        while ($row = $result->fetch_assoc()) {
+            $subcategories[] = $row;
+        }
+
+
+        return $subcategories;
+    }
+
+
 
     public function getRandomProducts($idCategory = null, $cantidad = 5)
-    {
-        $where = [];
+    {        $where = [];
         $params = [];
 
         $sql = "SELECT 
