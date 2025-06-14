@@ -162,7 +162,7 @@ else
             // Aquí deberías hacer una llamada AJAX para actualizar los productos
             // basado en las subcategorías seleccionadas
             // Por ejemplo:
-            fetch('filter_products.php', {
+            fetch('../filter_products.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

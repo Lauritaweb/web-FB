@@ -129,7 +129,7 @@
 
     // Si no hay subcategorías seleccionadas, usar todas
     if (selectedSubcategories.length === 0) {
-      selectedSubcategories = null;
+      selectedSubcategories = category;
     }
 
     // Obtener talles seleccionados
@@ -164,7 +164,7 @@
       type: 'POST',
       dataType: 'json',
       data: {
-        category: category,
+        category: selectedSubcategories,
         sizes: sizes,
         colors: colors,
         prices: prices
