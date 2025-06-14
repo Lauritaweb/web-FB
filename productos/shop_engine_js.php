@@ -117,7 +117,7 @@
 
 
   function aplicarFiltros() {
-   // let category = <?= json_encode($idSubCategory) ?>;
+    let category = <?= json_encode($idSubCategory) ?>; // Sacar
    // Obtener subcategorías seleccionadas
    let selectedSubcategories = [];
     $('#subcategory-filters input[type="checkbox"]:checked').each(function() {
