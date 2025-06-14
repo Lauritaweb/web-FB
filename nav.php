@@ -53,8 +53,8 @@
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/manubrios.php">Manubrios</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas y componentes</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/transmision.php">Trasmisión</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas, Aros y Rayos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cambios.php">Cambios</a></li>
                           <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos</a></li>
                         </ul>
                       </div>
