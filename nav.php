@@ -66,28 +66,40 @@ $url_base = $_ENV['APP_URL'];
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
+                        <h6 class="fw-bold">Componentes</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos.php">Asientos</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros</a></li>
+                          
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos-velas-collares.php">Asientos, velas y collares</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cables-fundas-ductos.php">Cables, fundas y ductos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cadenas.php">Cadenas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cajas-pedaleras.php">Cajas pedaleras</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/camaras.php">Cámaras</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cambios.php">Cambios</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros y horquillas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cubiertas.php">Cubiertas</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-2">
+                        <h6 class="fw-bold">&nbsp;</h6>
+                        <ul class="list-unstyled">
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/frenos.php">Frenos</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="col-md-2">
-                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/juegos-direccion.php">Juegos de dirección</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/manubrios.php">Manubrios</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas y componentes</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/mazas.php">Mazas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/pedales-calas.php">Pedales y calas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/pinones.php">Piñones</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/platos-palancas.php">Platos y palancas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/puños-grips.php">Puños y grips</a></li>
                         </ul>
                       </div>
-
                       <div class="col-md-2">
+                        <h6 class="fw-bold">&nbsp;</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/transmision.php">Trasmisión</a></li>
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas, Aros y Rayos                          </a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos los componentes</a></li>
                         </ul>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -100,35 +112,26 @@ $url_base = $_ENV['APP_URL'];
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
+                        <h6 class="fw-bold">Accesorios</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos y alforjas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/caramanolas.php">Caramañolas</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/cascos.php">Cascos</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/ciclocomputadores.php">Ciclocomputadores</a></li>
-                        </ul>
-                      </div>
-                      
-                      <div class="col-md-2">
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/herramientas.php">Herramientas</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/infladores.php">Infladores</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
                         </ul>
                       </div>
                       
                       <div class="col-md-2">
+                        <h6 class="fw-bold">&nbsp;</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/punos-cintas.php">Puños / Cintas</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros</a></li>
-                          <li><a class="dropdown-item text-key d-none" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>                                                    
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros accesorios</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/portaequipajes.php">Portaequipajes</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos los accesorios</a></li>
                         </ul>
-                      </div>
-
-                      <div class="col-md-2">
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
-                        </ul>
-                      </div>
+                      </div>                      
                       
                     </div>
                   </div>
