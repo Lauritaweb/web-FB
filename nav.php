@@ -1,7 +1,12 @@
 <?php
-//$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
- $url_base = 'https://www.foreverbikes.com.ar';
-// $url_base = 'http://localhost/dev/web-FB';
+require 'vendor/autoload.php';
+
+// Cargar variables de entorno desde .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Obtener la URL base de las variables de entorno
+$url_base = $_ENV['APP_URL'];
 ?>
 <div class="marquee bg-black text-white text-center mb-2">
         <p>
