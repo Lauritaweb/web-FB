@@ -40,12 +40,14 @@ else
                 </div>            
                 <!-- Color End -->
 
+                <?php if(isset($filterPrecategory) && $filterPrecategory == 1): ?>
                 <!-- Category Start -->
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por categoría</h5>
                     <form id="category-filters"></form>
                 </div> 
                 <!-- Category End -->
+                <?php endif; ?>
 
                 <!-- Size Start -->
                 <div class="mb-5 <?= $hide ?>">

@@ -16,6 +16,7 @@
 <script>
 
   let idSubcategory = <?php echo json_encode($idSubCategory); ?>;
+  let filterPrecategory = <?php echo isset($filterPrecategory) ? $filterPrecategory : 0; ?>;
   let availableCategories = [];
           
   $(document).ready(function () {
@@ -23,7 +24,12 @@
       availableCategories = data.subcategories;
       renderFilters(data.colors, '#color-filters', 'color');
       renderFilters(data.sizes, '#size-filters', 'size');
-      renderFilters(data.subcategories, '#category-filters', 'category');
+      
+      // Solo renderizar el filtro de categoría si filterPrecategory es 1
+      if (filterPrecategory === 1) {
+        renderFilters(data.subcategories, '#category-filters', 'category');
+      }
+      
       renderPriceFilters(data.prices, '#price-filters');
 
       if (evaluatePageChange()) {
@@ -143,20 +149,28 @@
   function aplicarFiltros() {
     // Obtener categorías seleccionadas
     let categories = [];
-    const isAllSelected = $('#category-all').is(':checked');
-
-    if (isAllSelected) {
-      // Si está seleccionado "Todos", enviar todas las categorías disponibles
+    
+    if (filterPrecategory === 1) {
+      const isAllSelected = $('#category-all').is(':checked');
+      
+      if (isAllSelected) {
+        // Si está seleccionado "Todos", enviar todas las categorías disponibles
+        availableCategories.forEach(category => {
+          categories.push(category.id);
+        });
+      } else {
+        // Si no está seleccionado "Todos", obtener las categorías específicas
+        $('#category-filters input[type="checkbox"]:checked').each(function() {
+          const value = $(this).val();
+          if (value !== 'category-all') {
+            categories.push(value);
+          }
+        });
+      }
+    } else {
+      // Si filterPrecategory no es 1, enviar todas las categorías disponibles
       availableCategories.forEach(category => {
         categories.push(category.id);
-      });
-    } else {
-      // Si no está seleccionado "Todos", obtener las categorías específicas
-      $('#category-filters input[type="checkbox"]:checked').each(function() {
-        const value = $(this).val();
-        if (value !== 'category-all') {
-          categories.push(value);
-        }
       });
     }
 
