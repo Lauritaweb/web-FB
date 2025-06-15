@@ -118,7 +118,15 @@
 
 
   function aplicarFiltros() {
-    let category = <?= json_encode($idSubCategory) ?>;
+    // Obtener categorías seleccionadas
+    let categories = [];
+    
+    $('#category-filters input[type="checkbox"]:checked').each(function() {
+      const value = $(this).val();
+      if (value !== 'category-all') {
+        categories.push(value);
+      }
+    });
 
     // Obtener talles seleccionados
     let sizes = [];
@@ -152,7 +160,7 @@
       type: 'POST',
       dataType: 'json',
       data: {
-        category: category,
+        category: categories.length > 0 ? categories : null,
         sizes: sizes,
         colors: colors,
         prices: prices
@@ -229,6 +237,7 @@
     setupFilterGroup('color');
     setupFilterGroup('size');
     setupFilterGroup('price');
+    setupFilterGroup('category');
 
   });
 
@@ -239,6 +248,9 @@
         return this.id;
       }).get(),
       colors: $('#color-filters input[type=checkbox]:checked').map(function() {
+        return this.id;
+      }).get(),
+      categories: $('#category-filters input[type=checkbox]:checked').map(function() {
         return this.id;
       }).get()
     };
@@ -256,6 +268,10 @@
       // Restaurar tamaños
       $('#size-filters input[type=checkbox]').prop('checked', false);
       saved.sizes.forEach(id => $(`#${id}`).prop('checked', true));
+
+      // Restaurar categorías
+      $('#category-filters input[type=checkbox]').prop('checked', false);
+      saved.categories.forEach(id => $(`#${id}`).prop('checked', true));
     }
   }
 </script>
