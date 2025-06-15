@@ -186,10 +186,23 @@ $input-placeholder-color: #999999;
 }
 // cards
 .card{
+    a{
+        text-decoration: none!important;
+        &:hover{
+            color: #f70180!important;
+        }
+    }
     &.product-item .btn:hover{
         color: #f70180!important;
         i{
             color: #f70180!important;
+        }
+    }
+    .card-body{
+        h6{
+            font-weight: 600;
+            color: black;
+            text-decoration: none;
         }
     }
 }

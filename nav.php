@@ -1,7 +1,7 @@
 <?php
 //$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
  $url_base = 'https://www.foreverbikes.com.ar';
- $url_base = 'http://localhost/dev/web-FB';
+// $url_base = 'http://localhost/dev/web-FB';
 ?>
 <div class="marquee bg-black text-white text-center mb-2">
         <p>
@@ -30,79 +30,142 @@
             <ul class="navbar-nav me-auto">
               <li class="nav-item dropdown position-static">
                 <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
-                  PRODUCTOS
+                  Bicicletas
                 </a>
                 <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
-                        <h6 class="fw-bold">Bicis</h6>
                         <ul class="list-unstyled">
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/bicis-urbanas.php">Urbanas</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/bicis-ruta.php">Ruta</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/bicis-todo-terreno.php">Todo terreno</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/bicis/mi-primera-forever.php">Mi primera Forever</a></li>
                           <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/bicis/index.php">Ver todas</a></li>
                         </ul>
                       </div>
-                      <div class="col-md-2">
-                        <h6 class="fw-bold">Componentes</h6>
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos.php">Asientos</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/frenos.php">Frenos</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/manubrios.php">Manubrios</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas y componentes</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cambios.php">Trasmisión</a></li>
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-md-2">
-                        <h6 class="fw-bold">Accesorios</h6>
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/cascos.php">Cascos</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/ciclocomputadores.php">Ciclocomputadores</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/herramientas.php">Herramientas</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/infladores.php">Infladores</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/punos-cintas.php">Puños / Cintas</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros</a></li>
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-md-2">
-                        <h6 class="fw-bold">Indumentaria</h6>
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/indumentaria/index.php">Ver todos</a></li>
-                        </ul>
-                      </div>
-                      <!-- <div class="col-md-2">
-                        <h6 class="fw-bold">Servicios</h6>
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/services/index.php">Ver todos</a></li>
-                        </ul>
-                      </div> 
-                      <div class="col-md-2">
-                        <h6 class="fw-bold">Cursos</h6>
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/cursos/index.php">Ver todos</a></li>
-                        </ul>
-                      </div>-->
                     </div>
                   </div>
                 </div>
               </li>
               <li class="nav-item dropdown position-static">
                 <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
+                  Componentes
+                </a>
+                <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos.php">Asientos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/frenos.php">Frenos</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/manubrios.php">Manubrios</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas y componentes</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/transmision.php">Trasmisión</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos</a></li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown position-static">
+                <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
+                  Accesorios
+                </a>
+                <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/cascos.php">Cascos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/ciclocomputadores.php">Ciclocomputadores</a></li>
+                        </ul>
+                      </div>
+                      
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/herramientas.php">Herramientas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/infladores.php">Infladores</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
+                        </ul>
+                      </div>
+                      
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/punos-cintas.php">Puños / Cintas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros</a></li>
+                          <li><a class="dropdown-item text-key d-none" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
+                        </ul>
+                      </div>
+
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
+                        </ul>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown position-static d-none">
+                <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
+                  Indumentaria
+                </a>
+                <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/indumentaria/index.php">Ver todos</a></li>
+                        </ul>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </li>
+              
+              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/productos/indumentaria/index.php">INDUMENTARIA</a></li>
+              
+              
+<!-- 
+              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/about-foreverbikes.php">SOMOS FOREVER</a></li>
+              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/index.php#forever-comunity">COMUNIDAD</a></li> -->
+            </ul>
+      
+            <!-- Iconos a la derecha -->
+            <div class="d-flex gap-3 align-items-center">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown position-static">
+                <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
                     SERVICIOS
                     </a>
                 <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
                   <div class="container">
                     <div class="row">
-                      <div class="col-md-2">
+                      <div class="col">
                             <ul class="list-unstyled">
                                 <li><a class="dropdown-item" href="<?= $url_base ?>/services.php#postventa">Post venta</a></li>
                                 <li><a class="dropdown-item" href="<?= $url_base ?>/services.php#service">Service mecánico</a></li>
@@ -114,13 +177,25 @@
                   </div>
                 </div>
               </li>
-              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/index.php#our-bikes">NUESTRAS BICIS</a></li>
-              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/about-foreverbikes.php">SOMOS FOREVER</a></li>
-              <li class="nav-item"><a class="nav-link" href="<?= $url_base ?>/index.php#forever-comunity">COMUNIDAD</a></li>
-            </ul>
-      
-            <!-- Iconos a la derecha -->
-            <div class="d-flex gap-3 align-items-center">
+                <li class="nav-item dropdown position-static">
+                <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
+                  Forever
+                </a>
+                <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/about-foreverbikes.php">Somos Forever</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/index.php#forever-comunity">Comunidad Forever</a></li>
+                        </ul>
+                      </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </li>
+              </ul>
               <a href="<?= $url_base ?>/checkout.php" class="nav-link border-end pe-3">
                 <span id="cart-count"  style="font-size: 0.7rem;">
                   

@@ -1,5 +1,5 @@
 <?php
-$idSubCategory=[38,39,42];
+$idSubCategory=[38,39,42,43];
 ?>
 <!DOCTYPE html>
 <html lang="en">

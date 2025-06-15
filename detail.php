@@ -206,21 +206,23 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <div class="owl-carousel related-carousel">
                     <?php foreach($randomProducts as $random){?>
                     <div class="card product-item border-0">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <a href="../../detail.php?id=<?= $random['id']?>">
-                                <img class="img-fluid w-100" src="../../assets/media/image/<?= $random['image'] ?>" alt="">
-                            </a>
-                        </div>
-                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3"><?= $random['name'] ?></h6>
-                            <div class="d-flex justify-content-center">
-                                <h6> $<?= Utils::mostrarTarifaSinCentavos($random['price']) ?></h6> 
+
+                        <a href="../../detail.php?id=<?= $random['id']?>">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="../../assets/media/image/<?= $random['image'] ?>" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3"><?= $random['name'] ?></h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6> $<?= Utils::mostrarTarifaSinCentavos($random['price']) ?></h6> 
+                                    </div>
+                                </div>
+                        </a>
+                            <div class="card-footer d-flex justify-content-between bg-light border d-none">
+                                <a href="../../detail.php?id=<?= $random['id']?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
+                                
                             </div>
-                        </div>
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <a href="../../detail.php?id=<?= $random['id']?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-dark me-1"></i>Ver detalles</a>
-                            
-                        </div>
+
                     </div>
                     <?php  } ?>                   
                 </div>

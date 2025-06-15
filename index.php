@@ -40,7 +40,7 @@
 
     <?php include('./nav.php'); ?>
 
-    <header class="header container mt-3 border-bottom pb-5">
+    <header class="header mt-3 border-bottom pb-5">
         <img src="./assets/img/header-forever-bike.png" alt="Logo de Forever Bikes, marca especializada en bicicletas personalizadas">
     </header>
 
