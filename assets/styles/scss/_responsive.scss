@@ -30,3 +30,12 @@
     }
     
 }
+// container
+@media(width<=1399px){
+    .container{
+        max-width:1222px;
+    }
+    .navbar .nav-item .nav-link{
+        font-size: .7em;
+    }
+}

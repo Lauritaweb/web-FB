@@ -143,7 +143,8 @@
         <section class="py-5" id="cursos">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="./assets/img/cursos.png" alt="" class="w-100">
+                    <!-- <img src="./assets/img/cursos.png" alt="" class="w-100"> -->
+                     <iframe class="w-100 h-100" src="https://www.youtube.com/embed/EbYSLt_7gZg" title="YouTube Shorts" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <article class="col-md-6">
                     <h2 class="fs-2 text-uppercase fw-bold">CURSOS DE MECÁNICA</h2>

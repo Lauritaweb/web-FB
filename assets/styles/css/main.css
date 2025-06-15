@@ -185,6 +185,7 @@ p {
 }
 .navbar .nav-item .nav-link {
   font-size: 0.8em;
+  text-transform: uppercase;
   font-weight: 600;
   background-image: linear-gradient(currentColor, currentColor);
   background-position: 0% 100%;
@@ -212,6 +213,7 @@ footer .payments img {
   position: fixed;
   right: 30px;
   bottom: 90px;
+  z-index: 2000;
   -webkit-animation: action 1s infinite alternate;
   animation: action 1s infinite alternate;
 }
@@ -471,11 +473,22 @@ footer .payments img {
   --bs-pagination-hover-color:black;
 }
 
+.card a {
+  text-decoration: none !important;
+}
+.card a:hover {
+  color: #f70180 !important;
+}
 .card.product-item .btn:hover {
   color: #f70180 !important;
 }
 .card.product-item .btn:hover i {
   color: #f70180 !important;
+}
+.card .card-body h6 {
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
 }
 
 div.nav-tabs[role=tablist] .nav-link:focus, div.nav-tabs[role=tablist] .nav-link:hover {
@@ -512,6 +525,14 @@ div.nav-tabs[role=tablist] .nav-link:focus, div.nav-tabs[role=tablist] .nav-link
   }
   .story-telling-2 {
     padding-top: 0 !important;
+  }
+}
+@media (width <= 1399px) {
+  .container {
+    max-width: 1222px;
+  }
+  .navbar .nav-item .nav-link {
+    font-size: 0.7em;
   }
 }
 
