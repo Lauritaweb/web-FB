@@ -22,6 +22,7 @@
     $.getJSON('../get_filters.php', { idSubcategory: idSubcategory } , function (data) {
       renderFilters(data.colors, '#color-filters', 'color');
       renderFilters(data.sizes, '#size-filters', 'size');
+      renderFilters(data.subcategories, '#category-filters', 'category');
       renderPriceFilters(data.prices, '#price-filters');
 
       if (evaluatePageChange()) {
