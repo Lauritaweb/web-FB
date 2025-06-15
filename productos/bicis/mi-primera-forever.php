@@ -31,7 +31,7 @@ $idSubCategory=4;
    <header class="container-fluid header bg-eight mb-5 mt-5"></header>
     <!-- Page Header End -->
     <section class="pt-5 container">
-        <h1 class="fs-1 text-uppercase text-center">Mini primera Forever</h1>
+        <h1 class="fs-1 text-uppercase text-center">Mi primera Forever</h1>
         <p class="text-center mt-3 mb-5">
           Con ruedas chicas y sueños enormes, las Mini Forever están diseñadas para acompañar los primeros pedaleos de niños y niñas. 
           Bicicletas seguras, resistentes y llenas de color, ideales para aprender jugando y disfrutar con confianza.
