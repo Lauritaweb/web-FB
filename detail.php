@@ -105,47 +105,61 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                 <h3 class="font-weight-semi-bold mb-4">$<?= Utils::mostrarTarifaSinCentavos($price) ?></h3>
                 <p class="mb-4"><?= $shortdetails ?></p>
                 
-                <!-- Si hay más de un tamaño disponible -->
-                <?php if (count($product['sizes']) > 1){                   
-                    ?>
+                <?php 
+                // Verificar si hay una sola variante (cuando tanto tamaño como color tienen un solo valor)
+                $hasSingleVariant = (count($product['sizes']) === 1 && count($product['colors']) === 1);
+                $singleSize = $hasSingleVariant ? reset($product['sizes']) : null;
+                $singleColor = $hasSingleVariant ? reset($product['colors']) : null;
+                $singleSizeId = $hasSingleVariant ? array_key_first($product['sizes']) : null;
+                $singleColorId = $hasSingleVariant ? array_key_first($product['colors']) : null;
+                ?>
+
+                <?php if (!$hasSingleVariant && count($product['sizes']) > 0): ?>
+                    <!-- Mostrar opciones de tamaño solo si no es una variante única -->
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Tamaños:</p>
                         <form class="d-flex">
                         <?php foreach ($product['sizes'] as $i => $size): ?>
                             <div class="custom-control custom-radio custom-control-inline ms-3">
                                 <input type="radio" class="custom-control-input" id="size-<?= $i ?>" name="size" data-size="<?= $i ?>" value="<?= $size ?>">
-                                <label class="custom-control-label" for="size-<?= $i ?>"><?= ($size) ?></label>
+                                <label class="custom-control-label" for="size-<?= $i ?>"><?= $size ?></label>
                             </div>
                         <?php endforeach; ?>
                         </form>
                     </div>
-                <?php } ?>
+                <?php endif; ?>
 
-                <!-- Si hay más de un color disponible -->
-                <?php if (count($product['colors']) > 1){                     
-                    ?>
-                    <div class="d-flex mb-4">
+                <div class="d-flex mb-4">
+                    <?php if ($hasSingleVariant): ?>
+                        <!-- Si hay una sola variante, ocultamos los controles pero mantenemos los valores -->
+                        <input type="hidden" name="size" value="<?= $singleSize ?>">
+                        <input type="hidden" name="color" value="<?= $singleColor ?>">
+                        <input type="hidden" id="size--1" data-size="<?= $singleSizeId ?>" value="<?= $singleSize ?>">
+                        <input type="hidden" id="color--1" data-color="<?= $singleColorId ?>" value="<?= $singleColor ?>">
+                    <?php elseif (count($product['colors']) > 0): ?>
+                        <!-- Mostrar opciones de color solo si no es una variante única -->
                         <p class="text-dark font-weight-medium mb-0 me-3 w-60">Colores:</p>
-                        <!-- Radios visibles solo en desktop -->
                         <form class="d-none d-md-flex flex-wrap" id="colorOptions">
                             <?php foreach ($product['colors'] as $i => $color): ?>
-                                <div class="custom-control custom-radio custom-control-inline ms-3 color-option" style="display: none;">
+                                <div class="custom-control custom-radio custom-control-inline ms-3 color-option" style="display: block;">
                                     <input type="radio" class="custom-control-input" id="color-<?= $i ?>" data-color="<?= $i ?>" name="color" value="<?= $color ?>">
                                     <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
                                 </div>
                             <?php endforeach; ?>
                         </form>
-
                         <!-- Select visible solo en mobile -->
                         <form class="d-block d-md-none" id="mobileColorOptions">
                             <div class="form-group">
-                                <select class="form-select" name="color" id="colorSelect" disabled>
-                                    <option value="">Selecciona un tamaño primero</option>
+                                <select class="form-select" name="color" id="colorSelect" <?= count($product['sizes']) > 0 ? 'disabled' : '' ?>>
+                                    <option value="">Selecciona un color</option>
+                                    <?php foreach ($product['colors'] as $i => $color): ?>
+                                        <option value="<?= $color ?>" data-color="<?= $i ?>"><?= $color ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </form>
-                    </div>
-                <?php } ?>
+                    <?php endif; ?>
+                </div>
 
                 <!-- Agregar el campo hidden para el id_variant -->
                 <input type="hidden" id="id_variant" name="id_variant" value="">
@@ -330,23 +344,59 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
 
             const quantity = parseInt(document.querySelector('.form-control').value);
             const id_variant = document.getElementById('id_variant').value;
-            const selectedSize = document.querySelector('input[name="size"]:checked')?.value;
-            const selectedColor = document.querySelector('input[name="color"]:checked')?.value;
-            const selectedSizeId = document.querySelector('input[name="size"]:checked')?.dataset.size;
-            const selectedColorId = document.querySelector('input[name="color"]:checked')?.dataset.color;
-            console.log(selectedSizeId, selectedColorId);
-/*
-            if (!id_variant) {
+            
+            // Obtener el tamaño seleccionado, ya sea del radio button o del input hidden
+            const selectedSizeRadio = document.querySelector('input[name="size"]:checked');
+            const selectedSizeHidden = document.querySelector('input[name="size"][type="hidden"]');
+            const selectedSize = selectedSizeRadio ? selectedSizeRadio.value : (selectedSizeHidden ? selectedSizeHidden.value : '');
+            
+            // Obtener el ID del tamaño, ya sea del radio button o del input hidden
+            const selectedSizeRadioId = selectedSizeRadio?.dataset.size;
+            const selectedSizeHiddenId = document.querySelector('input[type="hidden"][data-size]')?.dataset.size;
+            const selectedSizeId = selectedSizeRadioId !== undefined ? selectedSizeRadioId : selectedSizeHiddenId;
+            
+            // Obtener el color seleccionado, ya sea del radio button o del input hidden
+            const selectedColorRadio = document.querySelector('input[name="color"]:checked');
+            const selectedColorHidden = document.querySelector('input[name="color"][type="hidden"]');
+            const selectedColor = selectedColorRadio ? selectedColorRadio.value : (selectedColorHidden ? selectedColorHidden.value : '');
+            
+            // Obtener el ID del color, ya sea del radio button o del input hidden
+            const selectedColorRadioId = selectedColorRadio?.dataset.color;
+            const selectedColorHiddenId = document.querySelector('input[type="hidden"][data-color]')?.dataset.color;
+            const selectedColorId = selectedColorRadioId !== undefined ? selectedColorRadioId : selectedColorHiddenId;
+            
+            console.log('Tamaño seleccionado (ID):', selectedSizeId);
+            console.log('Color seleccionado (ID):', selectedColorId);
+            
+            // Verificar si hay tamaños o colores para seleccionar
+            const hasSizes = document.querySelectorAll('input[name="size"]').length > 0;
+            const hasColors = document.querySelectorAll('input[name="color"]').length > 0;
+            
+            // Verificar si estamos en el caso de una sola variante (tamaño y color ocultos)
+            const hasSingleVariant = selectedSizeHidden && selectedColorHidden;
+            
+            // Verificar si se han seleccionado los campos requeridos
+            const sizeSelected = hasSizes ? (!!document.querySelector('input[name="size"]:checked') || hasSingleVariant) : true;
+            const colorSelected = hasColors ? (!!document.querySelector('input[name="color"]:checked') || hasSingleVariant) : true;
+            
+            if (!sizeSelected || !colorSelected) {
+                let errorMessage = 'Por favor selecciona: ';
+                const errors = [];
+                
+                if (!sizeSelected && hasSizes) errors.push('un tamaño');
+                if (!colorSelected && hasColors) errors.push('un color');
+                
+                errorMessage += errors.join(' y ');
+                
                 Swal.fire({
                     icon: 'warning',
                     title: '¡Atención!',
-                    text: 'Seleccioná una variante (tamaño y color)',
+                    text: errorMessage,
                     confirmButtonText: 'Entendido',
                     confirmButtonColor: '#d33'
                 });
                 return;
             }
-*/
             fetch('../../add_to_cart.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
