@@ -66,7 +66,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
    <?php include('nav.php'); ?>
 
     <!-- Page Header Start -->
-    <header class="container-fluid header bg-three mb-5 mt-5">
+    <header class="container-fluid header bg-three mb-5 mt-5 d-none">
         <div class="d-flex flex-column align-items-center justify-content-center">
             
         </div>
@@ -75,7 +75,7 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
 
 
     <!-- Shop Detail Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid py-5 mt-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">

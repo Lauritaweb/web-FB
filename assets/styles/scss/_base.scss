@@ -25,9 +25,12 @@ p{
 }
 // header
 .header{
-    min-height: 400px;
+    min-height: 40vh;
+    margin-bottom: 0!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
     @media (width <= 768px){
-        min-height:200px;
+        min-height:20vh;
     }
 }
 // bgs
@@ -140,7 +143,58 @@ p{
     background: url(../../img/bg-gracias.png);
     background-size: cover;
 }
-
+.bg-twenty-eight{
+    background: url(../../img/bg-cables-fundas-ductos.png);
+    background-size: cover;
+}
+.bg-twenty-nine{
+    background: url(../../img/bg-cadenas.png);
+    background-size: cover;
+}
+.bg-thirty{
+    background: url(../../img/bg-cajas-pedaleras.png);
+    background-size: cover;
+}
+.bg-thirty-one{
+    background: url(../../img/bg-camaras.png);
+    background-size: cover;
+}
+.bg-thirty-two{
+    background: url(../../img/bg-cubiertas.png);
+    background-size: cover;
+}
+.bg-thirty-three{
+    background: url(../../img/bg-juegos-direccion.png);
+    background-size: cover;
+}
+.bg-thirty-four{
+    background: url(../../img/bg-mazas.png);
+    background-size: cover;
+}
+.bg-thirty-five{
+    background: url(../../img/bg-pedales-calas.png);
+    background-size: cover;
+}
+.bg-thirty-six{
+    background: url(../../img/bg-pinones.png);
+    background-size: cover;
+}
+.bg-thirty-seven{
+    background: url(../../img/bg-platos-palancas.png);
+    background-size: cover;
+}
+.bg-thirty-eight{
+    background: url(../../img/bg-puños-grips.png);
+    background-size: cover;
+}
+.bg-thirty-nine{
+    background: url(../../img/bg-caramanolas.png);
+    background-size: cover;
+}
+.bg-fourty{
+    background: url(../../img/bg-portaequipajes.png);
+    background-size: cover;
+}
 // btns
 .btn-dark{
     background-color: black;

@@ -15,7 +15,7 @@ $url_base = $_ENV['APP_URL'];
         </p>
     </div>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg  position-relative pt-5">
+    <nav class="navbar navbar-expand-lg  position-relative pt-3 pt-md-5">
         <div class="container">
       
           <!-- Botón Hamburguesa -->
@@ -37,7 +37,7 @@ $url_base = $_ENV['APP_URL'];
                 <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
                   Bicicletas
                 </a>
-                <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
+                <div class="dropdown-menu w-100 mt-0 p-0 p-md-4 border-0 shadow-lg">
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">

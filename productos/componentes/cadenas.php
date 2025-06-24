@@ -7,7 +7,7 @@ $idSubCategory=20;
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadenas | Forever Bikes</title>
-    <meta name="description" content="Descubrí asientos diseñados para cada estilo de pedaleo. Ergonomía, confort y tecnología para disfrutar cada kilómetro con tu Forever. Probá el cambio.">
+    <meta name="description" content="Encuentra cadenas para bicicletas en Forever Bikes: resistentes, ligeras y compatibles con todo tipo de transmisión. ¡Rendimiento y durabilidad garantizados!" />
     <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -26,7 +26,7 @@ $idSubCategory=20;
 <body class="bg-white">
     <?php include('../../nav.php'); ?>
      <!-- Page Header Start -->
-    <header class="container-fluid header bg-twenty mb-5 mt-5">
+    <header class="container-fluid header bg-twenty-nine mb-5 mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center">
         </div>
     </header>
