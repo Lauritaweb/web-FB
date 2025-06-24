@@ -1,7 +1,12 @@
 <?php
-//$url_base = 'https://dodgerblue-whale-838164.hostingersite.com';
- $url_base = 'https://www.foreverbikes.com.ar';
-// $url_base = 'http://localhost/dev/web-FB';
+require 'vendor/autoload.php';
+
+// Cargar variables de entorno desde .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Obtener la URL base de las variables de entorno
+$url_base = $_ENV['APP_URL'];
 ?>
 <div class="marquee bg-black text-white text-center mb-2">
         <p>
@@ -10,7 +15,7 @@
         </p>
     </div>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg  position-relative pt-5">
+    <nav class="navbar navbar-expand-lg  position-relative pt-3 pt-md-5">
         <div class="container">
       
           <!-- Botón Hamburguesa -->
@@ -32,7 +37,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="megaMenuLink" data-bs-toggle="dropdown">
                   Bicicletas
                 </a>
-                <div class="dropdown-menu w-100 mt-0 p-4 border-0 shadow-lg">
+                <div class="dropdown-menu w-100 mt-0 p-0 p-md-4 border-0 shadow-lg">
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
@@ -49,7 +54,6 @@
                           <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/bicis/index.php">Ver todas</a></li>
                         </ul>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -62,28 +66,40 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
+                        <h6 class="fw-bold">Componentes</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos.php">Asientos</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros</a></li>
+                          
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/asientos-velas-collares.php">Asientos, velas y collares</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cables-fundas-ductos.php">Cables, fundas y ductos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cadenas.php">Cadenas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cajas-pedaleras.php">Cajas pedaleras</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/camaras.php">Cámaras</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cambios.php">Cambios</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cuadros.php">Cuadros y horquillas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/cubiertas.php">Cubiertas</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-2">
+                        <h6 class="fw-bold">&nbsp;</h6>
+                        <ul class="list-unstyled">
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/frenos.php">Frenos</a></li>
-                        </ul>
-                      </div>
-
-                      <div class="col-md-2">
-                        <ul class="list-unstyled">
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/juegos-direccion.php">Juegos de dirección</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/manubrios.php">Manubrios</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas y componentes</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/mazas.php">Mazas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/pedales-calas.php">Pedales y calas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/pinones.php">Piñones</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/platos-palancas.php">Platos y palancas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/puños-grips.php">Puños y grips</a></li>
                         </ul>
                       </div>
-
                       <div class="col-md-2">
+                        <h6 class="fw-bold">&nbsp;</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/transmision.php">Trasmisión</a></li>
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/ruedas-componentes.php">Ruedas, Aros y Rayos                          </a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/componentes/stems.php">Stems</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/componentes/index.php">Ver todos los componentes</a></li>
                         </ul>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -96,35 +112,26 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-md-2">
+                        <h6 class="fw-bold">Accesorios</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/bolsos.php">Bolsos y alforjas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/caramanolas.php">Caramañolas</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/cascos.php">Cascos</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/ciclocomputadores.php">Ciclocomputadores</a></li>
-                        </ul>
-                      </div>
-                      
-                      <div class="col-md-2">
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/herramientas.php">Herramientas</a></li>
                           <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/infladores.php">Infladores</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
                         </ul>
                       </div>
                       
                       <div class="col-md-2">
+                        <h6 class="fw-bold">&nbsp;</h6>
                         <ul class="list-unstyled">
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/punos-cintas.php">Puños / Cintas</a></li>
-                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros</a></li>
-                          <li><a class="dropdown-item text-key d-none" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/lingas.php">Lingas</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/luces.php">Luces</a></li>                                                    
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/otros.php">Otros accesorios</a></li>
+                          <li><a class="dropdown-item" href="<?= $url_base ?>/productos/accesorios/portaequipajes.php">Portaequipajes</a></li>
+                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos los accesorios</a></li>
                         </ul>
-                      </div>
-
-                      <div class="col-md-2">
-                        <ul class="list-unstyled">
-                          <li><a class="dropdown-item text-key" href="<?= $url_base ?>/productos/accesorios/index.php">Ver todos</a></li>
-                        </ul>
-                      </div>
+                      </div>                      
                       
                     </div>
                   </div>
@@ -198,7 +205,7 @@
               </li>
               </ul>
               <a href="<?= $url_base ?>/checkout.php" class="nav-link border-end pe-3">
-                <span id="cart-count" class="badge rounded-pill bg-danger cart-badge" style="font-size: 0.7rem;">
+                <span id="cart-count"  style="font-size: 0.7rem;">
                   
                 </span>
                 <i class="bi bi-cart"></i>
@@ -223,7 +230,13 @@ function actualizarContadorCarrito() {
     fetch('<?= $url_base ?>/get_cart_count.php')
         .then(res => res.json())
         .then(data => {
+          if (data.count > 0) {
             document.getElementById('cart-count').textContent = data.count;
+            document.getElementById('cart-count').classList.add('badge');
+            document.getElementById('cart-count').classList.add('rounded-pill');
+            document.getElementById('cart-count').classList.add('bg-danger');
+            document.getElementById('cart-count').classList.add('cart-badge');
+          }
         })
         .catch(error => {
             console.error('Error al obtener el contador del carrito:', error);

@@ -1,4 +1,9 @@
 // nav
+@media (width<=400px){
+    .navbar-brand img{
+        width: 150px;
+    }
+}
 @media (width <=575px){
     .container,
     .navbar .container{
@@ -28,7 +33,14 @@
     .story-telling-2{
         padding-top: 0!important;
     }
-    
+}
+// filters
+@media (width<=768px){
+    .filter-color,
+    .filter-size,
+    .filter-category{
+        display: none;
+    }
 }
 // container
 @media(width<=1399px){

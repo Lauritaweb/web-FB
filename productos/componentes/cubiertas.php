@@ -1,13 +1,13 @@
 <?php
-$idSubCategory=49;
+$idSubCategory=7; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manubrios para todas las rutas | Forever Bikes</title>
-    <meta name="description" content="Encontrá el manubrio ideal para tu estilo de pedaleo. Rectos, drop o de paseo: mayor control, confort y ergonomía para cada salida en bici.">
+    <title>Cubiertas | Forever Bikes</title>
+    <meta name="description" content="Encuentra cubiertas para bicicletas en Forever Bikes: resistentes, antideslizantes y disponibles en todas las medidas. ¡Máximo agarre y durabilidad para tus rutas!" />
     <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -25,8 +25,8 @@ $idSubCategory=49;
 
 <body class="bg-white">
     <?php include('../../nav.php'); ?>
-    <!-- Page Header Start -->
-    <header class="container-fluid header bg-twenty-three mb-5 mt-5">
+     <!-- Page Header Start -->
+    <header class="container-fluid header bg-thirty-two mb-5 mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center">
         </div>
     </header>

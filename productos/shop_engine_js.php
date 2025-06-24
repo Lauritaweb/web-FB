@@ -16,12 +16,42 @@
 <script>
 
   let idSubcategory = <?php echo json_encode($idSubCategory); ?>;
+  let filterPrecategory = <?php echo isset($filterPrecategory) ? $filterPrecategory : 0; ?>;
+  let availableCategories = [];
+          
+  $(document).ready(function () {
+    $.getJSON('../get_filters.php', { idSubcategory: idSubcategory } , function (data) {
+      availableCategories = data.subcategories;
+      renderFilters(data.colors, '#color-filters', 'color');
+      renderFilters(data.sizes, '#size-filters', 'size');
+      
+      // Solo renderizar el filtro de categoría si filterPrecategory es 1
+      if (filterPrecategory === 1) {
+        renderFilters(data.subcategories, '#category-filters', 'category');
+      }
+      
+      renderPriceFilters(data.prices, '#price-filters');
+
+      if (evaluatePageChange()) {
+        localStorage.removeItem('selectedColorFilters');
+        localStorage.removeItem('selectedSizeFilters');
+        localStorage.removeItem('selectedPriceFilters');
+        console.log("Filtros eliminados por cambio de página");
+      } else {
+        restoreFiltersFromLocalStorage();
+        console.log("Filtros conservados");
+      }
+
+      aplicarFiltros();
+    });
+  });
           
                      
   $(document).ready(function () {
     $.getJSON('../get_filters.php', { idSubcategory: idSubcategory } , function (data) {
       renderFilters(data.colors, '#color-filters', 'color');
       renderFilters(data.sizes, '#size-filters', 'size');
+      renderFilters(data.subcategories, '#category-filters', 'category');
       renderPriceFilters(data.prices, '#price-filters');
 
       if (evaluatePageChange()) {
@@ -117,7 +147,32 @@
 
 
   function aplicarFiltros() {
-    let category = <?= json_encode($idSubCategory) ?>;
+    // Obtener categorías seleccionadas
+    let categories = [];
+    
+    if (filterPrecategory === 1) {
+      const isAllSelected = $('#category-all').is(':checked');
+      
+      if (isAllSelected) {
+        // Si está seleccionado "Todos", enviar todas las categorías disponibles
+        availableCategories.forEach(category => {
+          categories.push(category.id);
+        });
+      } else {
+        // Si no está seleccionado "Todos", obtener las categorías específicas
+        $('#category-filters input[type="checkbox"]:checked').each(function() {
+          const value = $(this).val();
+          if (value !== 'category-all') {
+            categories.push(value);
+          }
+        });
+      }
+    } else {
+      // Si filterPrecategory no es 1, enviar todas las categorías disponibles
+      availableCategories.forEach(category => {
+        categories.push(category.id);
+      });
+    }
 
     // Obtener talles seleccionados
     let sizes = [];
@@ -151,7 +206,7 @@
       type: 'POST',
       dataType: 'json',
       data: {
-        category: category,
+        category: categories.length > 0 ? categories : null,
         sizes: sizes,
         colors: colors,
         prices: prices
@@ -229,6 +284,7 @@
     setupFilterGroup('color');
     setupFilterGroup('size');
     setupFilterGroup('price');
+    setupFilterGroup('category');
 
   });
 
@@ -239,6 +295,9 @@
         return this.id;
       }).get(),
       colors: $('#color-filters input[type=checkbox]:checked').map(function() {
+        return this.id;
+      }).get(),
+      categories: $('#category-filters input[type=checkbox]:checked').map(function() {
         return this.id;
       }).get()
     };
@@ -256,6 +315,10 @@
       // Restaurar tamaños
       $('#size-filters input[type=checkbox]').prop('checked', false);
       saved.sizes.forEach(id => $(`#${id}`).prop('checked', true));
+
+      // Restaurar categorías
+      $('#category-filters input[type=checkbox]').prop('checked', false);
+      saved.categories.forEach(id => $(`#${id}`).prop('checked', true));
     }
   }
 </script>

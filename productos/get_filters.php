@@ -57,12 +57,20 @@ for ($i = 0; $i < $rangeCount; $i++) {
     ];
 }
 
+// Obtener las subcategorías (que son las categorías)
+$categories = array_map(function ($category) {
+    return [
+        'id' => $category['id'],
+        'description' => $category['description']
+    ];
+}, $bikeModel->getSubCategoriesById($idSubcategory));
 
 // Retornar como JSON
 echo json_encode([
     'colors' => $colors,
     'sizes' => $sizes,
-    'prices' => $priceRanges
+    'prices' => $priceRanges,
+    'subcategories' => $categories
 ]);
 
 

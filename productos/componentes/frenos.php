@@ -1,5 +1,6 @@
 <?php
-$idSubCategory=[16,17,18,19];
+$idSubCategory=[16,17,18,19,55,56];
+$filterPrecategory = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">

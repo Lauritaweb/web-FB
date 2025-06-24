@@ -1,13 +1,13 @@
 <?php
-$idSubCategory=[20,21,22,23,24,25];
+$idSubCategory=52;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transmisión para Bicicletas | Precisión y rendimiento Forever Bikes</title>
-    <meta name="description" content="Elegí la transmisión ideal para tu bicicleta. Cambios suaves, rendimiento confiable y componentes que te acompañan en cada pedaleada. Forever Bikes, potencia en cada movimiento.">
+    <title>Caramañolas | Forever Bikes</title>
+    <meta name="description" content="Encuentra caramañolas para bicicletas en Forever Bikes: ligeras, resistentes y de fácil agarre. ¡Mantente hidratado en cada ruta con estilo y eficiencia!" />
     <link rel="shortcut icon" href="../../assets/img/profile-img.jpg" type="image/x-icon">
     <!-- css Bs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -26,7 +26,7 @@ $idSubCategory=[20,21,22,23,24,25];
 <body class="bg-white">
     <?php include('../../nav.php'); ?>
     <!-- Page Header Start -->
-    <header class="container-fluid header bg-twenty-six mb-5 mt-5">
+    <header class="container-fluid header bg-thirty-nine mb-5 mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center">
         </div>
     </header>

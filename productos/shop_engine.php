@@ -22,10 +22,10 @@ else
     <div class="container-fluid pt-0 pt-md-5">
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
-            <div class="col-lg-2 col-md-12 d-none d-md-block">
+            <div class="col-lg-2 col-md-12 sidebar">
 
                  <!-- Price Start -->
-                <div class="border-bottom mb-4 pb-4">
+                <div class="border-bottom mb-4 pb-4 d-none">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por precios</h5>
                     <form class="filter-form" data-filter="price" id="price-filters">                       
                     </form>
@@ -33,15 +33,24 @@ else
                 <!-- Price End -->
 
                 <!-- Color Start -->                
-                <div class="border-bottom mb-4 pb-4 <?= $hide ?>" >
+                <div class="border-bottom filter-color mb-4 pb-4 <?= $hide ?>" >
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por color</h5>
                     <form id="color-filters">
                     </form>
                 </div>            
                 <!-- Color End -->
 
+                <?php if(isset($filterPrecategory) && $filterPrecategory == 1): ?>
+                <!-- Category Start -->
+                <div class="border-bottom filter-category mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filtrar por categoría</h5>
+                    <form id="category-filters"></form>
+                </div> 
+                <!-- Category End -->
+                <?php endif; ?>
+
                 <!-- Size Start -->
-                <div class="mb-5 <?= $hide ?>">
+                <div class="filter-size mb-5 <?= $hide ?>">
                     <h5 class="font-weight-semi-bold mb-4">Filtrar por tamaño</h5>
                     <form id="size-filters"></form>
                 </div> 
@@ -52,7 +61,7 @@ else
 
 
             <!-- Shop Product Start -->
-            <main class="col-md-12 col-lg-10">
+            <main class="col-md-12 col-lg-10 content mt-3 mt-md-0">
                 <div class="row">
                     <div class="d-inline-flex mb-2">
                         <p class="m-0 me-1 "><a href="../../index.php" class="text-key ">Home</a></p>
@@ -119,4 +128,17 @@ else
     <!-- Shop End -->
 
 
- 
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.col-lg-2');
+    const main    = document.querySelector('main.col-lg-10');
+
+    if (sidebar && main) {
+        // compruebo si no hay nada de filtro visible
+        if (sidebar.innerText.trim() === '') {
+        sidebar.classList.add('d-none');                   // oculto sidebar
+        main.classList.replace('col-lg-10', 'col-lg-12');  // main ocupa 12 cols
+        }
+    }
+    });
+</script>
