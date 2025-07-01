@@ -149,14 +149,12 @@ $randomProducts = $productModel->getRandomProducts($id_subcategory,6);
                         </form>
                         <!-- Select visible solo en mobile -->
                         <form class="d-block d-md-none" id="mobileColorOptions">
-                            <div class="form-group">
-                                <select class="form-select" name="color" id="colorSelect" <?= count($product['sizes']) > 0 ? 'disabled' : '' ?>>
-                                    <option value="">Selecciona un color</option>
-                                    <?php foreach ($product['colors'] as $i => $color): ?>
-                                        <option value="<?= $color ?>" data-color="<?= $i ?>"><?= $color ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+                        <?php foreach ($product['colors'] as $i => $color): ?>
+                                <div class="custom-control custom-radio custom-control-inline ms-3 color-option" style="display: block;">
+                                    <input type="radio" class="custom-control-input" id="color-<?= $i ?>" data-color="<?= $i ?>" name="color" value="<?= $color ?>">
+                                    <label class="custom-control-label" for="color-<?= $i ?>"><?= $color ?></label>
+                                </div>
+                            <?php endforeach; ?>
                         </form>
                     <?php endif; ?>
                 </div>
