@@ -79,7 +79,7 @@ $envio = 0;
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
                                 <label>Celuar</label>
-                                <input class="form-control" type="text" name="telefono" placeholder="+11 578413" required>
+                                <input class="form-control" type="number" name="telefono" placeholder="+11 578413" required>
                             </div>
                             <div class="col-md-6 form-group mt-2">
                                 <span class="text-danger">*</span>
